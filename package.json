@@ -1,0 +1,25 @@
+{
+  "name": "argumenta-widgets",
+  "description": "JavaScript Widgets for Argumenta",
+  "version": "0.0.0",
+  "private": true,
+  "author": "Tyler Florez <qualiabyte@gmail.com>",
+  "main": "",
+  "scripts": {
+    "prepublish": "make all",
+    "test": "OPTIMIZE=none make all"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qualiabyte/argumenta-widgets.git"
+  },
+  "devDependencies": {
+    "requirejs": "~1.0.8"
+  },
+  "keywords": [
+    "argumenta",
+    "widgets",
+    "components"
+  ],
+  "license": "MIT"
+}
