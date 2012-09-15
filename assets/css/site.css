@@ -1,0 +1,228 @@
+/* Argumenta - Main Site Stylesheet */
+
+/* Simple css reset */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+/* Elements */
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.4em; }
+h4 { font-size: 1.3em; }
+h5 { font-size: 1.2em; }
+h6 { font-size: 1.1em; }
+
+html  {
+    min-height: 100%;
+    position: relative;
+}
+body {
+    color: #333;
+    background: #333;
+    font: 13px/1.1 sans-serif;
+    min-height: 100%;
+}
+a {
+    color: #08f;
+    text-decoration: none;
+}
+a:hover {
+    color: #08f;
+    text-decoration: underline;
+}
+div.left {
+    display:inline-block;
+    width:70%;
+}
+
+/* IDs */
+
+#app-main {
+    width: 50%;
+}
+#content {
+    min-height: 100%;
+    min-width: 890px;
+    max-width: 1050px;
+    margin: auto;
+    padding-top: 40px;
+    /* Gradient Fallback */
+    background-image: url('/images/horiz-grad-bluegreen.png');
+    /* Gradient + Pattern - Horizontal */
+    background-image: -webkit-linear-gradient(left, rgba(135, 251, 234, 0.5), rgba(61, 116, 194, 0.5)), url("/images/dark-stripes.svg");
+    background-image:    -moz-linear-gradient(left, rgba(135, 251, 234, 0.5), rgba(61, 116, 194, 0.5)), url("/images/dark-stripes.svg");
+    background-image:     -ms-linear-gradient(left, rgba(135, 251, 234, 0.5), rgba(61, 116, 194, 0.5)), url("/images/dark-stripes.svg");
+    background-image:      -o-linear-gradient(left, rgba(135, 251, 234, 0.5), rgba(61, 116, 194, 0.5)), url("/images/dark-stripes.svg");
+    background-image:         linear-gradient(left, rgba(135, 251, 234, 0.5), rgba(61, 116, 194, 0.5)), url("/images/dark-stripes.svg");
+    /* Gradient Settings */
+    background-attachment: scroll;
+    background-position: 0 40px;
+    background-repeat: repeat;
+}
+#header {
+    background-color: #e8e8e8;
+    height: 40px;
+    width: 100%;
+}
+#header-contents {
+    background-color: #fff;
+    box-shadow: 0 0 12px #555;
+    height: 40px;
+    min-width: 880px;
+    max-width: 1000px;
+    margin: auto;
+    padding: 0px 40px 0px 10px;
+}
+#header-logo {
+    color: #222;
+    font-family: serif;
+    font-size: 40px;
+    line-height: 0.85;
+    text-decoration: underline;
+}
+#footer {
+    position: absolute;
+    bottom: -100px;
+    height: 100px;
+    width: 100%;
+    background-color: #333;
+    opacity: 0.5;
+    z-index: -1;
+}
+#main-nav {
+    font: bold 18px sans-serif;
+    margin: 0px 10px;
+    padding: 0px;
+}
+#main-nav li {
+    list-style-type: none;
+    display: inline-block;
+    margin: 0px 5px;
+}
+#main-nav li a {
+    color: #333;
+}
+
+/* Classes */
+
+.actions {
+    float:right;
+}
+.button {
+    cursor: pointer;
+}
+.flash {
+    float: none;
+    background: #dff;
+    margin: 10px auto 10px auto;
+    border: 2px solid #aaf8ff;
+    border-radius: 4px;
+    padding: 4px;
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+    color: #08ACC5;
+}
+.topbar {
+    position: fixed;
+    z-index: 100;
+}
+.warning {
+    float: none;
+    background: #fdd;
+    margin: 10px auto 10px auto;
+    border: 2px solid #ecc;
+    border-radius: 4px;
+    padding: 4px;
+    width: 50%;
+    text-align: center;
+    font-weight: bold;
+    color: #d24;
+}
+
+/* Shadows */
+
+.shadowed {
+    text-shadow: 1px 1px 0px #ccc;
+}
+.softer-shadowed {
+    text-shadow: 1px 1px 2px #ccc;
+}
+
+/* Colors */
+
+.light {
+    color: #999;
+}
+.charcoal {
+    color:#222;
+}
+
+/* Opacity */
+
+.dream {
+    opacity: 0.9;
+}
+.mist {
+    opacity: 0.8;
+}
+.fade {
+    opacity: 0.4;
+}
+
+/* Create Argument Form */
+
+.create-argument {
+    font: serif;
+}
+.create-argument * .element .role {
+    float: right;
+    color: #444;
+    font-family: serif;
+}
+.create-argument * .element .pos {
+    float: left;
+    width: auto;
+    margin: 0 0 0 0.3em;
+}
+.create-argument * .element .content textarea {
+    font: 1em "Trebuchet MS",sans-serif;
+    width: 30em;
+    height:3em;
+}
+
+/* Listings */
+
+.listings-container {
+    min-width: 430px;
+}
+.listing {
+    margin: 5px;
+}
+.listing-title {
+    font-weight: normal;
+    margin: 10px 0px;
+}
+.listing-contents {
+    margin: 10px 0px;
+}
+
+/* App */
+
+.sidebar-listings-container {
+    min-width: 430px;
+}
+.lists-container {
+}
+
+/* Partials */
+
+.argument-list {
+    vertical-align: top;
+}
+

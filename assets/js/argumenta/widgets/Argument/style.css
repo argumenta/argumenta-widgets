@@ -1,0 +1,43 @@
+/* Argumenta - Argument Widget Stylesheet */
+
+.argument-widget {
+    max-width: 600px;
+    padding: 0px 0px;
+    margin: 10px 0px;
+    box-shadow: 0px 2px 3px #333;
+    color: #333;
+    font-size: 13px;
+}
+.argument-widget .light {
+    color: #999;
+}
+.argument-widget .shadowed {
+    text-shadow: 1px 1px 0px #ccc;
+}
+.argument-main:hover, .argument-widget-drag .argument-main {
+    border-left: 4px solid #555 !important;
+}
+.argument-main {
+    background: #fff;
+    padding: 5px 5px;
+    border-left: 4px solid #ccc;
+    border-radius: 0px;
+    cursor: pointer;
+}
+
+.argument-title {
+    font-size: 22px;
+}
+.argument-sha1 {
+    color: #999;
+}
+.commit-info {
+    color: #666;
+}
+.commit-date {
+    color: #666;
+}
+.propositions-container {
+    background: #f8f8f8;
+    padding: 0px;
+}

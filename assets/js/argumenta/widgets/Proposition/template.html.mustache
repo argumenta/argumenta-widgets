@@ -1,0 +1,22 @@
+<div class="proposition-widget" data-sha1="{{sha1}}">
+    <div class="proposition-main">
+        <span class="index" title="{{proposition_desc}}"> {{index}}.</span>
+        <span class="text" title="{{proposition_desc}}"> {{text}}</span><br>
+        <span class="sha1"> <a href="/propositions/{{sha1}}" title="{{details_desc}}">{{partial_sha1}}</a> </span>
+        <div class="tag-info float-right">
+            <span class="tag-counts">
+                <span class="supports support-bg card ivory bold sans" title="Support Tags"> {{tag_counts.support_target}} </span>
+                <span class="disputes dispute-bg card ivory bold sans" title="Dispute Tags"> {{tag_counts.dispute_target}} </span>
+                <span class="cites cite-bg card ivory bold sans" title="Cite Tags">    {{tag_counts.cite_target}} </span>
+                <a href="#" class="addtag-link">
+                    <span class="addtag-button card ivory-gradient bold sans" title="Add Tag!"> + </span>
+                </a>
+            </span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="add-tag-widget"></div>
+    <div class="proposition-details">
+        <div class="tags-widget-container"></div>
+    </div>
+</div>

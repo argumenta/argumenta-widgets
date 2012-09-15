@@ -1,0 +1,52 @@
+/* Argumenta - Proposition Widget Stylesheet */
+
+div.proposition-widget {
+    border-left: 4px solid #ccc;
+    background: #fff;
+    width: auto;
+    min-width: 350px;
+    max-width: 600px;
+    border-radius: 0px;
+    margin: 0px;
+    padding: 2px;
+}
+div.proposition-widget {
+    font-size: 13px;
+}
+div.proposition-widget:hover, .proposition-widget-drag {
+    border-left-color: #08f !important;
+}
+div.proposition-main {
+    padding: 5px;
+    cursor: pointer;
+}
+.ui-draggable-dragging div.proposition-main {
+    cursor: move;
+}
+div.proposition-main .index {
+    font: 23px serif;
+    text-shadow: 1px 1px 1px #aaa;
+}
+div.core-info {
+    display: inline-block;
+    width: 100%;
+}
+.sha1, .sha1 a {
+    font-size: 13px;
+    color: #999;
+}
+.tag-info {
+    display: inline-block;
+    text-align: right;
+}
+.tag-counts .supports { background-color: #44e844; }
+.tag-counts .disputes { background-color: #f28; }
+.tag-counts .cites    { background-color: #555; }
+.addtag-button {
+    margin: 4px !important;
+    padding: 2px 7px !important;
+    border: 1px solid #ddd;
+}
+.proposition-details {
+    padding-left: 15px;
+}

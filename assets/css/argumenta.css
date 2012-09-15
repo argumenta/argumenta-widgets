@@ -1,0 +1,12 @@
+/* Argumenta - Widgets Stylesheet */
+
+/* Include shared styles (for main site and widgets) */
+@import url("./shared.css");
+
+/* Include the css for each argumenta widget */
+@import url("../js/argumenta/widgets/AddTag/style.css");
+@import url("../js/argumenta/widgets/Argument/style.css");
+@import url("../js/argumenta/widgets/Citation/style.css");
+@import url("../js/argumenta/widgets/Proposition/style.css");
+@import url("../js/argumenta/widgets/Sidebar/style.css");
+@import url("../js/argumenta/widgets/Tags/style.css");

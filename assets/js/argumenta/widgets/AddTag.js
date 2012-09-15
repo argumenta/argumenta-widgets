@@ -1,0 +1,227 @@
+define( 'argumenta/widgets/AddTag',
+[
+    "require-jquery",
+    "argumenta/widgets/Base",
+    "text!./AddTag/template.html.mustache",
+    "argumenta/sandbox"
+],
+function( $, Base, Template, Sandbox ) {
+
+    var AddTag = Base.module( {
+
+        moduleID: 'AddTag',
+        template: Template,
+
+        defaults: {
+            tag_type : 'support',
+            target_type : '',
+            target_sha1 : '',
+            source_type : '',
+            source_sha1 : ''
+        },
+
+        init: function( options ) {
+            this.initAddTag( options );
+        },
+
+        prototype: {
+
+            initAddTag:
+            function _initAddTag( options ) {
+                var self = this;
+
+                // Set widget state from options
+                self.setTagType( self.options.tag_type );
+                self.setTagTarget( self.options.target_type, self.options.target_sha1 );
+                self.setTagSource( self.options.source_type, self.options.source_sha1 );
+            },
+
+            getTagType: function() {
+                return this.options.tag_type;
+            },
+            getTargetType: function() {
+                return this.options.target_type;
+            },
+            getTargetSha1: function() {
+                return this.options.target_sha1;
+            },
+            getSourceType: function() {
+                return this.options.source_type;
+            },
+            getSourceSha1: function() {
+                return this.options.source_sha1;
+            },
+            getCitationText: function() {
+                return this.element.find('textarea[name=citation_text]').val();
+            },
+
+            setTagType: function( tag_type ) {
+                var self = this;
+
+                // Update widget state
+                self.options.tag_type = tag_type;
+
+                // Update widget elements
+                self.updateTagTypeElems();
+                self.updateTagContent();
+            },
+
+            setTagTarget: function( target_type, target_sha1 ) {
+                var self = this;
+
+                // Update widget state
+                self.options.target_type = target_type;
+                self.options.target_sha1 = target_sha1;
+
+                // Update form elements
+                self.element.find('input[name=target_type]').val( target_type );
+                self.element.find('input[name=target_sha1]').val( target_sha1 );
+            },
+
+            setTagSource:
+            function setTagSource( source_type, source_sha1 ) {
+                var self = this;
+
+                // Set widget state
+                self.options.source_type = source_type;
+                self.options.source_sha1 = source_sha1;
+
+                // Update form elements
+                self.element.find('input[name=source_type]').val( source_type );
+                self.element.find('input[name=source_sha1]').val( source_sha1 );
+            },
+
+            _bindUI: function() {
+                var self = this;
+                var widget = $( this.element );
+                var form = widget.find('form').first();
+
+                // Save useful references to widget elements
+                self.form = form;
+                self.supportContents = form.children('.support-contents');
+                self.disputeContents = form.children('.dispute-contents');
+                self.citeContents = form.children('.citation-contents');
+
+                // Listen for clicks on tag-type buttons
+                widget.on(
+                    'click',
+                    'button[name=support], button[name=dispute], button[name=cite]',
+                    function( event ) {
+                        event.data = event.data || {};
+                        event.data.widget = self.element;
+                        event.data.button = this;
+                        self._onClickTagType( event );
+                    }
+                );
+
+                // Activate the dropbox
+                widget.find( AddTag.dropboxClass ).droppable( AddTag.dropboxOptions );
+
+                // Don't trigger background elements if clicked
+                widget.on('click', function( event ) {
+                    event.stopPropagation();
+                } );
+            },
+
+            _onClickTagType: function( event ) {
+
+                var self = this;
+                var button = $(event.data.button);
+
+                // Get tag_type from clicked button's name
+                var tag_type = button.attr('name');
+
+                // Update widget state
+                self.setTagType( tag_type );
+
+                // Blur the button
+                button.blur();
+            },
+
+            updateTagTypeElems: function() {
+                var self = this;
+                var tag_type = self.getTagType();
+
+                // Get the tag_type button to activate
+                var button = self.element.find('button[name=' + tag_type + ']');
+
+                // Activate it, and deactivate the others
+                button.addClass('on').removeClass('off');
+                button.siblings('button').removeClass('on').addClass('off');
+
+                // Set the "tag_type" input element
+                button.siblings('input[name=tag_type]').val( tag_type );
+            },
+
+            updateTagContent: function() {
+                var self = this;
+                var tag_type = self.getTagType();
+
+                if ( self.showingContentsForType !== tag_type ) {
+
+                    var allContents = $()
+                        .add( self.supportContents )
+                        .add( self.disputeContents )
+                        .add( self.citeContents );
+
+                    var toShow = self[tag_type + 'Contents'];
+                    var toHide = allContents.not( toShow );
+
+                    // note: show before hiding stabilizes sidebar scroll pos
+                    toShow.show();
+                    toHide.hide();
+                }
+                self.showingContentsForType = tag_type;
+            }
+        },
+
+        static: {
+
+            // SELECTORS
+            formClass:      '.new-tag',
+            dropboxClass:   'div.tag-dropbox',
+
+            dropboxOptions: {
+                hoverClass: 'dropbox-hover',
+                greedy: true,
+                tolerance: 'touch',
+                // Don't allow drop on self
+                accept: function (theDraggable) {
+                    var dropContainer = $(this).closest('.proposition-widget');
+                    var droppedOnSelf = dropContainer.is(theDraggable);
+                    return ! droppedOnSelf;
+                },
+                drop: function (event, ui) {
+
+                    // Get addtag widget instance
+                    var addTagElem = $(this).closest('.addtag-widget');
+                    var addTag = addTagElem.data( AddTag.getClassName() );
+
+                    // Dropped widget (the tag source) may be a proposition or argument
+                    var sourceElem = ui.draggable;
+                    var source = sourceElem.data('proposition-widget') ||
+                                sourceElem.data('argument-widget');
+
+                    // Update addtag with the new tag source
+                    addTag.setTagSource(
+                        source.getType(),
+                        source.getSha1()
+                    );
+
+                    // Cache the last dropped source
+                    addTag.droppedCache = source;
+
+                    // Create a clean clone
+                    var clone = Sandbox.widgetFor( source.options );
+
+                    // Append just the clone html as a source preview
+                    $(this).children('.dropbox-preview')
+                        .empty()
+                        .append( clone.element.html() );
+                }
+            }
+        }
+    } );
+
+    return AddTag;
+} );

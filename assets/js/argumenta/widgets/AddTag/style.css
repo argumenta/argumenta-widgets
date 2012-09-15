@@ -1,0 +1,89 @@
+/* Argumenta - AddTag Widget Stylesheet */
+
+/* Add Tag Dialogue */
+
+.addtag-widget {
+    min-width: 350px;
+    width: 100%;
+}
+form.new-tag {
+  text-align: center;
+  display: block;
+  margin: 5px 2px;
+  padding: 10px 2px;
+  box-shadow: 2px 2px 4px #ccc;
+}
+.tag-dialogue fieldset {
+  border: 0px solid #ccc;
+  vertical-align: middle;
+}
+.tag-dialogue button {
+  padding: 4px;
+  font-size: 13px;
+}
+.tag-dialogue button[name=support],
+.tag-dialogue button[name=support][class~=off]:hover {
+  color: #fff;
+  background: #22e022;
+}
+.tag-dialogue button[name=dispute],
+.tag-dialogue button[name=dispute][class~=off]:hover {
+  color: #fff;
+  background: #f28;
+}
+.tag-dialogue button[name=cite],
+.tag-dialogue button[name=cite][class~=off]:hover {
+  color: #fff;
+  background: #555;
+}
+.tag-dialogue button[class~=off] {
+  color: #333;
+  background: #fff;
+}
+.tag-dialogue button:hover {
+  opacity: 1.0;
+}
+.add-tag-divider {
+  border-style: none none solid;
+  border-color: #CCC;
+  border-width: 1px;
+  height: 2px;
+  margin: 8px;
+  width: auto;
+}
+.tag-dropbox-container {
+  margin: 5px 0px;
+  padding: 5px 0px;
+  width: 100%;
+}
+.tag-dropbox {
+  background: #fff;
+  min-height: 3em;
+  width: auto;
+  border: 1px solid #3bf;
+  border-radius: 3px;
+  box-shadow: 1px 1px 1px #ccc;
+  margin: 5px;
+  padding: 3px;
+}
+.tag-dropbox .dropbox-preview {
+  min-height: 4em;
+  min-width: 350px;
+  padding: 0px;
+  text-align: left;
+  font-weight: normal;
+}
+.dropbox-hover {
+  border: 1px solid #3cf;
+  box-shadow: 0 0 10px #3af;
+}
+.tag-dropbox .dropbox-contents {
+  display: none;
+}
+
+[name=citation_text] {
+    box-sizing: border-box;
+    width: 95%;
+    height: 3.9em;
+    margin: 5px auto;
+}

@@ -1,0 +1,23 @@
+/* Argumenta - Tags Widget Stylesheet */
+
+.support-tags-header {
+    border-bottom: 2px solid #4d4;
+    color: #4d4;
+}
+.dispute-tags-header {
+    border-bottom: 2px solid #f47;
+    color: #f47;
+}
+.cite-tags-header {
+    border-bottom: 2px solid #333;
+    color: #333;
+}
+.tags-widget [class*=tags-header] {
+    margin: 6px 0px;
+    font-size: 18px;
+    font-weight: bold;
+}
+.tags-container > * {
+    box-shadow: none;
+    margin: 8px 0px;
+}
