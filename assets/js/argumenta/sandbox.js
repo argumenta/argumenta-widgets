@@ -27,7 +27,7 @@ function( Widgets ) {
         // Construct an Argumenta widget from object data. Supports:
         //   Arguments    (from argument objects)
         //   Propositions (from proposition objects)
-        //   Citations    (from tag objects with tag_type 'cite')
+        //   Citations    (from tag objects with tag_type 'citation')
         widgetFor: function( obj ) {
 
             if ( !obj  ) {
@@ -43,7 +43,7 @@ function( Widgets ) {
             else if ( type === 'proposition' ) {
                 module = Widgets.module('Proposition');
             }
-            else if ( type === 'tag' && obj.tag_type === 'cite' ) {
+            else if ( type === 'tag' && obj.tag_type === 'citation' ) {
                 module = Widgets.module('Citation');
             }
 

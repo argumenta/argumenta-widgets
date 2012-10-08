@@ -52,19 +52,26 @@ function( $, Base, Template, Sandbox ) {
                     };
                 };
 
-                self.tags = { cites: {}, supports: {}, disputes: {} };
+                self.tags = { citations: {}, supports: {}, disputes: {} };
 
-                self.tags.cites    = $.grep( tagsData, tagTypeFilter('cite') );
-                self.tags.supports = $.grep( tagsData, tagTypeFilter('support') );
-                self.tags.disputes = $.grep( tagsData, tagTypeFilter('dispute') );
+                self.tags.citations = $.grep( tagsData, tagTypeFilter('citation') );
+                self.tags.supports  = $.grep( tagsData, tagTypeFilter('support') );
+                self.tags.disputes  = $.grep( tagsData, tagTypeFilter('dispute') );
 
                 // Save reference to tags in options (for use in template)
                 self.options.tags = self.tags;
             },
 
-            setSources: function( sourcesDict ) {
+            // Sets the sources dict for a given array of source objects.
+            setSources: function( sources ) {
                 var self = this;
-                self.sources = sourcesDict;
+                var dict = {};
+
+                $(sources).each(function(index, source) {
+                   dict[source.sha1] = source;
+                });
+
+                self.sources = dict;
             },
 
             _update: function() {
@@ -108,7 +115,7 @@ function( $, Base, Template, Sandbox ) {
                     // Hide contents while updating
                     this.element.hide();
 
-                    var types = ['support', 'dispute', 'cite'];
+                    var types = ['support', 'dispute', 'citation'];
                     for ( var i in types ) {
                         var type = types[i];
                         var container = self.element.children('.' + type + '-tags');
@@ -122,7 +129,7 @@ function( $, Base, Template, Sandbox ) {
 
                             var widget;
 
-                            if ( tag.tag_type === 'cite' ) {
+                            if ( tag.tag_type === 'citation' ) {
                                 widget = Sandbox.widgetFor( tag );
                             }
                             else {
