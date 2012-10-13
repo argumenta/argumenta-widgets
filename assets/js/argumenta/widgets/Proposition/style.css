@@ -39,6 +39,9 @@ div.core-info {
     display: inline-block;
     text-align: right;
 }
+.tag-counts [data-count="0"] {
+    display: none;
+}
 .tag-counts .supports { background-color: #44e844; }
 .tag-counts .disputes { background-color: #f28; }
 .tag-counts .cites    { background-color: #555; }
