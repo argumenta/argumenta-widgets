@@ -188,6 +188,21 @@ function( $, Base, AddTag, Tags, Template ) {
             },
 
             // Overrides Base
+            _renderUI: function() {
+                var self = this;
+
+                self._super('_renderUI');
+
+                var textElem = self.element.find('.text').first();
+                var textHtml = textElem.html();
+                var newHtml  = textHtml.replace(/\r?\n|\r/g, '<br>');
+
+                textElem.html( newHtml );
+
+                return;
+            },
+
+            // Overrides Base
             _getViewOptions: function() {
                 var self = this;
                 var role_desc;
