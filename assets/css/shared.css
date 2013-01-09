@@ -1,5 +1,16 @@
 /* Argumenta - Shared Stylesheet */
 
+/* Shared Styles */
+
+.argumenta,
+.argumenta textarea,
+.argument-widget, .proposition-widget,
+.addtag-widget, .citation-widget, .tags-widget
+{
+    font-family: "Monda";
+    line-height: 1.3;
+}
+
 /* Text */
 
 .bold {
