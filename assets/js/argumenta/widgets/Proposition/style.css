@@ -20,6 +20,9 @@ div.proposition-main {
     padding: 5px;
     cursor: pointer;
 }
+div.proposition-main .text {
+    font: 14px "Duru Sans";
+}
 .ui-draggable-dragging div.proposition-main {
     cursor: move;
 }
