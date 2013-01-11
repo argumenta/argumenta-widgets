@@ -47,7 +47,7 @@ div.core-info {
 }
 .tag-counts .supports { background-color: #44e844; }
 .tag-counts .disputes { background-color: #f28; }
-.tag-counts .cites    { background-color: #555; }
+.tag-counts .citations { background-color: #555; }
 .addtag-button {
     margin: 4px !important;
     padding: 2px 7px !important;

@@ -31,8 +31,8 @@ form.new-tag {
   color: #fff;
   background: #f28;
 }
-.tag-dialogue button[name=cite],
-.tag-dialogue button[name=cite][class~=off]:hover {
+.tag-dialogue button[name=citation],
+.tag-dialogue button[name=citation][class~=off]:hover {
   color: #fff;
   background: #555;
 }

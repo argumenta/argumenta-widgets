@@ -100,12 +100,12 @@ function( $, Base, Template, Sandbox ) {
                 self.form = form;
                 self.supportContents = form.children('.support-contents');
                 self.disputeContents = form.children('.dispute-contents');
-                self.citeContents = form.children('.citation-contents');
+                self.citationContents = form.children('.citation-contents');
 
                 // Listen for clicks on tag-type buttons
                 widget.on(
                     'click',
-                    'button[name=support], button[name=dispute], button[name=cite]',
+                    'button[name=support], button[name=dispute], button[name=citation]',
                     function( event ) {
                         event.data = event.data || {};
                         event.data.widget = self.element;
@@ -162,7 +162,7 @@ function( $, Base, Template, Sandbox ) {
                     var allContents = $()
                         .add( self.supportContents )
                         .add( self.disputeContents )
-                        .add( self.citeContents );
+                        .add( self.citationContents );
 
                     var toShow = self[tag_type + 'Contents'];
                     var toHide = allContents.not( toShow );
