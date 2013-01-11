@@ -27,7 +27,7 @@ function( $, Base, AddTag, Tags, Template ) {
             },
 
             getSha1: function() {
-                return this.element.data('sha1');
+                return this.data.sha1;
             },
 
             initProposition: function( options ) {
