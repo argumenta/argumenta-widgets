@@ -80,8 +80,14 @@ function( $, Mustache, Template, Sandbox ) {
             this.element.data(this.getClassName(), this);
             
             // Save merged options on element as "data-" attributes
-            this.element.data( options );
+            this.element.data( this.options );
             
+            // Save the data object
+            this.data = this.element.data();
+
+            // Make options an alias for current data
+            this.options = this.data;
+
             // Update the element contents
             this._refresh();
             
