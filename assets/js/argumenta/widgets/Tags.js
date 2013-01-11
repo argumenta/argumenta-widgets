@@ -12,11 +12,11 @@ function( $, Base, Template, Sandbox ) {
      *
      * A widget for loading and displaying an object's tags.
      *
-     * @param {Object}   options             A hash of init options for the tags widget.
-     * @param {String}   options.target_type The type of the object whose tags this widget represents.
-     * @param {String}   options.target_sha1 The sha1 of the object whose tags this widget represents.
-     * @param {Function} [options.onLoad]    An optional callback to run after widget initializes and tags are loaded.
-     *   Arg1 {Object}   tagsWidget          The tags widget which has just finished loading.
+     * @param {Object}   options                A hash of init options for the tags widget.
+     * @param {String}   options.target_type    The target object's type.
+     * @param {String}   options.target_sha1    The target object's sha1.
+     * @param {Function} options.onLoad(widget) Optional callback to run once tags are loaded.
+     * @param {Tags}     widget                 The new widget.
      */
     var Tags = Base.module( {
 
