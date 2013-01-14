@@ -79,14 +79,14 @@ function( $, Mustache, Template, Sandbox ) {
             // Save a reference to this widget instance in the element's "data-<classname>" attribute
             this.element.data(this.getClassName(), this);
             
-            // Save merged options on element as "data-" attributes
-            this.element.data( this.options );
+            // Save merged options on element as "data-options" attribute
+            this.element.data('options', this.options);
             
             // Save the data object
             this.data = this.element.data();
 
-            // Make options an alias for current data
-            this.options = this.data;
+            // Make options an alias for data.options
+            this.options = this.data.options;
 
             // Update the element contents
             this._refresh();
