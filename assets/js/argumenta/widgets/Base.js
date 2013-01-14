@@ -38,14 +38,40 @@ function( $, Mustache, Template, Sandbox ) {
 
     Base.prototype = {
         
-        /** @return The widget's CSS classname, based on the moduleID. */
+        /**
+         *  Clones this widget.
+         *
+         *  @return {Object} The new clone.
+         */
+        clone: function() {
+            return Sandbox.widgetFor(this.getOptions());
+        },
+
+        /**
+         * Gets this widget's CSS classname.
+         *
+         * @return {String} The widget CSS classname.
+         */
         getClassName: function() {
             return this.moduleID.toLowerCase() + '-widget';
         },
         
-        /** @return A CSS selector for the widget, based on its classname. */
+        /**
+         *  Gets this widget's CSS selector.
+         *
+         *  @return {String} The widget CSS selector.
+         */
         getClassSelector: function() {
             return '.' + this.getClassName();
+        },
+
+        /**
+         * Gets a copy of this widget's options.
+         *
+         * @return {Object} A widget options copy.
+         */
+        getOptions: function() {
+            return $.extend({}, this.options);
         },
 
         /**
@@ -154,7 +180,7 @@ function( $, Mustache, Template, Sandbox ) {
     Base.getClassSelector = function() {
         return this.prototype.getClassSelector();
     };
-    
+
     /**
      * Activate a widget placeholder element by installing a new instance on it.
      * Any 'data-' attributes will be passed as options to create the widget.
