@@ -220,19 +220,6 @@ function( $, Base, AddTag, Tags, Template ) {
                 }
                 return $.extend( viewOptions, self.options );
             }
-        },
-
-        "static": {
-
-            // Get the type of a proposition element
-            getType: function( proposition ) {
-                return $(proposition).data('object_type');
-            },
-
-            // Get the sha1 of a proposition element
-            getSha1: function( proposition ) {
-                return $(proposition).data('sha1');
-            }
         }
     } );
 
