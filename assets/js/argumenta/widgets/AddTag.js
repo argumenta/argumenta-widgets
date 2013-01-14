@@ -212,7 +212,7 @@ function( $, Base, Template, Sandbox ) {
                     addTag.droppedCache = source;
 
                     // Create a clean clone
-                    var clone = Sandbox.widgetFor( source.options );
+                    var clone = source.clone();
 
                     // Append just the clone html as a source preview
                     $(this).children('.dropbox-preview')
