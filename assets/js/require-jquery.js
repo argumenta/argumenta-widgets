@@ -1,7 +1,7 @@
-/*
-    Module: require-js
-        Loads the jquery core, and plugins required by Argumenta (in proper order)
-*/
+
+//
+// Loads jQuery and jQuery UI.
+//
 define( 'require-jquery',
 [
     "order!jquery",
