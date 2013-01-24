@@ -8,11 +8,21 @@
 
 .argumenta,
 .argumenta textarea,
+.argumenta h1, .argumenta h2, .argumenta h3,
 .argument-widget, .proposition-widget,
 .addtag-widget, .citation-widget, .tags-widget
 {
     font-family: "Monda";
     line-height: 1.3;
+}
+
+/* Links */
+
+.argumenta a {
+    color: #08f;
+}
+.argumenta a:hover {
+    text-decoration: underline;
 }
 
 /* Text */
