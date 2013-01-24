@@ -1,5 +1,9 @@
 /* Argumenta - Shared Stylesheet */
 
+/* Bootstrap */
+
+@import url("../vendor/bootstrap/css/bootstrap.css");
+
 /* Shared Styles */
 
 .argumenta,
