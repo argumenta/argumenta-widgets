@@ -1,5 +1,6 @@
 define( 'argumenta/app',
 [
+    "argumenta/sandbox",
     "argumenta/widgets",
     "argumenta/widgets/Base",
     "argumenta/widgets/Argument",
@@ -9,11 +10,12 @@ define( 'argumenta/app',
     "argumenta/widgets/Sidebar",
     "argumenta/widgets/Tags"
 ],
-function( Widgets, Base, Argument, AddTag, Citation, Proposition, Sidebar, Tags) {
+function( Sandbox, Widgets, Base, Argument, AddTag, Citation, Proposition, Sidebar, Tags) {
 
     var App = {
 
         start: function() {
+            Sandbox.init();
             Widgets.init();
         }
     };

@@ -1,10 +1,70 @@
 define( 'argumenta/sandbox',
 [
+    "require-jquery",
     "argumenta/widgets"
 ],
-function( Widgets ) {
+function( $, Widgets ) {
 
     var Sandbox = {
+
+        //
+        // Inits the sandbox.
+        //
+        init: function() {
+            var self = this;
+            self.initNotify();
+        },
+
+        // NOTIFICATIONS
+
+        //
+        // Inits notifications property and element.
+        //
+        initNotify: function() {
+            var self = this;
+            var notifications = $('.argumenta .notifications');
+            self.notifications = notifications.length > 0
+                ? notifications
+                : $('<div class="argumenta"><div class="notifications"></div></div>')
+                    .appendTo('body');
+            self.notifications.children().delay(8000).fadeOut(2000);
+            return self.notifications;
+        },
+
+        //
+        // Gets the notifications element.
+        //
+        getNotifications: function() {
+            var self = this;
+            var notifications = self.notifications || self.initNotify();
+            return notifications;
+        },
+
+        //
+        // Shows a notification message.
+        //
+        notify: function( message ) {
+            var self = this;
+            var notifications = self.getNotifications();
+            var elem = $('<div class="info"></div>')
+                .text( message )
+                .appendTo( notifications )
+                .delay(8000).fadeOut(2000);
+        },
+
+        //
+        // Shows a notification warning.
+        //
+        warn: function( message ) {
+            var self = this;
+            var notifications = self.getNotifications();
+            var elem = $('<div class="error"></div>')
+                .text( message )
+                .appendTo( notifications )
+                .delay(8000).fadeOut(2000);
+        },
+
+        // WIDGETS
 
         register: function( module ) {
             Widgets.registerModule( module );
