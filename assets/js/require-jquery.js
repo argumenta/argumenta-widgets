@@ -5,9 +5,10 @@
 define( 'require-jquery',
 [
     "order!jquery",
-    "order!jquery-ui"
+    "order!jquery-ui",
+    "order!jquery.temporaryClass"
 ],
-function( $, undefined ) {
+function( $, undefined, undefined ) {
 
     // Return the extended jquery class
     return $;
