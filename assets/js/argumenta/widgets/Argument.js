@@ -3,9 +3,10 @@ define( 'argumenta/widgets/Argument',
     "require-jquery",
     "argumenta/widgets/Base",
     "text!./Argument/template.html.mustache",
-    "argumenta/widgets/Proposition"
+    "argumenta/widgets/Proposition",
+    "argumenta/sandbox"
 ],
-function( $, Base, Template, Proposition ) {
+function( $, Base, Template, Proposition, Sandbox ) {
 
     /**
      * @class Argument
@@ -102,14 +103,45 @@ function( $, Base, Template, Proposition ) {
             _bindUI: function() {
                 var self = this;
 
-                // Save reference to inner container
+                // Save reference to inner container and menu
                 self.container = self.element.children(".argument-container");
+                self.menu = self.container.find('.argument-menu').first();
+                self.deleteButton = self.menu.find('.action-delete');
+
+                // Click behavior for menu
+                self.menu.on('click', function( event ) {
+                    self.element.temporaryClass('menu-just-clicked', 300);
+                });
+
+                // Click behavior for `Delete Repo`
+                self.deleteButton.on('click', function( event ) {
+                    var name = self.options.commit.committer;
+                    var repo = self.options.repo;
+                    var url  = '/' + name + '/' + repo + '.json';
+                    var settings = {
+                        type: 'DELETE'
+                      , url: url
+                    };
+                    var success = function( data, textStatus, jqXHR ) {
+                        Sandbox.notify( data.message );
+                        self.element.remove();
+                    };
+                    var error = function( data ) {
+                        json = JSON.parse( data.responseText );
+                        Sandbox.warn( json.error )
+                    };
+                    $.ajax(settings).done(success).fail(error);
+                });
 
                 // Click behavior for main panel
                 self.container.children(".argument-main").on('click', function( event ) {
 
                     // Don't expand on mouse release after drag
                     if ( self.element.hasClass('ui-state-just-dragged') )
+                        return;
+
+                    // Don't expand on mouse release after menu click
+                    if ( self.element.hasClass('menu-just-clicked') )
                         return;
 
                     // Toggle details on click

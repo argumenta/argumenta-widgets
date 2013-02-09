@@ -25,6 +25,14 @@
     cursor: pointer;
 }
 
+.argument-menu {
+    float: right;
+}
+
+.argument-menu .btn {
+    padding: 2px 8px;
+}
+
 .argument-title {
     font-size: 22px;
 }

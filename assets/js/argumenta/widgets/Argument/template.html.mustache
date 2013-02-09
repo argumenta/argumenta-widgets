@@ -1,6 +1,21 @@
 <div class="argument-widget">
     <div class="argument-container">
         <div class="argument-main">
+
+            <div class="argument-menu btn-group btn-mini">
+                <div class="btn disabled">
+                    <span class="action-edit">Edit</span>
+                </div>
+                <div class="btn dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                </div>
+                <ul class="dropdown-menu pull-right">
+                    <li class="disabled"><a class="action-edit">Edit</a></li>
+                    <li class="disabled"><a class="action-collect">Add to Collection</a></li>
+                    <li><a class="action-delete">Delete Repo</a></li>
+                </ul>
+            </div>
+
             <div class="argument-title bold shadowed" title="Argument: {{ title }}">
                 <span>
                     {{ title }}
