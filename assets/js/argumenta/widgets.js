@@ -6,57 +6,59 @@ function( Config ) {
 
     var Widgets = {
 
+        // Registers a given widget module.
         registerModule: function( module ) {
             var id = module.getModuleID();
             this.modules[ id ] = this.modules[ id ] || module;
         },
 
+        // Gets a module by ID.
         module: function( id ) {
             return this.modules[ id ];
         },
 
+        // Cache of registered modules.
         modules: { },
 
+        // Inits widgets.
         init: function() {
-            Widgets.initCss();
+            Widgets.initCSS();
             Widgets.activateAll();
         },
 
-        initCss: function() {
-            // Checks if stylesheet for argumenta widgets is loaded
-            var detectWidgetCss = function() {
+        // Inits all widget CSS.
+        initCSS: function() {
+
+            // Checks if argumenta widget CSS is loaded.
+            var detectWidgetCSS = function() {
                 var styles = document.styleSheets;
-                for (var i=0, l = styles.length; i < l; i++ ) {
+                for ( var i=0, l = styles.length; i < l; i++ ) {
                     if ( /argumenta.css$/.test( styles[i].href ) )
                         return true;
                 }
             };
 
-            var isLoaded = detectWidgetCss();
-
-            // Only load widget styles dynamically if not already present
-            if ( isLoaded  ) {
-                return;
-            }
-            else {
+            // Load CSS unless present.
+            if ( !detectWidgetCSS() ) {
                 var cssUrl = Config.get('baseUrl') + '/widgets/css/argumenta.css';
                 var link = document.createElement('link');
-
                 link.rel = 'stylesheet';
                 link.type = 'text/css';
                 link.href = cssUrl;
-
                 document.head.appendChild( link );
             }
         },
 
+        // Activates all widgets on current page.
         activateAll: function() {
-            // Returns a module-specific function to activate placeholder elems
+
+            // Returns function to activate placeholders for a module.
             var activateFor = function( module ) {
                 return function() { module.activate( this ) };
             };
 
-            for (var id in Widgets.modules ) {
+            // Activate widgets for each module.
+            for ( var id in Widgets.modules ) {
                 var module = Widgets.modules[id];
                 var activateFunc = activateFor( module );
                 $( module.getClassSelector() ).each( activateFunc );
