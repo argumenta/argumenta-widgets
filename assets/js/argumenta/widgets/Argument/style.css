@@ -27,6 +27,7 @@
 
 .argument-menu {
     float: right;
+    padding: 0px 2px;
 }
 
 .argument-menu .btn {
