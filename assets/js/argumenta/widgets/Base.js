@@ -7,9 +7,6 @@ define( 'argumenta/widgets/Base',
 ],
 function( $, Mustache, Template, Sandbox ) {
 
-
-    // CONSTRUCTOR
-
     /**
      * @class Base
      *
@@ -28,16 +25,11 @@ function( $, Mustache, Template, Sandbox ) {
      * @property {Object} options The instance's options (construction parameters merged with the defaults)
      */
     var Base = function( options, originalElement ) {
-
         this._init( options, originalElement );
-
     };
-    
-    
-    // INSTANCE METHODS
 
     Base.prototype = {
-        
+
         /**
          *  Clones this widget.
          *
@@ -55,7 +47,7 @@ function( $, Mustache, Template, Sandbox ) {
         getClassName: function() {
             return this.moduleID.toLowerCase() + '-widget';
         },
-        
+
         /**
          *  Gets this widget's CSS selector.
          *
@@ -83,59 +75,58 @@ function( $, Mustache, Template, Sandbox ) {
         _super : function( methodName, args ) {
             return this.parent[methodName].apply( this, args );
         },
-        
+
         /**
          * Initialize the widget instance (including member fields & element node).
          */
         _init : function( opts ) {
 
             var options = opts || {};
-            
-            // Merge default options and parameters for this instance
+
+            // Merge default options and parameters for this instance.
             this.options = $.extend(
                 {},
                 this.defaultOptions,
                 options,
                 options[this.moduleID.toLowerCase()]
             );
-            
-            // Initialize element for this instance
+
+            // Initialize element for this instance.
             this.element = $('<div class="' + this.getClassName() + '">' );
-            
-            // Save a reference to this widget instance in the element's "data-<classname>" attribute
+
+            // Save a reference to this widget instance in the element's "data-<classname>" attribute.
             this.element.data(this.getClassName(), this);
-            
-            // Save merged options on element as "data-options" attribute
+
+            // Save merged options on element as "data-options" attribute.
             this.element.data('options', this.options);
-            
-            // Save the data object
+
+            // Save the data object.
             this.data = this.element.data();
 
-            // Make options an alias for data.options
+            // Make options an alias for data.options.
             this.options = this.data.options;
 
-            // Update the element contents
+            // Update the element contents.
             this._refresh();
-            
         },
-        
+
         _refresh : function() {
             this._renderUI();
             this._bindUI();
         },
-        
+
         _renderUI : function() {
-            
-            // Get the updated html
+
+            // Get the updated html.
             var html = this._renderHtml();
             var innerHtml = $( html ).html();
-            
-            // Update the element contents
+
+            // Update the element contents.
             this.element.html( innerHtml );
         },
-        
+
         _bindUI : function() {
-        
+
         },
 
         /** @return {Object} The hash of options accessible to the view; self.options by default. */
@@ -144,39 +135,37 @@ function( $, Mustache, Template, Sandbox ) {
         },
 
         /** @return {String} Appropriate widget html for the given options. */
-        _renderHtml:
-        function _renderHtml() {
+        _renderHtml: function() {
             return this._renderMustache( this.template, this._getViewOptions() );
         },
 
         /** @return {String} Html rendered from mustache template and view. */
-        _renderMustache:
-        function _renderMustache( template, view ) {
+        _renderMustache: function( template, view ) {
             return Mustache.to_html( template, view );
         }
 
     };
 
-    
+
     // Prototype Fields
-    
+
     Base.prototype.moduleID = 'Base';
-    
+
     Base.prototype.defaultOptions = {};
-    
+
     Base.prototype.template = Template;
-    
-    
+
+
     // Static Fields & Methods
 
     Base.getModuleID = function() {
         return this.prototype.moduleID;
     };
-    
+
     Base.getClassName = function() {
         return this.prototype.getClassName();
     };
-    
+
     Base.getClassSelector = function() {
         return this.prototype.getClassSelector();
     };
@@ -199,18 +188,18 @@ function( $, Mustache, Template, Sandbox ) {
 
             var tmp = $('<div class="tmp" style="display:none;">');
 
-            // Remove the element from the DOM, but keep its place with tmp
+            // Remove the element from the DOM, but keep its place with tmp.
             element.replaceWith( tmp );
 
             // Read all data- attributes from the placeholder,
-            // and use them as options for the new widget instance
+            // and use them as options for the new widget instance.
             var opts = element.data();
             var widget = new this( opts, element );
 
-            // Place the activated widget in the original's place
+            // Place the activated widget in the original's place.
             tmp.replaceWith( widget.element );
 
-            // Return the activated element
+            // Return the activated element.
             return widget.element;
         }
         else {
@@ -223,38 +212,36 @@ function( $, Mustache, Template, Sandbox ) {
      *  by extending properties of its prototype & static module.
      */
     function _subclass( baseClass, prototypeExt, staticExt ) {
-    
-        // Constructor
+
+        // Constructor for the new class.
         var subClass = function( options, originalElem ) {
             this._init( options, originalElem );
         };
-    
-        // Static Module: extend the Base module with static extensions
+
+        // Static Module: extend the Base module with static extensions.
         subClass = $.extend( subClass, baseClass, staticExt );
-        
-        // Prototype: extend a Base instance with prototype extensions
+
+        // Prototype: extend a Base instance with prototype extensions.
         subClass.prototype = $.extend( new baseClass(), prototypeExt );
-        
-        // Set the subClass parent
+
+        // Set the subClass parent.
         subClass.prototype.parent = baseClass.prototype;
-        
-        
+
         return subClass;
     }
-    
+
     /**
      * Create a subclass of the Base widget module.
+     *
      * @param {Object} prototypeExt Prototype properties to override.
      * @param {Object} staticExt Static properties to override.
      */
     Base.subclass = function( prototypeExt, staticExt ) {
-        
         return _subclass( this, prototypeExt, staticExt );
-        
     };
 
     /**
-     * Static function to register widget modules
+     * Static function to register widget modules.
      */
     Base.register = function( module ) {
         Sandbox.register( module );
@@ -312,13 +299,13 @@ function( $, Mustache, Template, Sandbox ) {
      *  } );
      *
      * @see Base
-     * @param {Object}   opts           A hash of options defining the widget module.
-     * @param {String}   opts.moduleID  Required: The module's name. (ie, "Argument")
-     * @param {String}   opts.template  Recommended: The widget's HTML template. (Supports: Mustache)
+     * @param {Object}   opts           An options hash defining the widget module.
+     * @param {String}   opts.moduleID  Required: The module's name. For example, "Argument".
+     * @param {String}   opts.template  Recommended: The widget's HTML template. Supports mustache.
      * @param {Object}   opts.defaults  Optional: A hash of default options for widget instances.
-     * @param {Function} opts.init      Runs on the creation of each widget instance, after Base.prototype._init().
-     * @param {Object}   opts.prototype The module's prototype properties, which may be new, or override Base.prototype.
-     * @param {Object}   opts.static    The module's static properties.
+     * @param {Function} opts.init      Runs on widget instance creation, after Base#_init().
+     * @param {Object}   opts.prototype Module prototype properties. May override Base.prototype.
+     * @param {Object}   opts.static    Module static properties.
      */
     Base.module = function( opts ) {
 
@@ -332,9 +319,9 @@ function( $, Mustache, Template, Sandbox ) {
         // Create the new module by subclassing Base
         var module = Base.subclass( prototype, static );
 
-        // Ensure moduleID is set
+        // Ensure moduleID is set.
         if ( moduleID ) {
-            // Prepare the prototype
+            // Prepare the prototype.
             module.prototype.moduleID = moduleID;
         }
         else {
@@ -342,40 +329,40 @@ function( $, Mustache, Template, Sandbox ) {
             return;
         }
 
-        // Handle the template option, if set
+        // Handle the template option, if set.
         if ( template ) {
             module.prototype.template = template;
         }
 
-        // Handle default options, if set
+        // Handle default options, if set.
         if ( defaults ) {
             module.prototype.defaultOptions = defaults;
         }
 
-        // Handle the init option, if set
+        // Handle the init option, if set.
         if ( typeof init === 'function' ) {
 
-            // Create a name for this module's init
+            // Create a name for this module's init.
             var funcName = '_init' + moduleID;
 
-            // Set the init function on the module prototype
+            // Set the init function on the module prototype.
             module.prototype[ funcName ] = init;
 
-            // Override the behavior of Base._init
+            // Override the behavior of Base._init.
             module.prototype._init = function( options, origElem ) {
                 var self = this;
-                // Call Base._init, and then the new init
+                // Call Base._init, and then the new init.
                 self._super('_init', [ options ] );
                 self[ funcName ]( options, origElem );
             };
         }
 
-        // Register and return the new module
+        // Register and return the new module.
         Base.register( module );
         return module;
     };
 
-    // Register the Base widget module
+    // Register the Base widget module.
     Base.register( Base );
 
     return Base;
