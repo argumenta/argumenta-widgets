@@ -5,18 +5,19 @@ define( 'argumenta/config', [], function() {
         mode: 'testing',
 
         production: {
-            baseUrl : ''
+            baseUrl: ''
         },
 
         testing: {
-            baseUrl : window.location
+            baseUrl: window.location
               .toString()
               .match( /(https?:\/\/[^\/]*)/ )[1]
         },
 
-        get:
-        function get( name ) {
-            return (Config.mode == 'testing') ? Config.testing[ name ] : Config.production[ name ];
+        get: function( name ) {
+            return Config.mode == 'testing'
+                ? Config.testing[ name ]
+                : Config.production[ name ];
         }
     };
 
