@@ -25,6 +25,15 @@
     cursor: pointer;
 }
 
+.argument-widget .argument-menu {
+    opacity: 0.0;
+    -webkit-transition: opacity 0.2s linear;
+            transition: opacity 0.2s linear;
+}
+.argument-widget:hover .argument-menu,
+.argument-menu.open {
+    opacity: 1.0;
+}
 .argument-menu {
     float: right;
     padding: 0px 2px;
