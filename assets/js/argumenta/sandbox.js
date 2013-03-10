@@ -7,19 +7,13 @@ function( $, Widgets ) {
 
     var Sandbox = {
 
-        //
         // Inits the sandbox.
-        //
         init: function() {
             var self = this;
             self.initNotify();
         },
 
-        // NOTIFICATIONS
-
-        //
         // Inits notifications property and element.
-        //
         initNotify: function() {
             var self = this;
             var notifications = $('.argumenta .notifications');
@@ -31,18 +25,14 @@ function( $, Widgets ) {
             return self.notifications;
         },
 
-        //
         // Gets the notifications element.
-        //
         getNotifications: function() {
             var self = this;
             var notifications = self.notifications || self.initNotify();
             return notifications;
         },
 
-        //
         // Shows a notification message.
-        //
         notify: function( message ) {
             var self = this;
             var notifications = self.getNotifications();
@@ -52,9 +42,7 @@ function( $, Widgets ) {
                 .delay(8000).fadeOut(2000);
         },
 
-        //
         // Shows a notification warning.
-        //
         warn: function( message ) {
             var self = this;
             var notifications = self.getNotifications();
@@ -64,12 +52,12 @@ function( $, Widgets ) {
                 .delay(8000).fadeOut(2000);
         },
 
-        // WIDGETS
-
+        // Registers a given widget module.
         register: function( module ) {
             Widgets.registerModule( module );
         },
 
+        // Gets a widget module by ID.
         widgets: function( moduleID ) {
             return Widgets.module( moduleID );
         },
@@ -84,18 +72,16 @@ function( $, Widgets ) {
             return widgets;
         },
 
-        // Construct an Argumenta widget from object data. Supports:
-        //   Arguments    (from argument objects)
-        //   Propositions (from proposition objects)
-        //   Citations    (from tag objects with tag_type 'citation')
+        // Construct an Argumenta widget from object data.
+        // Supports: argument, proposition, and citation.
         widgetFor: function( obj ) {
+            var module
+              , type = obj.object_type || obj.type;
 
             if ( !obj  ) {
                 console.log("Missing object data: " + obj);
                 return;
             }
-
-            var module, type = obj.object_type || obj.type;
 
             if ( type === 'argument' ) {
                 module = Widgets.module('Argument');
@@ -107,8 +93,7 @@ function( $, Widgets ) {
                 module = Widgets.module('Citation');
             }
 
-            if ( module )
-                return new module( obj );
+            return module ? new module( obj ) : null;
         }
     };
 
