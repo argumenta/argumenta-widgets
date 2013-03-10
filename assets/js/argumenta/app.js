@@ -10,7 +10,8 @@ define( 'argumenta/app',
     "argumenta/widgets/Sidebar",
     "argumenta/widgets/Tags"
 ],
-function( Sandbox, Widgets, Base, Argument, AddTag, Citation, Proposition, Sidebar, Tags) {
+function( Sandbox, Widgets, Base,
+          Argument, AddTag, Citation, Proposition, Sidebar, Tags ) {
 
     var App = {
 
@@ -21,5 +22,4 @@ function( Sandbox, Widgets, Base, Argument, AddTag, Citation, Proposition, Sideb
     };
 
     return App;
-
 } );
