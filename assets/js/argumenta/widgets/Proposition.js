@@ -23,33 +23,36 @@ function( $, Base, AddTag, Tags, Template ) {
 
         prototype: {
 
+            // Gets the object type.
             getType: function() {
                 return 'proposition';
             },
 
+            // Gets the object sha1.
             getSha1: function() {
                 return this.options.sha1;
             },
 
+            // Inits this proposition widget.
             initProposition: function( options ) {
                 var self = this;
 
-                // Show or hide proposition details on click
+                // Toggle details on click.
                 self.element.on('click', function(event) {
 
-                    // Don't trigger background elements on click
+                    // Don't trigger background elements.
                     var closestWidget = $(event.target).closest('div[class*="widget"]');
-
-                    if ( ! closestWidget.is(self.element) ) {
+                    if ( !closestWidget.is(self.element) ) {
                         event.stopPropagation();
                         return true;
                     }
 
-                    // Don't expand on mouse release after dragging
-                    if (self.element.hasClass('ui-state-just-dragged'))
+                    // Don't expand on mouse release after dragging.
+                    if (self.element.hasClass('ui-state-just-dragged')) {
                         return;
+                    }
 
-                    // Don't interfere with links
+                    // Don't interfere with links.
                     if ($(event.target).is('a')) {
                         return true;
                     }
@@ -57,18 +60,17 @@ function( $, Base, AddTag, Tags, Template ) {
                     self.toggleDetails();
                 });
 
-                // Bind AddTag button
                 self._bindAddTagButton();
-
-                // Make draggable
                 self._makeDraggable();
             },
 
+            // Toggles details for this proposition.
             toggleDetails: function() {
                 var self = this;
                 self._toggleTags();
             },
 
+            // Toggles tags for this proposition.
             _toggleTags: function() {
                 var self = this;
 
@@ -80,51 +82,54 @@ function( $, Base, AddTag, Tags, Template ) {
                 }
             },
 
+            // Toggles AddTag widget.
             toggleAddTag: function() {
                 var self = this;
 
-                // Initialize if addTag necessary
+                // Initialize if necessary.
                 if ( typeof self.addTag === "undefined" ) {
                     self._initAddTag();
                     self.addTag.element.hide();
                 }
 
-                // Fade in or out
+                // Fade in or out.
                 self.addTag.element.toggle( 300 );
             },
 
+            // Inits the AddTag widget.
             _initAddTag: function() {
                 var self = this;
 
-                // Create a new widget targeting this proposition
+                // Create a new widget targeting this proposition.
                 var addTag = new AddTag( {
                     target_type: 'proposition',
                     target_sha1: self.getSha1()
                 } );
 
-                // Replace the placeholder
+                // Replace the placeholder.
                 self.element.children('.add-tag-widget')
                             .replaceWith( addTag.element );
 
-                // Save a reference to the nested widget
+                // Save a reference to the nested widget.
                 self.addTag = addTag;
             },
 
+            // Inits any tags for this proposition.
             _initTags: function() {
                 var self = this;
                 var tagsContainer = self.element
                     .children('.proposition-details')
                     .children('.tags-widget-container');
 
-                // Hide the container
+                // Hide the container.
                 tagsContainer.hide();
 
-                // Create a new Tags widget targeting this proposition
+                // Create a new Tags widget targeting this proposition.
                 var tags = new Tags( {
                     target_type: self.getType(),
                     target_sha1: self.getSha1(),
                     onLoad: function( tagsWidget ) {
-                        // Append the element and reveal the container
+                        // Append the element and reveal the container.
                         tagsContainer.append( tagsWidget.element );
                         tagsContainer.show( 300 );
                     }
@@ -134,6 +139,7 @@ function( $, Base, AddTag, Tags, Template ) {
                 self.tags = tags;
             },
 
+            // Binds AddTag button behavior.
             _bindAddTagButton: function() {
                 var self = this;
                 var link = $('.addtag-link', self.element).first();
@@ -145,6 +151,7 @@ function( $, Base, AddTag, Tags, Template ) {
                 } );
             },
 
+            // Makes this widget draggable.
             _makeDraggable: function() {
                 var self = this;
 
@@ -159,33 +166,33 @@ function( $, Base, AddTag, Tags, Template ) {
 
                     start: function(event, ui) {
 
-                        // Prevent other actions on drag
+                        // Prevent other actions on drag.
                         ui.helper.addClass('ui-state-just-dragged proposition-widget-drag');
 
-                        // Fix clone size
+                        // Fix clone size.
                         ui.helper.css( {
                             'height': self.element.outerHeight() + 'px',
                             'width': self.element.outerWidth() + 'px'
                         } );
 
-                        // Hide original
+                        // Hide original.
                         self.element.css('visibility', "hidden");
                     },
 
                     stop: function(event, ui) {
-                        // Prevent other actions on drag, then cleanup
+                        // Prevent other actions on drag, then cleanup.
                         var removeDrag = function() {
                           ui.helper.removeClass('ui-state-just-dragged')
                         }
                         setTimeout(removeDrag, 300);
 
-                        // Reveal original
+                        // Reveal original.
                         self.element.css('visibility', "");
                     }
                 } );
             },
 
-            // Overrides Base
+            // Renders UI, extending Base behavior.
             _renderUI: function() {
                 var self = this;
 
@@ -200,7 +207,7 @@ function( $, Base, AddTag, Tags, Template ) {
                 return;
             },
 
-            // Overrides Base
+            // Gets view options for template, extending Base behavior.
             _getViewOptions: function() {
                 var self = this;
                 var role_desc;
