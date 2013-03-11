@@ -12,6 +12,7 @@ function( $, Base, AddTag, Tags, Template ) {
 
         moduleID: 'Proposition',
         template: Template,
+
         defaults: {
             index: 'P'
         },
@@ -38,6 +39,7 @@ function( $, Base, AddTag, Tags, Template ) {
 
                     // Don't trigger background elements on click
                     var closestWidget = $(event.target).closest('div[class*="widget"]');
+
                     if ( ! closestWidget.is(self.element) ) {
                         event.stopPropagation();
                         return true;
@@ -52,7 +54,7 @@ function( $, Base, AddTag, Tags, Template ) {
                         return true;
                     }
 
-                    self._toggleDetails();
+                    self.toggleDetails();
                 });
 
                 // Bind AddTag button
@@ -62,15 +64,12 @@ function( $, Base, AddTag, Tags, Template ) {
                 self._makeDraggable();
             },
 
-            _toggleDetails: function() {
-
+            toggleDetails: function() {
                 var self = this;
-
                 self._toggleTags();
             },
 
             _toggleTags: function() {
-
                 var self = this;
 
                 if ( typeof self.tags === "undefined" ) {
@@ -81,8 +80,7 @@ function( $, Base, AddTag, Tags, Template ) {
                 }
             },
 
-            _toggleAddTag: function() {
-
+            toggleAddTag: function() {
                 var self = this;
 
                 // Initialize if addTag necessary
@@ -96,7 +94,6 @@ function( $, Base, AddTag, Tags, Template ) {
             },
 
             _initAddTag: function() {
-
                 var self = this;
 
                 // Create a new widget targeting this proposition
@@ -115,8 +112,9 @@ function( $, Base, AddTag, Tags, Template ) {
 
             _initTags: function() {
                 var self = this;
-                var tagsContainer = self.element.children('.proposition-details')
-                                                .children('.tags-widget-container');
+                var tagsContainer = self.element
+                    .children('.proposition-details')
+                    .children('.tags-widget-container');
 
                 // Hide the container
                 tagsContainer.hide();
@@ -137,23 +135,17 @@ function( $, Base, AddTag, Tags, Template ) {
             },
 
             _bindAddTagButton: function() {
-
                 var self = this;
+                var link = $('.addtag-link', self.element).first();
 
-                $('.addtag-link', self.element).first().on( 'click', function(event) {
-
-                    self._toggleAddTag();
-
-                    // Defocus the link
-                    $(this).blur();
-
-                    // Prevent default & stop propagation
-                    return false;
+                link.on( 'click', function(event) {
+                    self.toggleAddTag();
+                    link.blur();    // Defocus.
+                    return false;   // Prevent default and stop propagation.
                 } );
             },
 
             _makeDraggable: function() {
-
                 var self = this;
 
                 this.element.draggable( {
@@ -164,7 +156,9 @@ function( $, Base, AddTag, Tags, Template ) {
                     handle: self.element.children(".proposition-main"),
                     cursor: 'move',
                     opacity: 0.90,
+
                     start: function(event, ui) {
+
                         // Prevent other actions on drag
                         ui.helper.addClass('ui-state-just-dragged proposition-widget-drag');
 
@@ -177,9 +171,13 @@ function( $, Base, AddTag, Tags, Template ) {
                         // Hide original
                         self.element.css('visibility', "hidden");
                     },
+
                     stop: function(event, ui) {
                         // Prevent other actions on drag, then cleanup
-                        setTimeout(function() {ui.helper.removeClass('ui-state-just-dragged');}, 300);
+                        var removeDrag = function() {
+                          ui.helper.removeClass('ui-state-just-dragged')
+                        }
+                        setTimeout(removeDrag, 300);
 
                         // Reveal original
                         self.element.css('visibility', "");
