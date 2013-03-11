@@ -11,44 +11,41 @@ function( $, Base, Template, Proposition, Sandbox ) {
     /**
      * @class Argument
      *
-     * Widget options:
+     * Widget options may be set in a combination of four ways:
      *
-     *     May be specified in 4 ways (which may be combined):
-     *     0. As a module default (see module.prototype.defaultOptions).
-     *     1. As instance options in javascript.
-     *     2. As individual custom 'data-<option>' attributes in html.
-     *     3. As a bundle of JSON properties in a special html data attribute 'data-<moduleID>'.
+     *   1. As a module default on the prototype.
+     *   2. As instance options.
+     *   3. As individual custom `data-<option>` attributes in HTML.
+     *   4. As bundle of JSON properties in a `data-<moduleID>` HTML attribute.
      *
-     *  Example (JS, overriding module defaults)
+     * Example JS for module defaults:
      *
-     *     Argument.prototype.defaultOptions = {some_option: some_value};
+     *     Argument.prototype.defaultOptions = {option: value};
      *
-     *  Example (JS, instance options):
+     * Example JS for instance options:
      *
-     *      var argument = new Argument({
-     *          sha1: <some_sha1>,
-     *          show_propositions: true
-     *      });
+     *     var argument = new Argument({
+     *         sha1: <sha1>,
+     *         show_propositions: true
+     *     });
      *
-     *  Example (HTML, individual attributes):
+     * Example HTML with individual attributes:
      *
-     *      <div class="argument-widget"
-     *           data-sha1="<some_sha1>"
-     *           data-show_propositions="true" >
-     *      </div>
+     *     <div class="argument-widget"
+     *          data-sha1="<sha1>"
+     *          data-show_propositions="true" >
+     *     </div>
      *
-     *  Example (HTML, bundled in a "moduleID" attribute):
+     * Example HTML with options bundle in a `data-<moduleID>` attribute:
      *
-     *      <div class="argument-widget"
-     *           data-argument="{sha1: <some_sha1>, show_propositions: true}" >
-     *      </div>
+     *     <div class="argument-widget"
+     *          data-argument="{sha1: <sha1>, show_propositions: true}" >
+     *     </div>
      *
-     *  Special options for argument widgets:
-     *
-     *   'show_propositions' (optional) Display propositions for this widget.
-     *
-     *       Propositions data is loaded from the widget options (if present),
-     *       otherwise fetched via Ajax.
+     * @param opts {Object} Argument widget options.
+     * @param opts.show_propositions {Boolean} Whether to show propositions initially.
+     * @param opts.propositions {Array<Object>} An array of argument propositions data.
+     * @note Propositions may be set as options, or loaded via AJAX.
      */
     var Argument = Base.module( {
 
@@ -61,59 +58,63 @@ function( $, Base, Template, Proposition, Sandbox ) {
 
         prototype: {
 
+            // Inits this argument widget.
             initArgument: function() {
                 var self = this;
-
-                // Show propositions if option 'show_propositions' is true
                 if ( self.options.show_propositions === true ) {
                     self._initPropositions();
                 }
             },
 
-            // Returns the type of argumenta object: 'argument'
+            // Gets the object type.
             getType: function() {
                 return this.options.object_type;
             },
 
-            // Returns the sha1 of the argumenta object
+            // Gets the object sha1.
             getSha1: function() {
                 return this.options.sha1;
             },
 
+            // Sets propositions data, and inits elements.
+            setPropositions: function( props ) {
+                var self = this;
+                self.propositions = props;
+                self._initPropositionElements();
+            },
+
+            // Toggles argument details for widget.
             toggleArgumentDetails: function() {
                 var self = this;
                 self.togglePropositions();
             },
 
+            // Toggle propositions for widget.
             togglePropositions: function() {
                 var self = this;
-
-                // Check if we've saved proposition data yet
                 if ( self.propositions ) {
-                    // Assume propositions initialized, so just toggle their container
                     self.container.children(".propositions-container").toggle( 300 );
                 }
                 else {
-                    // No data yet, so initialize propositions
                     self._initPropositions();
                 }
             },
 
-            // Override Base._bindUI
+            // Binds UI events, extending Base behavior.
             _bindUI: function() {
                 var self = this;
 
-                // Save reference to inner container and menu
+                // Save reference to inner container and menu.
                 self.container = self.element.children(".argument-container");
                 self.menu = self.container.find('.argument-menu').first();
                 self.deleteButton = self.menu.find('.action-delete');
 
-                // Click behavior for menu
+                // Click behavior for menu.
                 self.menu.on('click', function( event ) {
                     self.element.temporaryClass('menu-just-clicked', 300);
                 });
 
-                // Click behavior for `Delete Repo`
+                // Click behavior for `Delete Repo`.
                 self.deleteButton.on('click', function( event ) {
                     var name = self.options.commit.committer;
                     var repo = self.options.repo;
@@ -133,22 +134,22 @@ function( $, Base, Template, Proposition, Sandbox ) {
                     $.ajax(settings).done(success).fail(error);
                 });
 
-                // Click behavior for main panel
+                // Click behavior for main panel.
                 self.container.children(".argument-main").on('click', function( event ) {
 
-                    // Don't expand on mouse release after drag
+                    // Don't expand on mouse release after drag.
                     if ( self.element.hasClass('ui-state-just-dragged') )
                         return;
 
-                    // Don't expand on mouse release after menu click
+                    // Don't expand on mouse release after menu click.
                     if ( self.element.hasClass('menu-just-clicked') )
                         return;
 
-                    // Toggle details on click
+                    // Toggle details on click.
                     self.toggleArgumentDetails();
                 } );
 
-                // Make draggable
+                // Make draggable.
                 self.element.draggable( {
                     helper: 'clone',
                     appendTo: $('.drag-container')[0] || $('body'),
@@ -157,74 +158,77 @@ function( $, Base, Template, Proposition, Sandbox ) {
                     handle: self.container.children(".argument-main"),
                     cursor: 'move',
                     opacity: 0.90,
+
                     start: function(event, ui) {
-                        // Prevent other actions on drag
+                        // Prevent other actions on drag.
                         ui.helper.addClass('ui-state-just-dragged argument-widget-drag');
 
-                        // Fix clone size
+                        // Fix clone size.
                         ui.helper.css( {
                             'height': self.element.height() + 'px',
                             'width': self.element.width() + 'px'
                         } );
 
-                        // Hide original
+                        // Hide original.
                         self.element.css('visibility', "hidden");
                     },
-                    stop: function(event, ui) {
-                        // Prevent other actions on drag, then cleanup
-                        setTimeout(function() {ui.helper.removeClass('ui-state-just-dragged');}, 300);
 
-                        // Reveal original
+                    stop: function(event, ui) {
+                        // Prevent other actions on drag, then cleanup.
+                        setTimeout(function() {
+                            ui.helper.removeClass('ui-state-just-dragged');
+                        }, 300);
+
+                        // Reveal original.
                         self.element.css('visibility', "");
                     }
                 } );
             },
 
+            // Inits propositions data and elements.
             _initPropositions: function() {
                 var self = this;
 
-                // Get propositions data, then init elements
                 if ( self.options.propositions ) {
-                    // Use stored proposition data
-                    self.propositions = self.options.propositions;
-                    self._initPropositionElements();
+                    self.setPropositions( self.options.propositions );
                 }
                 else {
-                    // No proposition data stored, so retrieve via Ajax
-                    $.ajax( {
-                        url: '/arguments/' + this.options.sha1 + '/propositions.json'
-                    } )
-                    .success( function( data ) {
-                        // Cache the data, then initialize elements
-                        self.propositions = data.propositions;
-                        self._initPropositionElements();
-                    } );
+                    var sha1 = this.options.sha1;
+                    var url = '/arguments/' + sha1 + '/propositions.json';
+                    var success = function(data) {
+                        self.setPropositions( data.propositions );
+                    }
+                    var error = function(data) {
+                        json = JSON.parse( data.responseText );
+                        Sandbox.warn( json.error )
+                    }
+                    $.ajax(url).done(success).fail(error);
                 }
             },
 
+            // Inits proposition elements.
             _initPropositionElements: function() {
                 var self = this;
-
                 var container = self.container.children('.propositions-container');
 
                 for ( var i=0, len=self.propositions.length; i<len; i++ ) {
                     var p = self.propositions[i];
 
-                    // Set proposition index for it's role in this argument
-                    // (Ie, numeral for premise position, or 'C' for a conclusion)
+                    // The proposition index for its role in this argument;
+                    // a numeral for premise position, or 'C' for a conclusion.
                     var index = (i < len-1) ? i+1 : 'C';
 
-                    // Extend proposition data with it's argument index
+                    // Extend proposition data with its argument index.
                     p = $.extend( {}, p, { 'index': index } );
 
-                    // Create a widget from the proposition data
+                    // Create a widget from the proposition data.
                     var proposition = new Proposition( p );
 
                     container.append( proposition.element );
                 }
             },
 
-            // Overrides Base
+            // Gets view options for template, extending Base behavior.
             _getViewOptions: function() {
                 var self = this;
                 var viewOptions = {
