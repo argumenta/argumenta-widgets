@@ -26,6 +26,7 @@ function( $, Base, Template, Sandbox ) {
 
         prototype: {
 
+            // Inits this AddTag widget.
             initAddTag: function( options ) {
                 var self = this;
                 self.setTagType( self.options.tag_type );
@@ -33,59 +34,63 @@ function( $, Base, Template, Sandbox ) {
                 self.setTagSource( self.options.source_type, self.options.source_sha1 );
             },
 
+            // Gets the tag type.
             getTagType: function() {
                 return this.options.tag_type;
             },
 
+            // Gets the target type.
             getTargetType: function() {
                 return this.options.target_type;
             },
 
+            // Gets the target sha1.
             getTargetSha1: function() {
                 return this.options.target_sha1;
             },
 
+            // Gets any source type, if set.
             getSourceType: function() {
                 return this.options.source_type;
             },
 
+            // Gets any source sha1, if set.
             getSourceSha1: function() {
                 return this.options.source_sha1;
             },
 
+            // Gets any citation text, if set.
             getCitationText: function() {
                 return this.element.find('textarea[name=citation_text]').val();
             },
 
+            // Sets the tag type.
             setTagType: function( tag_type ) {
                 var self = this;
-
-                // Update widget state and elements.
                 self.options.tag_type = tag_type;
                 self.updateTagTypeElems();
                 self.updateTagContent();
             },
 
+            // Sets the tag target.
             setTagTarget: function( target_type, target_sha1 ) {
                 var self = this;
-
-                // Update widget state and elements.
                 self.options.target_type = target_type;
                 self.options.target_sha1 = target_sha1;
                 self.element.find('input[name=target_type]').val( target_type );
                 self.element.find('input[name=target_sha1]').val( target_sha1 );
             },
 
+            // Sets the tag source.
             setTagSource: function( source_type, source_sha1 ) {
                 var self = this;
-
-                // Update widget state and elements.
                 self.options.source_type = source_type;
                 self.options.source_sha1 = source_sha1;
                 self.element.find('input[name=source_type]').val( source_type );
                 self.element.find('input[name=source_sha1]').val( source_sha1 );
             },
 
+            // Binds UI events after refresh.
             _bindUI: function() {
                 var self = this;
                 var widget = $( this.element );
@@ -118,6 +123,7 @@ function( $, Base, Template, Sandbox ) {
                 } );
             },
 
+            // Updates selected tag type on click.
             _onClickTagType: function( event ) {
                 var self = this;
                 var button = $(event.data.button);
@@ -132,6 +138,7 @@ function( $, Base, Template, Sandbox ) {
                 button.blur();
             },
 
+            // Updates tag type multiselect button.
             updateTagTypeElems: function() {
                 var self = this;
                 var tag_type = self.getTagType();
@@ -147,6 +154,7 @@ function( $, Base, Template, Sandbox ) {
                 button.siblings('input[name=tag_type]').val( tag_type );
             },
 
+            // Updates tag contents for display.
             updateTagContent: function() {
                 var self = this;
                 var tag_type = self.getTagType();
@@ -161,7 +169,7 @@ function( $, Base, Template, Sandbox ) {
                     var toShow = self[tag_type + 'Contents'];
                     var toHide = allContents.not( toShow );
 
-                    // Note: show before hide stabilizes sidebar scroll pos.
+                    // Stabilize sidebar scroll pos by showing before hide.
                     toShow.show();
                     toHide.hide();
                 }
