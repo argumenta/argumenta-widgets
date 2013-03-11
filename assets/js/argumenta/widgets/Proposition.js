@@ -170,8 +170,8 @@ function( $, Base, AddTag, Tags, Template ) {
 
                         // Fix clone size
                         ui.helper.css( {
-                            'height': self.element.height() + 'px',
-                            'width': self.element.width() + 'px'
+                            'height': self.element.outerHeight() + 'px',
+                            'width': self.element.outerWidth() + 'px'
                         } );
 
                         // Hide original
