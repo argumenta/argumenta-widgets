@@ -75,13 +75,14 @@ function( $, Widgets ) {
         // Construct an Argumenta widget from object data.
         // Supports: argument, proposition, and citation.
         widgetFor: function( obj ) {
-            var module
-              , type = obj.object_type || obj.type;
+            var module, type;
 
             if ( !obj  ) {
-                console.log("Missing object data: " + obj);
+                console.error("Missing object data: " + obj);
                 return;
             }
+
+            type = obj.object_type || obj.type;
 
             if ( type === 'argument' ) {
                 module = Widgets.module('Argument');

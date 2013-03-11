@@ -29,11 +29,13 @@ function( $, Base, Template, Sandbox ) {
 
         prototype: {
 
+            // Inits this tags widget.
             initTags: function( options ) {
                 var self = this;
                 self.setTarget( options.target_type, options.target_sha1 );
             },
 
+            // Sets the target object.
             setTarget: function( type, sha1 ) {
                 var self = this;
 
@@ -43,6 +45,7 @@ function( $, Base, Template, Sandbox ) {
                 self._update();
             },
 
+            // Sets tags, given tags data.
             setTags: function( tagsData ) {
                 var self = this;
 
@@ -62,7 +65,7 @@ function( $, Base, Template, Sandbox ) {
                 self.options.tags = self.tags;
             },
 
-            // Sets the sources dict for a given array of source objects.
+            // Sets the sources dict, given an array of source objects.
             setSources: function( sources ) {
                 var self = this;
                 var dict = {};
@@ -74,17 +77,16 @@ function( $, Base, Template, Sandbox ) {
                 self.sources = dict;
             },
 
+            // Updates this tags widget.
             _update: function() {
                 var self = this;
 
-                // Get tags data, & then refresh display
+                // Get tags data, then refresh.
                 $.ajax( {
                     url: '/propositions/' + self.targetSha1 + '/tags-plus-sources.json',
                     success: function( data ) {
-
                         self.setSources( data.sources );
                         self.setTags( data.tags );
-
                         self._refresh();
                     },
                     error: function( jqXHR, textStatus, errorThrown ) {
@@ -96,58 +98,54 @@ function( $, Base, Template, Sandbox ) {
                 } );
             },
 
-            // Override Base.prototype._renderUI
+            // Renders UI, extending Base behavior.
             _renderUI: function() {
                 var self = this;
-
-                // First allow template to render normally
                 self._super( "_renderUI" );
-
-                // Then append tag elements to the template
                 self._populateTagsContainer();
             },
 
+            // Populates tags for the widget.
             _populateTagsContainer: function() {
                 var self = this;
 
-                if ( self.tags ) {
-
-                    // Hide contents while updating
+                if (self.tags) {
                     this.element.hide();
-
                     var types = ['support', 'dispute', 'citation'];
-                    for ( var i in types ) {
-                        var type = types[i];
-                        var container = self.element.children('.' + type + '-tags');
 
+                    for (var i in types) {
+                        var type = types[i];
                         var tagsData = self.tags[ type + 's' ];
+                        var container = self.element.children('.' + type + '-tags');
 
                         container.empty();
 
-                        for ( var t in tagsData ) {
+                        for (var t in tagsData) {
                             var tag = tagsData[t];
+                            var objectData, widget;
 
-                            var widget;
-
-                            if ( tag.tag_type === 'citation' ) {
-                                widget = Sandbox.widgetFor( tag );
+                            if (tag.tag_type === 'citation') {
+                                objectData = tag;
                             }
                             else {
                                 var sourceSha1 = tag.source_sha1;
                                 var sourceData = self.sources[ sourceSha1 ];
-                                widget = Sandbox.widgetFor( sourceData );
+                                objectData = sourceData;
                             }
 
-                            if ( widget ) {
+                            widget = Sandbox.widgetFor( objectData );
+
+                            if (widget) {
                                 container.append( widget.element );
                             }
                             else {
-                                console.log( "No tag widget for: " + JSON.stringify( tag, null, '  ' ));
+                                console.error(
+                                    "No tag widget for: " +
+                                    JSON.stringify(tag, null, '  ')
+                                );
                             }
                         }
                     }
-
-                    // Reveal contents when update complete
                     this.element.show();
                 }
             }
