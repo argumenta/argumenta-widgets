@@ -10,8 +10,9 @@ define( 'argumenta/config', [], function() {
 
         testing: {
             baseUrl: window.location
-              .toString()
-              .match( /(https?:\/\/[^\/]*)/ )[1]
+                .toString()
+                .match( /(https?:\/\/[^\/]*|file:\/\/\/.*\/)/ )[1]
+                .replace( /\/$/, '' )
         },
 
         get: function( name ) {
