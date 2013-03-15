@@ -261,55 +261,65 @@ function( $, Mustache, Template, Sandbox ) {
     };
 
     /**
-     * Define a widget module - syntactic sugar for defining widgets with Base.
+     * Defines a widget module. Syntactic sugar for extending Base.
      *
-     * It automates the following steps before returning the new module:
-     * 1. creates a module with Base.subclass( prototype, static )
-     * 2. performs setup handling module options (moduleID, template, defaults, init())
-     * 3. registers with Base.register( module )
+     * It subclasses Base, sets up prototype and static fields,
+     * registers the module, and then returns it.
      *
-     * Options defining the module are passed as properties of a hash object.
-     *  - The moduleID must be specified.
-     *  - The template, defaults, init, prototype, static properties are optional.
+     * Example JS ("js/widgets/Demo.js"):
      *
-     * If an init function is given, Base.prototype._init is overridden to call:
-     *  1. Base.prototype._init()
-     *  2. This function
+     *     var Demo = Base.module( {
      *
-     * @example
+     *         moduleID: 'Demo',
+     *         template: '<div class="demo-widget"><pre>{{ message }}</pre></div>',
      *
-     *  var Demo = Base.module( {
-     *      moduleID: 'Demo',
-     *      template: '<div class="demo-widget" data-testOption="testing"></div>',
+     *         init: function( options ) {
+     *             var self = this;
      *
-     *      init: function( options ) {
-     *          var self = this;
+     *             Demo.total++;
+     *             self.setNumber( Demo.total );
      *
-     *          Demo.widgetCount++;
-     *          self.setNumber( Demo.widgetCount );
+     *             self.options.message = "Widget name: " + self.getName()
+     *                 + "\nFortune: " + options.fortune
+     *                 + "\nCreated on: " + new Date()
+     *                 + "\nWith options: " + JSON.stringify( options )
+     *                 + "\nTotal widgets: " + Demo.total;
+     *         },
      *
-     *          self.element.append( 'Created on: ' + new Date )
-     *                      .append( '\nwith options: ' + JSON.stringify( options ) )
-     *                      .append( '\nwidget count: ' + Demo.widgetCount )
-     *                      .append( '\nwidget name:  ' + self.getName() )
-     *                      .wrapInner( '<pre style="background:white;"/>' );
-     *      },
+     *         prototype: {
+     *             setNumber: function( num ) {
+     *                 var self = this;
+     *                 self.number = num;
+     *             },
+     *             getName: function() {
+     *                 return "Demo-" + this.number;
+     *             }
+     *         },
      *
-     *      prototype: {
-     *          number: null,
-     *          setNumber: function( num ) {
-     *              var self = this;
-     *              self.number = num;
-     *          },
-     *          getName: function() {
-     *              return "Demo-" + this.number;
-     *          }
-     *      },
+     *         static: {
+     *             total: 0
+     *         }
+     *     } );
      *
-     *      static: {
-     *          widgetCount: 0
-     *      }
-     *  } );
+     * Example CSS ("js/widgets/Demo/style.css", import in "css/widgets.css"):
+     *
+     *     div.demo-widget: {
+     *         background: white;
+     *     }
+     *
+     * Example HTML ("demo-example.html"):
+     *
+     *     <!DOCTYPE html>
+     *     <html>
+     *     <head>
+     *       <meta charset="utf-8"/>
+     *       <link rel="stylesheet" href="/widgets/css/widgets.css">
+     *     </head>
+     *     <body>
+     *       <div class="demo-widget" data-demo='{"fortune": "Hello world!"}'></div>
+     *       <script data-main="/widgets/js/main" src="/widgets/js/require.js"></script>
+     *     <body>
+     *     </html>
      *
      * @see Base
      * @param {Object}   opts           An options hash defining the widget module.
@@ -317,7 +327,7 @@ function( $, Mustache, Template, Sandbox ) {
      * @param {String}   opts.template  Recommended: The widget's HTML template. Supports mustache.
      * @param {Object}   opts.defaults  Optional: A hash of default options for widget instances.
      * @param {Function} opts.init      Runs on widget instance creation, after Base#_init().
-     * @param {Object}   opts.prototype Module prototype properties. May override Base.prototype.
+     * @param {Object}   opts.prototype Module prototype properties. May override Base properties.
      * @param {Object}   opts.static    Module static properties.
      */
     Base.module = function( opts ) {
