@@ -10,19 +10,13 @@ function( $, Mustache, Template, Sandbox ) {
     /**
      * @class Base
      *
-     * Prototype properties to override:
-     *   moduleID        (essential)   the css classname is generated from this
-     *   template        (recommended) a mustache template
-     *   defaultOptions  (optional)
+     * The Base class is an extendable foundation for Argumenta widgets.
+     * It defines properties to override, and provides convenience methods.
      *
-     * Prototype methods to override:
-     *   _renderHtml     (optional)    by default, renders Base.template with Base.options
-     *   _getViewOptions (optional)    returns the options accessible to the view (by default: self.options)
-     *   _bindUI         (optional)    to bind any listeners after each _init() & _refresh()
-     *   _init           (optional)    you may call this._super('_init', options)
-     *
-     * @property {Object} element Reference to the element node (as Jquery object).
-     * @property {Object} options The instance's options (construction parameters merged with the defaults)
+     * @see Base.module()   Defines widget modules.
+     * @see Base.activate() Activates widget instances from elements.
+     * @property {Object} options The instance options (merged with defaults).
+     * @property {Object} element The element node (as a jQuery object).
      */
     var Base = function( options, originalElement ) {
         this._init( options, originalElement );
