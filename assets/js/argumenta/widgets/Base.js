@@ -184,14 +184,15 @@ function( $, Mustache, Template, Sandbox ) {
     };
 
     /**
-     * Activate a widget placeholder element by installing a new instance on it.
-     * Any 'data-' attributes will be passed as options to create the widget.
+     * Activates a widget placeholder element.
      *
-     * The original element will also be passed to the widget constructor,
-     * so modules may process (or ignore) it during initialization.
+     * The original element is replaced with a new widget instance.
      *
-     * @param {Object} element The placeholder element node (raw, or as jQuery object).
-     * @return {Object} element The installed widget element, as a jQuery object.
+     * Any `data-` attributes are passed as options to create the widget.
+     * Modules may optionally process the original element on initialization.
+     *
+     * @param {Object} element The placeholder element. May be a jQuery object.
+     * @return {Object} The new widget element, as a jQuery object.
      */
     Base.activate = function( element ) {
 
