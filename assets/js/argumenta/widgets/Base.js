@@ -162,23 +162,31 @@ function( $, Mustache, Template, Sandbox ) {
 
     // Prototype Fields
 
+
+    // The module ID.
     Base.prototype.moduleID = 'Base';
 
+    // The default widget options.
     Base.prototype.defaultOptions = {};
 
+    // The widget template.
     Base.prototype.template = Template;
 
 
     // Static Fields & Methods
 
+
+    // Gets the module ID.
     Base.getModuleID = function() {
         return this.prototype.moduleID;
     };
 
+    // Gets the CSS classname.
     Base.getClassName = function() {
         return this.prototype.getClassName();
     };
 
+    // Gets the CSS class selector.
     Base.getClassSelector = function() {
         return this.prototype.getClassSelector();
     };
@@ -192,7 +200,7 @@ function( $, Mustache, Template, Sandbox ) {
      * Modules may optionally process the original element on initialization.
      *
      * @param {Object} element The placeholder element. May be a jQuery object.
-     * @return {Object} The new widget element, as a jQuery object.
+     * @return {Object}        The new widget element, as a jQuery object.
      */
     Base.activate = function( element ) {
 
@@ -222,8 +230,13 @@ function( $, Mustache, Template, Sandbox ) {
     };
 
     /**
-     *  Create a subClass from a baseClass constructor,
-     *  by extending properties of its prototype & static module.
+     * Creates a subclass from a constructor function.
+     * The subclass may have extended prototype and static properties.
+     *
+     * @param {Function}  baseClass    The base class to extend.
+     * @param {Object}    prototypeExt Any prototype extensions.
+     * @param {Object}    staticExt    Any static extensions.
+     * @return {Function}              The extended subclass.
      */
     function _subclass( baseClass, prototypeExt, staticExt ) {
 
@@ -245,17 +258,17 @@ function( $, Mustache, Template, Sandbox ) {
     }
 
     /**
-     * Create a subclass of the Base widget module.
+     * Creates a subclass of this widget module.
      *
      * @param {Object} prototypeExt Prototype properties to override.
-     * @param {Object} staticExt Static properties to override.
+     * @param {Object} staticExt    Static properties to override.
      */
     Base.subclass = function( prototypeExt, staticExt ) {
         return _subclass( this, prototypeExt, staticExt );
     };
 
     /**
-     * Static function to register widget modules.
+     * Registers a new widget module.
      */
     Base.register = function( module ) {
         Sandbox.register( module );
@@ -330,6 +343,7 @@ function( $, Mustache, Template, Sandbox ) {
      * @param {Function} opts.init      Runs on widget instance creation, after Base#_init().
      * @param {Object}   opts.prototype Module prototype properties. May override Base properties.
      * @param {Object}   opts.static    Module static properties.
+     * @return {Function}               The new module.
      */
     Base.module = function( opts ) {
 
