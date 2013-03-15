@@ -40,7 +40,7 @@ function( Config ) {
 
             // Load CSS unless present.
             if ( !detectWidgetCSS() ) {
-                var cssUrl = Config.get('baseUrl') + '/widgets/css/argumenta.css';
+                var cssUrl = Config.get('widgetsUrl') + 'css/argumenta.css';
                 var link = document.createElement('link');
                 link.rel = 'stylesheet';
                 link.type = 'text/css';

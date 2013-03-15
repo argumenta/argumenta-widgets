@@ -1,24 +1,22 @@
-define( 'argumenta/config', [], function() {
+define( 'argumenta/config',
+[],
+function() {
 
+    // Load deployed config settings.
+    var CONFIG = window.ARGUMENTA_CONFIG = window.ARGUMENTA_CONFIG || {};
+
+    // Config module.
     var Config = {
 
-        mode: 'testing',
+        // The base url for API requests.
+        baseUrl: CONFIG.baseUrl || 'http://argumenta.io/',
 
-        production: {
-            baseUrl: ''
-        },
+        // The base url for widget resources.
+        widgetsUrl: CONFIG.widgetsUrl || 'http://argumenta.io/widgets/',
 
-        testing: {
-            baseUrl: window.location
-                .toString()
-                .match( /(https?:\/\/[^\/]*|file:\/\/\/.*\/)/ )[1]
-                .replace( /\/$/, '' )
-        },
-
+        // Gets a config property by name.
         get: function( name ) {
-            return Config.mode == 'testing'
-                ? Config.testing[ name ]
-                : Config.production[ name ];
+            return Config[name];
         }
     };
 
