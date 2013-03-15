@@ -43,9 +43,9 @@ function( $, Mustache, Template, Sandbox ) {
         },
 
         /**
-         *  Gets this widget's CSS selector.
+         *  Gets this widget's CSS class selector.
          *
-         *  @return {String} The widget CSS selector.
+         *  @return {String} The widget CSS class selector.
          */
         getClassSelector: function() {
             return '.' + this.getClassName();
@@ -61,7 +61,7 @@ function( $, Mustache, Template, Sandbox ) {
         },
 
         /**
-         * Call an instance method inherited from the object's parent.
+         * Calls an instance method inherited from the object's parent.
          *
          * @param {String} methodName The name of the inherited method to call.
          * @param {Array}  args       An array of argument parameters to be passed.
@@ -71,7 +71,7 @@ function( $, Mustache, Template, Sandbox ) {
         },
 
         /**
-         * Initialize the widget instance (including member fields & element node).
+         * Initializes the widget instance, including properties and element.
          */
         _init : function( opts ) {
 
@@ -104,11 +104,17 @@ function( $, Mustache, Template, Sandbox ) {
             this._refresh();
         },
 
+        /**
+         * Refreshes the widget view by rendering and binding the UI.
+         */
         _refresh : function() {
             this._renderUI();
             this._bindUI();
         },
 
+        /**
+         * Renders UI by updating the widget element's contents.
+         */
         _renderUI : function() {
 
             // Get the updated html.
@@ -119,21 +125,34 @@ function( $, Mustache, Template, Sandbox ) {
             this.element.html( innerHtml );
         },
 
-        _bindUI : function() {
+        /**
+         * Binds UI event listeners after each refresh.
+         */
+        _bindUI : function() {},
 
-        },
-
-        /** @return {Object} The hash of options accessible to the view; self.options by default. */
+        /**
+         * Gets template view options for rendering.
+         *
+         * @return {Object} The view-accessible options.
+         */
         _getViewOptions: function() {
             return this.options;
         },
 
-        /** @return {String} Appropriate widget html for the given options. */
+        /**
+         * Renders HTML from the widget template and options.
+         *
+         * @return {String} The rendered HTML.
+         */
         _renderHtml: function() {
             return this._renderMustache( this.template, this._getViewOptions() );
         },
 
-        /** @return {String} Html rendered from mustache template and view. */
+        /**
+         * Renders HTML from a mustache template and view options.
+         *
+         * @return {String} The rendered HTML.
+         */
         _renderMustache: function( template, view ) {
             return Mustache.to_html( template, view );
         }
