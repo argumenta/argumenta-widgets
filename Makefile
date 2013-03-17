@@ -15,7 +15,13 @@ optimize: assets
 
 assets:
 
+test:
+	testacular start test/learning/testacular.conf.js --single-run=true
+
+test_forever:
+	testacular start test/learning/testacular.conf.js
+
 clean:
 	rm -fr build
 
-.PHONY: all clean
+.PHONY: all test test_forever clean
