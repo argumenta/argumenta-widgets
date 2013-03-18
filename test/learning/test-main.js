@@ -1,6 +1,6 @@
 
 var tests = Object.keys(window.__testacular__.files).filter(function (file) {
-  return /learning\/.*Test\.js$/.test(file);
+  return /test\/.*Test\.js$/.test(file);
 });
 
 console.log("tests: ", tests);
