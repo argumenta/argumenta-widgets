@@ -9,7 +9,11 @@ require({
     // Testacular serves files from `/base`.
     baseUrl: '/base/assets/js',
     paths: {
-        chai: '../../test/lib/chai'
+        'chai'                    : '../../test/lib/chai',
+        // RequireJS shim files.
+        'jquery'                  : '../../assets/js/jquery-1.7.1.min',
+        'jquery-ui'               : '../../assets/js/jquery-ui-1.8.16.custom.min',
+        'jquery-temporaryClass'   : '../../assets/js/jquery.temporaryClass'
     },
     // Load tests via RequireJS when ready.
     deps: tests,

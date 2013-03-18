@@ -12,7 +12,14 @@ files = [
   MOCHA_ADAPTER,
   REQUIRE,
   REQUIRE_ADAPTER,
+  // RequireJS shim files.
+  'assets/js/jquery-1.7.1.min.js',
+  'assets/js/jquery-ui-1.8.16.custom.min.js',
+  'assets/js/jquery.temporaryClass.js',
+  // Test files.
   'test/learning/test-main.js',
+  // Serve and Watch files.
+  {pattern: 'assets/**', included: false},
   {pattern: 'assets/js/**/*.js', included: false},
   {pattern: 'test/**/*.js', included: false}
 ];
