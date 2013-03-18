@@ -1,17 +1,20 @@
 
-var assert = chai.assert;
+define(['chai'], function(chai) {
 
-describe("Testacular", function() {
+    var assert = chai.assert;
 
-    it('should pass a sanity check', function() {
-        assert(true, 'true is truthy');
-    });
+    describe("Testacular", function() {
 
-    it('should provide describe', function() {
-        assert.isFunction(describe);
-    });
+        it('should pass a sanity check', function() {
+            assert(true, 'true is truthy');
+        });
 
-    it('should provide chai', function() {
-        assert.isNotNull(chai);
+        it('should provide describe', function() {
+            assert.isFunction(describe);
+        });
+
+        it('should provide chai', function() {
+            assert.isNotNull(chai);
+        });
     });
 });

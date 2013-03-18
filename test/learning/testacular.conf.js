@@ -10,8 +10,9 @@ basePath = '../..';
 files = [
   MOCHA,
   MOCHA_ADAPTER,
-  'test/lib/chai.js',
-  'test/learning/TestacularTest.js',
+  REQUIRE,
+  REQUIRE_ADAPTER,
+  'test/learning/test-main.js',
   {pattern: 'assets/js/**/*.js', included: false},
   {pattern: 'test/**/*.js', included: false}
 ];
