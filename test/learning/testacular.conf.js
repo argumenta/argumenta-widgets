@@ -24,6 +24,9 @@ files = [
   {pattern: 'test/**/*.js', included: false}
 ];
 
+preprocessors = {
+  '**/assets/js/argumenta/**/*.js': 'coverage'
+};
 
 // list of files to exclude
 exclude = [
@@ -33,7 +36,7 @@ exclude = [
 
 // test results reporter to use
 // possible values: 'dots', 'progress', 'junit'
-reporters = ['progress'];
+reporters = ['progress', 'coverage'];
 
 
 // web server port

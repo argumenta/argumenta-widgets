@@ -22,6 +22,6 @@ test_forever:
 	testacular start test/learning/testacular.conf.js
 
 clean:
-	rm -fr build
+	rm -fr build coverage
 
 .PHONY: all test test_forever clean
