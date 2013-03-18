@@ -1,8 +1,8 @@
 define( 'argumenta',
 [
-    "order!require-jquery",
-    "order!require-bootstrap",
-    "order!argumenta/app"
+    "require-jquery",
+    "require-bootstrap",
+    "argumenta/app"
 ],
 function( $, Bootstrap, App ) {
 

@@ -4,9 +4,9 @@
 //
 define( 'require-jquery',
 [
-    "order!jquery",
-    "order!jquery-ui",
-    "order!jquery.temporaryClass"
+    "jquery",
+    "jquery-ui",
+    "jquery-temporaryClass"
 ],
 function( $, undefined, undefined ) {
 
