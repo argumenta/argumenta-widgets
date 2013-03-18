@@ -5,9 +5,11 @@ define(
     'argumenta/config',
     'argumenta/sandbox',
     'argumenta/widgets/Base',
-    'argumenta/widgets/Argument'
+    'argumenta/widgets/Argument',
+    'argumenta/app',
+    'argumenta'
 ],
-function(chai, Config, Sandbox, Base, Argument) {
+function(chai, Config, Sandbox, Base, Argument, App, Argumenta) {
 
     var assert = chai.assert;
 
@@ -27,6 +29,14 @@ function(chai, Config, Sandbox, Base, Argument) {
 
         it('should load the Argument module', function() {
             assert.isFunction(Argument);
+        });
+
+        it('should load the App module', function() {
+            assert.isObject(App);
+        });
+
+        it('should load the Argumenta module', function() {
+            assert.isObject(Argumenta);
         });
     });
 });

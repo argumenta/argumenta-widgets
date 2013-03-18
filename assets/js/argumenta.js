@@ -6,7 +6,8 @@ define( 'argumenta',
 ],
 function( $, Bootstrap, App ) {
 
-    // Start the app
+    // Start the app and return it!
     App.start();
+    return App;
 
 } );
