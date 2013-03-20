@@ -10,6 +10,7 @@ require({
     baseUrl: '/base/assets/js',
     paths: {
         'chai'                    : '../../test/lib/chai',
+        'fixtures'                : '../../test/fixtures/index',
         // RequireJS shim files.
         'jquery'                  : '../../assets/js/jquery-1.7.1.min',
         'jquery-ui'               : '../../assets/js/jquery-ui-1.8.16.custom.min',

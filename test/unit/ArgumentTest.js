@@ -2,10 +2,11 @@
 define(
 [
     'chai',
+    'fixtures',
     'argumenta/widgets/Argument',
     'argumenta/widgets/Base'
 ],
-function(chai, Argument, Base) {
+function(chai, fixtures, Argument, Base) {
 
     var assert = chai.assert;
 
@@ -20,7 +21,7 @@ function(chai, Argument, Base) {
         });
 
         describe('new Argument( options, element )', function() {
-            it('should return a new Argument widget', null, function() {
+            it('should return a new Argument widget', function() {
                 var argData = fixtures.validArgumentData();
                 var argument = new Argument(argData);
                 assert.instanceOf(argument, Argument);
