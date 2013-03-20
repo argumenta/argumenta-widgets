@@ -39,7 +39,28 @@ function(chai, fixtures, Argument, Base) {
         describe('getSha1()', function() {
             it('should return the object sha1', function() {
                 var argument = fixtures.validArgument();
-                assert.equal(argument.getSha1(), '7077e1ce31bc8e9d2a88479aa2d159f2f9de4856');
+                assert.equal(
+                    argument.getSha1(),
+                    '7077e1ce31bc8e9d2a88479aa2d159f2f9de4856',
+                    'Check SHA1.'
+                );
+            });
+        });
+
+        describe('setPropositions( props )', function() {
+            it('should load the given propositions data', function() {
+                var data = fixtures.validArgumentData();
+                var argument = new Argument(data);
+                argument.setPropositions([]);
+                assert.deepEqual(
+                    argument.propositions, [],
+                    'Clear propositions.'
+                );
+                argument.setPropositions(data.propositions);
+                assert.deepEqual(
+                    argument.propositions, data.propositions,
+                    'Set propositions.'
+                );
             });
         });
     });
