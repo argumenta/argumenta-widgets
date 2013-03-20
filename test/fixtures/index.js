@@ -1,4 +1,6 @@
-define([], function() {
+define([
+    'argumenta/widgets/Argument'
+], function(Argument) {
 
     var Fixtures = {};
 
@@ -26,6 +28,11 @@ define([], function() {
             }
         ]
     }; };
+
+    Fixtures.validArgument = function() {
+        var data = Fixtures.validArgumentData();
+        return new Argument(data);
+    };
 
     return Fixtures;
 });

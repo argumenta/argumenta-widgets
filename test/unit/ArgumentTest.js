@@ -28,5 +28,19 @@ function(chai, fixtures, Argument, Base) {
                 assert.instanceOf(argument, Base);
             });
         });
+
+        describe('getType()', function() {
+            it('should return the object type', function() {
+                var argument = fixtures.validArgument();
+                assert.equal(argument.getType(), 'argument');
+            });
+        });
+
+        describe('getSha1()', function() {
+            it('should return the object sha1', function() {
+                var argument = fixtures.validArgument();
+                assert.equal(argument.getSha1(), '7077e1ce31bc8e9d2a88479aa2d159f2f9de4856');
+            });
+        });
     });
 });
