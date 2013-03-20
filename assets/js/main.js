@@ -19,7 +19,7 @@ require.config( {
             deps: ["jquery"],
         },
         'jquery-temporaryClass' : {
-            exports: "jquery.fn.temporaryClass",
+            exports: "jQuery.fn.temporaryClass",
             deps: ["jquery"]
         }
     }
