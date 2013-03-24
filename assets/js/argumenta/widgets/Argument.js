@@ -67,6 +67,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
             initArgument: function() {
                 var self = this;
                 self.propositionWidgets = [];
+                self.propositionsVisible = false;
                 if ( self.options.show_propositions === true ) {
                     self._initPropositions();
                 }
@@ -106,6 +107,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 var self = this;
                 if ( self.propositions ) {
                     self.container.children(".propositions-container").toggle( 300 );
+                    self.propositionsVisible = !self.propositionsVisible;
                 }
                 else {
                     self._initPropositions();
@@ -118,6 +120,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
 
                 // Save reference to inner container and menu.
                 self.container = self.element.children(".argument-container");
+                self.main = self.container.children(".argument-main");
                 self.menu = self.container.find('.argument-menu').first();
                 self.deleteButton = self.menu.find('.action-delete');
 
@@ -244,6 +247,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
                     container.append( proposition.element );
                     self.propositionWidgets.push( proposition );
                 }
+                self.propositionsVisible = true;
             },
 
             // Gets view options for template, extending Base behavior.

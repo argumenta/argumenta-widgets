@@ -107,6 +107,57 @@ function(chai, fixtures, Argument, Proposition, Base) {
                     );
                 }
             });
+
+            var assertContainsPropositions = function( argument, data ) {
+                var props = argument.element.find('.proposition-widget');
+                assert.lengthOf(
+                    props, data.propositions.length,
+                    'Shows correct number of proposition elements.'
+                );
+                for (var i = 0; i < props.length; i++) {
+                    var $p = $(props[i]);
+                    var p = $p.data('proposition-widget');
+                    assert.instanceOf(
+                        p, Proposition,
+                        'Each element has a proposition widget.'
+                    );
+                }
+            };
+
+            var assertPropositionsVisible = function( argument ) {
+                assert.ok( argument.propositionsVisible == true );
+            };
+
+            var assertShowsPropositions = function( argument, data ) {
+                assertContainsPropositions(argument, data);
+                assertPropositionsVisible(argument);
+            };
+
+            it('should toggle propositions when main panel clicked', function() {
+                var data = fixtures.validArgumentData();
+                data.show_propositions = false;
+                var argument = new Argument(data);
+                var checkPropositions = function() {
+                    assertShowsPropositions(argument, data);
+                };
+                assert.throws(
+                    checkPropositions,
+                    Error, null,
+                    'Propositions initially hidden.'
+                );
+                argument.main.click();
+                assert.doesNotThrow(
+                    checkPropositions,
+                    Error, null,
+                    'Propositions revealed after click.'
+                );
+                argument.main.click();
+                assert.throws(
+                    checkPropositions,
+                    Error, null,
+                    'Propositions hidden after second click.'
+                );
+            });
         });
 
         describe('getType()', function() {
