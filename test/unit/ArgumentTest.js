@@ -143,5 +143,24 @@ function(chai, fixtures, Argument, Proposition, Base) {
                 );
             });
         });
+
+        describe('getPropositionWidgets()', function() {
+            it('should return a widget for each proposition', function() {
+                var data = fixtures.validArgumentData();
+                var argument = new Argument(data);
+                var props = argument.getPropositionWidgets();
+                assert.lengthOf(
+                    props, data.propositions.length,
+                    'Returns correct number of objects.'
+                );
+                for (var i = 0; i < props.length; i++) {
+                    var p = props[i];
+                    assert.instanceOf(
+                        p, Proposition,
+                        'Each object returned is a proposition widget.'
+                    );
+                }
+            });
+        });
     });
 });

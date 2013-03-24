@@ -57,7 +57,8 @@ function( $, Base, Template, Proposition, Sandbox ) {
         },
 
         init: function( options ) {
-            this.initArgument( options );
+            var self = this;
+            self.initArgument( options );
         },
 
         prototype: {
@@ -65,6 +66,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
             // Inits this argument widget.
             initArgument: function() {
                 var self = this;
+                self.propositionWidgets = [];
                 if ( self.options.show_propositions === true ) {
                     self._initPropositions();
                 }
@@ -85,6 +87,12 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 var self = this;
                 self.propositions = props;
                 self._initPropositionElements();
+            },
+
+            // Gets child proposition widgets.
+            getPropositionWidgets: function() {
+                var self = this;
+                return self.propositionWidgets;
             },
 
             // Toggles argument details for widget.
@@ -215,6 +223,10 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 var self = this;
                 var container = self.container.children('.propositions-container');
 
+                // Clear any current propositions.
+                container.empty();
+                self.propositionWidgets.length = 0;
+
                 for ( var i=0, len=self.propositions.length; i<len; i++ ) {
                     var p = self.propositions[i];
 
@@ -228,7 +240,9 @@ function( $, Base, Template, Proposition, Sandbox ) {
                     // Create a widget from the proposition data.
                     var proposition = new Proposition( p );
 
+                    // Append the proposition and save a reference.
                     container.append( proposition.element );
+                    self.propositionWidgets.push( proposition );
                 }
             },
 
