@@ -4,9 +4,10 @@ define(
     'chai',
     'fixtures',
     'argumenta/widgets/Argument',
+    'argumenta/widgets/Proposition',
     'argumenta/widgets/Base'
 ],
-function(chai, fixtures, Argument, Base) {
+function(chai, fixtures, Argument, Proposition, Base) {
 
     var assert = chai.assert;
 
@@ -76,6 +77,35 @@ function(chai, fixtures, Argument, Base) {
                     html, data.sha1.substr(0, 20),
                     'Check SHA-1.'
                 );
+            });
+
+            it('should show propositions by default', function() {
+                var data = fixtures.validArgumentData();
+                delete data.show_propositions;
+                var argument = new Argument(data);
+                assert.equal(
+                    argument.options.show_propositions, true,
+                    'Inherits the default option.'
+                );
+            });
+
+            it('should show propositions when option is set', function() {
+                var data = fixtures.validArgumentData();
+                data.show_propositions = true;
+                var argument = new Argument(data);
+                var props = argument.element.find('.proposition-widget');
+                assert.lengthOf(
+                    props, data.propositions.length,
+                    'Shows correct number of proposition elements.'
+                );
+                for (var i = 0; i < props.length; i++) {
+                    var $p = $(props[i]);
+                    var p = $p.data('proposition-widget');
+                    assert.instanceOf(
+                        p, Proposition,
+                        'Each element has a proposition widget.'
+                    );
+                }
             });
         });
 

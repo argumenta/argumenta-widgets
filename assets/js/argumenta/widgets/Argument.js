@@ -52,6 +52,10 @@ function( $, Base, Template, Proposition, Sandbox ) {
         moduleID: 'Argument',
         template: Template,
 
+        defaults: {
+            show_propositions: true
+        },
+
         init: function( options ) {
             this.initArgument( options );
         },
