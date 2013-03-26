@@ -2,12 +2,13 @@
 define(
 [
     'chai',
+    'sinon',
     'fixtures',
     'argumenta/widgets/Argument',
     'argumenta/widgets/Proposition',
     'argumenta/widgets/Base'
 ],
-function(chai, fixtures, Argument, Proposition, Base) {
+function(chai, undefined, fixtures, Argument, Proposition, Base) {
 
     var assert = chai.assert;
 
@@ -157,6 +158,37 @@ function(chai, fixtures, Argument, Proposition, Base) {
                     Error, null,
                     'Propositions hidden after second click.'
                 );
+            });
+        });
+
+        describe('Menu', function() {
+
+            beforeEach(function() {
+                var spy = sinon.spy(jQuery, "ajax");
+            });
+
+            afterEach(function() {
+                if ('function' === typeof jQuery.ajax.restore) {
+                    jQuery.ajax.restore();
+                }
+            });
+
+            it('should send request when `Delete Repo` clicked', function(done) {
+                var data = fixtures.validArgumentData();
+                data.commit = fixtures.validCommitData();
+                var argument = new Argument(data);
+                argument.menu.click();
+                argument.deleteButton.click();
+                assert.ok(
+                    jQuery.ajax.calledWith(
+                        sinon.match({
+                            type: 'DELETE',
+                            url: '/tester/the-argument-title.json'
+                        })
+                    ),
+                    'Sends DELETE request for repo.'
+                );
+                done();
             });
         });
 
