@@ -26,7 +26,8 @@ define([
                 text: "The conclusion.",
                 sha1: "3940b2a6a3d5778297f0e37a06109f9d3dcffe6d"
             }
-        ]
+        ],
+        repo: "the-argument-title"
     }; };
 
     Fixtures.validArgument = function() {
@@ -45,6 +46,18 @@ define([
             '0123456789abcdef000000000000000000000000',
             '1a1a1a1a1a1a1a1a000000000000000000000000'
         ]
+    }; };
+
+    Fixtures.validPublicUserData = function() { return {
+        username: 'tester'
+    }; };
+
+    Fixtures.validRepoData = function() { return {
+        username:   'tester',
+        reponame:   'the-argument-title',
+        user:       Fixtures.validPublicUserData(),
+        commit:     Fixtures.validCommitData(),
+        target:     Fixtures.validArgumentData()
     }; };
 
     return Fixtures;
