@@ -143,8 +143,17 @@ function( $, Base, Template, Proposition, Sandbox ) {
                         self.element.remove();
                     };
                     var error = function( data ) {
-                        json = JSON.parse( data.responseText );
-                        Sandbox.warn( json.error )
+                        var json, message;
+                        try {
+                            json = JSON.parse( data.responseText );
+                            message = json.error;
+                        }
+                        catch (exception) {
+                            message = data.responseText;
+                        }
+                        finally {
+                            Sandbox.warn( message );
+                        }
                     };
                     $.ajax(settings).done(success).fail(error);
                 });
