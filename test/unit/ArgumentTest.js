@@ -163,22 +163,36 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
 
         describe('Menu', function() {
 
+            var spy, server;
+
             beforeEach(function() {
-                var spy = sinon.spy(jQuery, "ajax");
+                spy = sinon.spy(jQuery, "ajax");
+                server = sinon.fakeServer.create();
             });
 
             afterEach(function() {
-                if ('function' === typeof jQuery.ajax.restore) {
-                    jQuery.ajax.restore();
-                }
+                if (jQuery.ajax.restore) jQuery.ajax.restore();
+                if (server.restore) server.restore();
+                $('body').empty();
             });
 
+            var withArgument = function(argument) {
+                if (!argument) {
+                    argument = fixtures.validArgument();
+                }
+                argument.element.appendTo('body');
+                assert.lengthOf(
+                    $('body').find(argument.element), 1,
+                    'Widget present in DOM.'
+                );
+                return argument;
+            };
+
             it('should send request when `Delete Repo` clicked', function(done) {
-                var data = fixtures.validArgumentData();
-                data.commit = fixtures.validCommitData();
-                var argument = new Argument(data);
+                var argument = withArgument();
                 argument.menu.click();
                 argument.deleteButton.click();
+
                 assert.ok(
                     jQuery.ajax.calledWith(
                         sinon.match({
@@ -187,6 +201,32 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
                         })
                     ),
                     'Sends DELETE request for repo.'
+                );
+                done();
+            });
+
+            it('should remove widget on deletion success', function(done) {
+                var argument = withArgument();
+                argument.menu.click();
+                argument.deleteButton.click();
+                server.respondWith('Deleted argument repo.');
+                server.respond();
+                assert.lengthOf(
+                    $('.argument-widget'), 0,
+                    'Widget removed from DOM.'
+                );
+                done();
+            });
+
+            it('should keep widget on deletion error', function(done) {
+                var argument = withArgument();
+                argument.menu.click();
+                argument.deleteButton.click();
+                server.respondWith([401, {}, '{}']);
+                server.respond();
+                assert.lengthOf(
+                    $('.argument-widget'), 1,
+                    'Widget remains in DOM.'
                 );
                 done();
             });

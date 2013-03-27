@@ -31,7 +31,8 @@ define([
     }; };
 
     Fixtures.validArgument = function() {
-        var data = Fixtures.validArgumentData();
+        var data    = Fixtures.validArgumentData();
+        data.commit = Fixtures.validCommitData();
         return new Argument(data);
     };
 
