@@ -34,6 +34,7 @@ function( $, Widgets ) {
 
         // Shows a notification message.
         notify: function( message ) {
+            message = message || '';
             var self = this;
             var notifications = self.getNotifications();
             var elem = $('<div class="info"></div>')
@@ -44,6 +45,7 @@ function( $, Widgets ) {
 
         // Shows a notification warning.
         warn: function( message ) {
+            message = message || '';
             var self = this;
             var notifications = self.getNotifications();
             var elem = $('<div class="error"></div>')
