@@ -4,6 +4,8 @@ define([
 
     var Fixtures = {};
 
+    // Arguments
+
     Fixtures.validArgumentData = function() { return {
         object_type: "argument",
         sha1: "7077e1ce31bc8e9d2a88479aa2d159f2f9de4856",
@@ -49,9 +51,26 @@ define([
         ]
     }; };
 
+    // Propositions
+
+    Fixtures.validPropositionData = function() { return {
+        object_type: 'proposition',
+        sha1: '71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178',
+        text: 'The proposition text.'
+    }; };
+
+    Fixtures.validProposition = function() {
+        var data = Fixtures.validPropositionData();
+        return new Proposition(data);
+    };
+
+    // Users
+
     Fixtures.validPublicUserData = function() { return {
         username: 'tester'
     }; };
+
+    // Repos
 
     Fixtures.validRepoData = function() { return {
         username:   'tester',
