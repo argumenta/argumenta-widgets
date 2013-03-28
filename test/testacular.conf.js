@@ -3,7 +3,7 @@
 
 
 // base path, that will be used to resolve files and exclude
-basePath = '../..';
+basePath = '..';
 
 
 // list of files / patterns to load in the browser
@@ -17,7 +17,7 @@ files = [
   'assets/js/jquery-ui-1.8.16.custom.min.js',
   'assets/js/jquery.temporaryClass.js',
   // Test files.
-  'test/learning/test-main.js',
+  'test/test-main.js',
   // Serve and Watch files.
   {pattern: 'assets/**', included: false},
   {pattern: 'assets/js/**/*.js', included: false},

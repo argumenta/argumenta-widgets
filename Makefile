@@ -16,10 +16,10 @@ optimize: assets
 assets:
 
 test:
-	testacular start test/learning/testacular.conf.js --single-run=true
+	testacular start test/testacular.conf.js --single-run=true
 
 test_forever:
-	testacular start test/learning/testacular.conf.js
+	testacular start test/testacular.conf.js
 
 clean:
 	rm -fr build coverage
