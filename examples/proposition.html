@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <title>Proposition Widget Example</title>
+
+  <!-- Widgets CSS. Include in document head for best performance. -->
+  <link rel="stylesheet" href="/widgets/css/argumenta.css">
+
+</head>
+<body>
+
+  <!-- A proposition widget. Set options with the `data-proposition` attribute. -->
+  <div class="proposition-widget" data-proposition='{"text":"The proposition text.","object_type":"proposition","sha1":"71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178"}'></div>
+
+  <!-- Configuration. This is optional. -->
+  <script>
+    var ARGUMENTA_CONFIG = {
+      baseUrl:    '/',          // default: 'http://argumenta.io/'
+      widgetsUrl: '/widgets/'   // default: 'http://argumenta.io/widgets/'
+    };
+  </script>
+
+  <!-- Widgets JS. Activates all widgets! -->
+  <script data-main="/widgets/js/main" src="/widgets/js/require.js"></script>
+
+</body>
+</html>
