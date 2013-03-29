@@ -107,7 +107,7 @@ function( $, Base, AddTag, Tags, Template ) {
                 } );
 
                 // Replace the placeholder.
-                self.element.children('.add-tag-widget')
+                self.element.children('.addtag-widget')
                             .replaceWith( addTag.element );
 
                 // Save a reference to the nested widget.
