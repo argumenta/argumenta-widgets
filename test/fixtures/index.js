@@ -1,6 +1,7 @@
 define([
-    'argumenta/widgets/Argument'
-], function(Argument) {
+    'argumenta/widgets/Argument',
+    'argumenta/widgets/Proposition'
+], function(Argument, Proposition) {
 
     var Fixtures = {};
 

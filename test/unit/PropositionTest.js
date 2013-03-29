@@ -74,5 +74,26 @@ function(chai, undefined, fixtures, Proposition, Base) {
                 );
             });
         });
+
+        describe('getType()', function() {
+            it('should return the object type', function() {
+                var prop = fixtures.validProposition();
+                assert.equal(
+                    prop.getType(), 'proposition',
+                    'Check object type.'
+                );
+            });
+        });
+
+        describe('getSha1()', function() {
+            it('should return the object SHA-1', function() {
+                var prop = fixtures.validProposition();
+                assert.equal(
+                    prop.getSha1(),
+                    '71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178',
+                    'Check SHA-1.'
+                );
+            });
+        });
     });
 });
