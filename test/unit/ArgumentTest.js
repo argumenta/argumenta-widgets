@@ -12,6 +12,49 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
 
     var assert = chai.assert;
 
+    // Assertions
+
+    var assertContainsPropositions = function( argument, data ) {
+        var props = argument.element.find('.proposition-widget');
+        assert.lengthOf(
+            props, data.propositions.length,
+            'Shows correct number of proposition elements.'
+        );
+        for (var i = 0; i < props.length; i++) {
+            var $p = $(props[i]);
+            var p = $p.data('proposition-widget');
+            assert.instanceOf(
+                p, Proposition,
+                'Each element has a proposition widget.'
+            );
+        }
+    };
+
+    var assertPropositionsVisible = function( argument ) {
+        assert.ok( argument.propositionsVisible == true );
+    };
+
+    var assertShowsPropositions = function( argument, data ) {
+        assertContainsPropositions(argument, data);
+        assertPropositionsVisible(argument);
+    };
+
+    // Helpers
+
+    var withArgument = function(argument) {
+        if (!argument) {
+            argument = fixtures.validArgument();
+        }
+        argument.element.appendTo('body');
+        assert.lengthOf(
+            $('body').find(argument.element), 1,
+            'Widget present in DOM.'
+        );
+        return argument;
+    };
+
+    // Tests
+
     describe('Argument', function() {
 
         it('should be a function', function() {
@@ -89,50 +132,16 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
                     'Inherits the default option.'
                 );
             });
+        });
+
+        describe('Argument propositions', function() {
 
             it('should show propositions when option is set', function() {
                 var data = fixtures.validArgumentData();
                 data.show_propositions = true;
                 var argument = new Argument(data);
-                var props = argument.element.find('.proposition-widget');
-                assert.lengthOf(
-                    props, data.propositions.length,
-                    'Shows correct number of proposition elements.'
-                );
-                for (var i = 0; i < props.length; i++) {
-                    var $p = $(props[i]);
-                    var p = $p.data('proposition-widget');
-                    assert.instanceOf(
-                        p, Proposition,
-                        'Each element has a proposition widget.'
-                    );
-                }
+                assertShowsPropositions(argument, data);
             });
-
-            var assertContainsPropositions = function( argument, data ) {
-                var props = argument.element.find('.proposition-widget');
-                assert.lengthOf(
-                    props, data.propositions.length,
-                    'Shows correct number of proposition elements.'
-                );
-                for (var i = 0; i < props.length; i++) {
-                    var $p = $(props[i]);
-                    var p = $p.data('proposition-widget');
-                    assert.instanceOf(
-                        p, Proposition,
-                        'Each element has a proposition widget.'
-                    );
-                }
-            };
-
-            var assertPropositionsVisible = function( argument ) {
-                assert.ok( argument.propositionsVisible == true );
-            };
-
-            var assertShowsPropositions = function( argument, data ) {
-                assertContainsPropositions(argument, data);
-                assertPropositionsVisible(argument);
-            };
 
             it('should toggle propositions when main panel clicked', function() {
                 var data = fixtures.validArgumentData();
@@ -161,7 +170,7 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
             });
         });
 
-        describe('Menu', function() {
+        describe('Argument menu', function() {
 
             var spy, server;
 
@@ -175,18 +184,6 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
                 if (server.restore) server.restore();
                 $('body').empty();
             });
-
-            var withArgument = function(argument) {
-                if (!argument) {
-                    argument = fixtures.validArgument();
-                }
-                argument.element.appendTo('body');
-                assert.lengthOf(
-                    $('body').find(argument.element), 1,
-                    'Widget present in DOM.'
-                );
-                return argument;
-            };
 
             it('should send request when `Delete Repo` clicked', function(done) {
                 var argument = withArgument();
