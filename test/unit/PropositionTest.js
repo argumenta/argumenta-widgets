@@ -11,6 +11,15 @@ function(chai, undefined, fixtures, Proposition, Base) {
 
     var assert = chai.assert;
 
+    // Assertions
+
+    var assertAddTagVisible = function(prop) {
+        assert.equal(
+            prop.addTagVisible, true,
+            'Check AddTag visibility.'
+        );
+    };
+
     describe('Proposition', function() {
 
         it('should be a function', function() {
@@ -76,13 +85,6 @@ function(chai, undefined, fixtures, Proposition, Base) {
         });
 
         describe('AddTag button', function() {
-
-            var assertAddTagVisible = function(prop) {
-                assert.equal(
-                    prop.addTagVisible, true,
-                    'Check AddTag visibility.'
-                );
-            };
 
             it('should toggle AddTag widget when clicked', function() {
                 var prop = fixtures.validProposition();
