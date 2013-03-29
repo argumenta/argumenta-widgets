@@ -13,11 +13,27 @@ function(chai, undefined, fixtures, Proposition, Base) {
 
     // Assertions
 
-    var assertAddTagVisible = function(prop) {
+    var assertAddTagVisible = function( prop ) {
         assert.equal(
             prop.addTagVisible, true,
             'Check AddTag visibility.'
         );
+    };
+
+    var assertTagCount = function( prop, type, count ) {
+        var $count = prop.main.find('.tag-counts .' + type + 's');
+        var html = $count.html().replace(/\s*/g, '');
+        assert.equal(
+            html,
+            count,
+            'Check ' + type + ' tag count.'
+        );
+    };
+
+    var assertTagCounts = function( prop, counts ) {
+        assertTagCount(prop, 'support', counts.support);
+        assertTagCount(prop, 'dispute', counts.dispute);
+        assertTagCount(prop, 'citation', counts.citation);
     };
 
     // Tests
@@ -131,6 +147,23 @@ function(chai, undefined, fixtures, Proposition, Base) {
                     Error, null,
                     'AddTag hidden after second click.'
                 );
+            });
+        });
+
+        describe('Proposition tags', function() {
+
+            it('should show correct tag counts', function() {
+                var data = fixtures.validPropositionData();
+                data.metadata = fixtures.validPropositionMetadata();
+                var counts = data.metadata.tag_counts;
+                var prop = new Proposition(data);
+                assertTagCounts(prop, counts);
+            });
+
+            it('should not show tags initially', null, function() {
+            });
+
+            it('should toggle tags when main panel clicked', null, function() {
             });
         });
     });

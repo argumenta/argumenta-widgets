@@ -65,6 +65,21 @@ define([
         return new Proposition(data);
     };
 
+    Fixtures.validPropositionMetadata = function() { return {
+        sha1: '71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178',
+        object_type: 'proposition',
+        tag_sha1s: {
+            support: ['0123456789abcdef000000000000000000000000'],
+            dispute: [],
+            citation: []
+        },
+        tag_counts: {
+            support: 1,
+            dispute: 0,
+            citation: 0
+        }
+    }; };
+
     // Users
 
     Fixtures.validPublicUserData = function() { return {
