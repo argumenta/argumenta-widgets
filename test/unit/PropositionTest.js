@@ -75,6 +75,40 @@ function(chai, undefined, fixtures, Proposition, Base) {
             });
         });
 
+        describe('AddTag button', function() {
+
+            var assertAddTagVisible = function(prop) {
+                assert.equal(
+                    prop.addTagVisible, true,
+                    'Check AddTag visibility.'
+                );
+            };
+
+            it('should toggle AddTag widget when clicked', function() {
+                var prop = fixtures.validProposition();
+                var checkAddTag = function() {
+                    assertAddTagVisible(prop);
+                };
+                assert.throws(
+                    checkAddTag,
+                    Error, null,
+                    'AddTag initially hidden.'
+                );
+                prop.addTagButton.click();
+                assert.doesNotThrow(
+                    checkAddTag,
+                    Error, null,
+                    'AddTag revealed after click.'
+                );
+                prop.addTagButton.click();
+                assert.throws(
+                    checkAddTag,
+                    Error, null,
+                    'AddTag hidden after second click.'
+                );
+            });
+        });
+
         describe('getType()', function() {
             it('should return the object type', function() {
                 var prop = fixtures.validProposition();

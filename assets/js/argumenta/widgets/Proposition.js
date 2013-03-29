@@ -37,6 +37,13 @@ function( $, Base, AddTag, Tags, Template ) {
             initProposition: function( options ) {
                 var self = this;
 
+                // Initial state.
+                self.addTagVisible = false;
+
+                // Elements.
+                self.main = self.element.children('.proposition-main');
+                self.addTagButton = self.main.find('.addtag-button');
+
                 // Toggle details on click.
                 self.element.on('click', function(event) {
 
@@ -94,6 +101,7 @@ function( $, Base, AddTag, Tags, Template ) {
 
                 // Fade in or out.
                 self.addTag.element.toggle( 300 );
+                self.addTagVisible = !self.addTagVisible;
             },
 
             // Inits the AddTag widget.
