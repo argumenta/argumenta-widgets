@@ -39,6 +39,7 @@ function( $, Base, AddTag, Tags, Template ) {
 
                 // Initial state.
                 self.addTagVisible = false;
+                self.tagsVisible = false;
 
                 // Elements.
                 self.main = self.element.children('.proposition-main');
@@ -86,6 +87,7 @@ function( $, Base, AddTag, Tags, Template ) {
                 }
                 else {
                     self.tags.element.toggle( 300 );
+                    self.tagsVisible = !self.tagsVisible;
                 }
             },
 
@@ -140,6 +142,7 @@ function( $, Base, AddTag, Tags, Template ) {
                         // Append the element and reveal the container.
                         tagsContainer.append( tagsWidget.element );
                         tagsContainer.show( 300 );
+                        self.tagsVisible = true;
                     }
                 } );
 

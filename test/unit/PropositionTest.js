@@ -36,6 +36,31 @@ function(chai, undefined, fixtures, Proposition, Base) {
         assertTagCount(prop, 'citation', counts.citation);
     };
 
+    var assertTagsVisible = function( prop ) {
+        assert.equal(
+            prop.tagsVisible, true,
+            'Check Tags visibility.'
+        );
+    };
+
+    // Helpers
+
+    var withTagsServer = function( tags, sources ) {
+        tags = tags || [];
+        sources = sources || [];
+        var server = sinon.fakeServer.create();
+        server.respondWith(
+            'GET',
+            new RegExp('/propositions/[0-9a-f]{40}/tags-plus-sources.json'),
+            [
+                200,
+                fixtures.headers('JSON'),
+                JSON.stringify({tags: tags, sources: sources})
+            ]
+        );
+        return server;
+    }
+
     // Tests
 
     describe('Proposition', function() {
@@ -160,11 +185,46 @@ function(chai, undefined, fixtures, Proposition, Base) {
                 assertTagCounts(prop, counts);
             });
 
-            it('should not show tags initially', null, function() {
+            it('should not show tags initially', function() {
+                var data = fixtures.validPropositionData();
+                var prop = new Proposition(data);
+                var checkTagsVisible = function( prop ) {
+                    assertTagsVisible(prop);
+                };
+                assert.throws(
+                    checkTagsVisible,
+                    Error, null,
+                    'Tags initially hidden.'
+                );
             });
 
-            it('should toggle tags when main panel clicked', null, function() {
-            });
+            it('should toggle tags when element clicked',
+            sinon.test(function() {
+                var data = fixtures.validPropositionData();
+                var prop = new Proposition(data);
+                var server = withTagsServer();
+                var checkTagsVisible = function() {
+                    assertTagsVisible(prop);
+                };
+                assert.throws(
+                    checkTagsVisible,
+                    Error, null,
+                    'Tags initially hidden.'
+                );
+                prop.element.click();
+                server.respond();
+                assert.doesNotThrow(
+                    checkTagsVisible,
+                    Error, null,
+                    'Tags revealed on click.'
+                );
+                prop.element.click();
+                assert.throws(
+                    checkTagsVisible,
+                    Error, null,
+                    'Tags hidden after second click.'
+                );
+            }));
         });
     });
 });
