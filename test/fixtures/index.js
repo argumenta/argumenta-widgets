@@ -1,7 +1,8 @@
 define([
     'argumenta/widgets/Argument',
-    'argumenta/widgets/Proposition'
-], function(Argument, Proposition) {
+    'argumenta/widgets/Proposition',
+    '../../test/fixtures/headers'
+], function(Argument, Proposition, Headers) {
 
     var Fixtures = {};
 
@@ -95,6 +96,10 @@ define([
         commit:     Fixtures.validCommitData(),
         target:     Fixtures.validArgumentData()
     }; };
+
+    // Headers
+
+    Fixtures.headers = Headers;
 
     return Fixtures;
 });
