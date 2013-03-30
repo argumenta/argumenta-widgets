@@ -81,6 +81,21 @@ define([
         }
     }; };
 
+    // Add Tag
+
+    Fixtures.validAddTagData = function() {
+        var target = Fixtures.validPropositionData();
+        var source = Fixtures.validArgumentData();
+        var data = {
+            tag_type:   'support',
+            target_type: target.object_type,
+            target_sha1: target.sha1,
+            source_type: source.object_type,
+            source_sha1: source.sha1
+        };
+        return data;
+    };
+
     // Users
 
     Fixtures.validPublicUserData = function() { return {
