@@ -9,6 +9,25 @@ function(chai, undefined, undefined) {
 
     var assert = chai.assert;
 
+    // Assertions
+
+    var assertCleanXHR = function() {
+        assert.isNotFunction(
+            XMLHttpRequest.restore,
+            'XMLHttpRequest lacks method `restore`.'
+        );
+    };
+
+    var assertModifiedXHR = function() {
+        assert.throws(
+            assertCleanXHR,
+            Error, null,
+            'Sinon server modifies XHR.'
+        );
+    };
+
+    // Tests
+
     describe('sinon', function() {
 
         it('should be an object', function() {
@@ -46,6 +65,22 @@ function(chai, undefined, undefined) {
                 });
 
                 server.respond();
+            });
+        });
+
+        describe('Sandbox', function() {
+
+            it('should not affect XHR when unused', function() {
+                assertCleanXHR();
+            });
+
+            it('should allow usage of server', sinon.test(function() {
+                var server = sinon.fakeServer.create();
+                assertModifiedXHR();
+            }));
+
+            it('should clean up server in previous test', function() {
+                assertCleanXHR();
             });
         });
     });
