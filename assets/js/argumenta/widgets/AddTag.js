@@ -95,9 +95,13 @@ function( $, Base, Template, Sandbox ) {
                 var self = this;
                 var widget = $( this.element );
                 var form = widget.find('form').first();
+                var fieldsets = form.children('fieldset');
 
                 // Save useful references to widget elements.
                 self.form = form;
+                self.supportButton = fieldsets.children('button[name=support]');
+                self.disputeButton = fieldsets.children('button[name=dispute]');
+                self.citationButton = fieldsets.children('button[name=citation]');
                 self.supportContents = form.children('.support-contents');
                 self.disputeContents = form.children('.dispute-contents');
                 self.citationContents = form.children('.citation-contents');

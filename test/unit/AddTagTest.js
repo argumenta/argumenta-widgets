@@ -103,5 +103,54 @@ function(chai, undefined, fixtures, AddTag, Base) {
                 );
             });
         });
+
+        describe('Tag type buttons', function() {
+
+            it('should have a button for each tag type', function() {
+                var data = fixtures.validAddTagData();
+                var addTag = new AddTag(data);
+                assert.lengthOf(
+                    addTag.supportButton, 1,
+                    'Check support button.'
+                );
+                assert.lengthOf(
+                    addTag.disputeButton, 1,
+                    'Check dispute button.'
+                );
+                assert.lengthOf(
+                    addTag.citationButton, 1,
+                    'Check citation button.'
+                );
+            });
+
+            it('should change the tag type when clicked', function() {
+                var data = fixtures.validAddTagData();
+                var addTag = new AddTag(data);
+                addTag.disputeButton.click();
+                assert.equal(
+                    addTag.getTagType(), 'dispute',
+                    'Check dispute button.'
+                );
+                addTag.citationButton.click();
+                assert.equal(
+                    addTag.getTagType(), 'citation',
+                    'Check citation button.'
+                );
+                addTag.supportButton.click();
+                assert.equal(
+                    addTag.getTagType(), 'support',
+                    'Check support button.'
+                );
+            });
+        });
+
+        describe('Drop box', function() {
+
+            it('should set tag source when proposition dropped', null, function() {
+            });
+
+            it('should set tag source when argument dropped', null, function() {
+            });
+        });
     });
 });
