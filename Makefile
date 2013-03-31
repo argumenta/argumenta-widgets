@@ -6,7 +6,7 @@ RJS := ./node_modules/requirejs/bin/r.js
 
 all: build
 
-build: public
+build: public coverage
 
 public: optimize
 
@@ -21,7 +21,10 @@ test:
 test_forever:
 	testacular start test/testacular.conf.js
 
+coverage:
+	testacular start test/coverage.conf.js
+
 clean:
 	rm -fr build coverage
 
-.PHONY: all test test_forever clean
+.PHONY: all test test_forever coverage clean
