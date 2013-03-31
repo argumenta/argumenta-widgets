@@ -1,4 +1,4 @@
-define( 'argumenta/widgets/citation',
+define( 'argumenta/widgets/Citation',
 [
     "require-jquery",
     "argumenta/widgets/Base",
@@ -38,40 +38,13 @@ function( $, Base, Template ) {
             _linkifyCitationElem: function() {
                 var self = this;
 
-                // Uses jquery to html-escape text
-                var escapeHtml = function( text ) {
-                    return $('<div/>').text( text ).html();
-                };
-
                 // Finds newlines in text and adds break tags
                 var insertLineBreaks = function( text ) {
                     return text.replace( /\r\n|\r|\n/g, "<br>\n");
                 };
 
-                // Create a link tag for a url string, after uri-encoding it
-                var linkFor = function( url ) {
-                    return $('<a/>').attr('href', encodeURI( url ))
-                                    .text( url )
-                                    [0].outerHTML;
-                };
-
-                // Converts urls into uri-encoded link tags, and html-escapes surrounding text
-                var linkify = function( text ) {
-                    // Splits text into 3 captures on match: before-link, the link, and after-link
-                    var urlRe = new RegExp("^([^]*)(https?://\\S*)([^]*)$", "");
-
-                    // Just html-escape the text if it contains no urls
-                    if ( !text.match( urlRe ) )
-                        return escapeHtml( text );
-
-                    // Linkify matched link, and process the text before & after link recursively
-                    return text.replace( urlRe, function(str, p1, p2, p3, offset, s) {
-                        return linkify( p1 ) + linkFor( p2 ) + linkify( p3 );
-                    } );
-                };
-
                 // Safely linkify, then format, the citation text
-                var linkedText = insertLineBreaks( linkify(
+                var linkedText = insertLineBreaks( Citation.linkify(
                     self.getCitationText()
                 ));
 
@@ -129,7 +102,40 @@ function( $, Base, Template ) {
             }
         },
 
-        "static": {}
+        "static": {
+
+            // Creates links for URLs, and HTML-escapes surrounding text.
+            linkify: function( text ) {
+
+                var linkify = Citation.linkify;
+
+                // Uses jQuery to HTML-escape text.
+                var escapeHtml = function( text ) {
+                    return $('<div/>').text( text ).html();
+                };
+
+                // Creates an anchor tag for a URL, after URI-encoding it.
+                var linkFor = function( url ) {
+                    return $('<a/>')
+                        .attr('href', encodeURI( url ))
+                        .text( url )
+                        [0].outerHTML;
+                };
+
+                // Matches a URL within text, creating three capture groups.
+                var urlRe = new RegExp("^([^]*)(https?://\\S*)([^]*)$", "");
+
+                // Just HTML-escape the text if it contains no URLs.
+                if ( !text.match( urlRe ) ) {
+                    return escapeHtml( text );
+                }
+
+                // Recursively linkify text, one match at a time.
+                return text.replace( urlRe, function(str, p1, p2, p3, offset, s) {
+                    return linkify( p1 ) + linkFor( p2 ) + linkify( p3 );
+                } );
+            }
+        }
     } );
 
     return Citation;
