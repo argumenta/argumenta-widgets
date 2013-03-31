@@ -88,7 +88,7 @@ define([
 
     // Add Tag
 
-    Fixtures.addTagDataFor = function( type, target, source ) {
+    Fixtures.tagDataFor = function( type, target, source ) {
         type = type || 'support';
         target = target || {};
         source = source || {};
@@ -107,13 +107,24 @@ define([
         var target = Fixtures.validPropositionData();
         var source = Fixtures.validArgumentData();
         source.citation_text = Fixtures.validCitationText();
-        var data = Fixtures.addTagDataFor('support', target, source);
+        var data = Fixtures.tagDataFor('support', target, source);
         return data;
     };
 
     Fixtures.validCitationText = function() {
-        return 'The citation text,' +
+        return 'The citation text, ' +
                'with URL: http://wikipedia.org/wiki/Citation';
+    };
+
+    // Citation
+
+    Fixtures.validCitationData = function() {
+        var type = 'citation';
+        var target = Fixtures.validPropositionData();
+        var source = {
+            citation_text: Fixtures.validCitationText()
+        }
+        return Fixtures.tagDataFor(type, target, source);
     };
 
     // Users

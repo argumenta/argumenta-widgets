@@ -180,7 +180,7 @@ function(chai, undefined, fixtures, AddTag, Base) {
 
             it('should set tag source when proposition dropped', function() {
                 var prop = fixtures.validProposition();
-                var data = fixtures.addTagDataFor('', {}, {});
+                var data = fixtures.tagDataFor('', {}, {});
                 var addTag = new AddTag(data);
                 var event = {};
                 var ui = {
@@ -200,7 +200,7 @@ function(chai, undefined, fixtures, AddTag, Base) {
 
             it('should set tag source when argument dropped', function() {
                 var arg = fixtures.validArgument();
-                var data = fixtures.addTagDataFor('', {}, {});
+                var data = fixtures.tagDataFor('', {}, {});
                 var addTag = new AddTag(data);
                 var event = {};
                 var ui = {
