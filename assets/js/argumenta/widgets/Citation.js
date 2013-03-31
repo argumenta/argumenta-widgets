@@ -11,6 +11,7 @@ function( $, Base, Template ) {
         moduleID: 'Citation',
         template: Template,
 
+        // Inits the citation widget.
         init: function( options ) {
             var self = this;
             self.setCitationText( options.citation_text );
@@ -18,23 +19,26 @@ function( $, Base, Template ) {
 
         prototype: {
 
+            // Sets the citation text.
             setCitationText: function( citation_text ) {
                 var self = this;
                 self.options.citation_text = citation_text;
             },
 
+            // Gets the citation text.
             getCitationText: function() {
                 var self = this;
                 return self.options.citation_text;
             },
 
-            // Overrides Base, runs on _init() and _refresh()
+            // Binds UI on refresh, overriding Base behavior.
             _bindUI: function() {
                 var self = this;
                 self._linkifyCitationElem();
                 self._embedLinkedMedia();
             },
 
+            // Creates links for URLs in displayed citation text.
             _linkifyCitationElem: function() {
                 var self = this;
 
@@ -52,6 +56,7 @@ function( $, Base, Template ) {
                 self.element.find('.citation-text').html( linkedText );
             },
 
+            // Embeds linked media in displayed citation text.
             _embedLinkedMedia: function() {
                 var self = this;
 
@@ -63,16 +68,20 @@ function( $, Base, Template ) {
                 } );
             },
 
-            // Appends embeddable media referenced by the url
-            // Supports: YouTube
+            // Appends embeddable media referenced by the url.
+            // Supports YouTube.
             _appendMediaFor: function( url ) {
                 var self = this;
 
-                // Returns jquery object with a youtube embed element for the url
+                // Returns YouTube element for given video ID, as jQuery object.
                 var youtubeEmbedFor = function( videoID ) {
                     var embedUrl = 'http://www.youtube.com/embed/' + videoID;
-                    return $( '<iframe width="100%" height="315" src="" frameborder="0" allowfullscreen></iframe>'
-                    ).attr( 'src', embedUrl );
+                    var embed = $(
+                        '<iframe width="100%" height="315"' +
+                        ' frameborder="0" allowfullscreen></iframe>'
+                    );
+                    embed.attr('src', embedUrl);
+                    return embed;
                 };
 
                 // Returns the videoID found within a youtube url, ie:
@@ -86,8 +95,8 @@ function( $, Base, Template ) {
                     return matches ? matches[1] : null;
                 };
 
-                // Youtube
-                // Note: oEmbed would be ideal, but YT's oEmbed doesn't support JSONP
+                // Youtube.
+                // oEmbed would be ideal, but YT doesn't support JSONP for this.
                 if ( url.match( /https?:\/\/[^\/]*youtu(?:.be|be.com)/ ) ) {
                     var videoID = youtubeIdFor( url );
                     if ( videoID )
@@ -95,7 +104,7 @@ function( $, Base, Template ) {
                 }
             },
 
-            // Appends a media element (or jquery object)
+            // Appends media, as a plain element or jQuery object.
             _appendMedia: function( media ) {
                 var self = this;
                 self.element.find('.citation-media').append( media );
