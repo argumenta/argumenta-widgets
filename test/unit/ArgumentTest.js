@@ -253,26 +253,18 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
 
         describe('Argument menu', function() {
 
-            var spy, server;
-
-            beforeEach(function() {
-                spy = sinon.spy(jQuery, "ajax");
-                server = sinon.fakeServer.create();
-            });
-
             afterEach(function() {
-                if (jQuery.ajax.restore) jQuery.ajax.restore();
-                if (server.restore) server.restore();
                 $('body').empty();
             });
 
-            it('should send request when `Delete Repo` clicked', function(done) {
+            it('should send request when `Delete Repo` clicked',
+            sinon.test(function() {
                 var argument = withArgument();
+                var spy = sinon.spy(jQuery, "ajax");
                 argument.menu.click();
                 argument.deleteButton.click();
-
                 assert.ok(
-                    jQuery.ajax.calledWith(
+                    spy.calledWith(
                         sinon.match({
                             type: 'DELETE',
                             url: '/tester/the-argument-title.json'
@@ -280,11 +272,12 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
                     ),
                     'Sends DELETE request for repo.'
                 );
-                done();
-            });
+            }));
 
-            it('should remove widget on deletion success', function(done) {
+            it('should remove widget on deletion success',
+            sinon.test(function() {
                 var argument = withArgument();
+                var server = sinon.fakeServer.create();
                 argument.menu.click();
                 argument.deleteButton.click();
                 server.respondWith('Deleted argument repo.');
@@ -293,11 +286,12 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
                     $('.argument-widget'), 0,
                     'Widget removed from DOM.'
                 );
-                done();
-            });
+            }));
 
-            it('should keep widget on deletion error', function(done) {
+            it('should keep widget on deletion error',
+            sinon.test(function() {
                 var argument = withArgument();
+                var server = sinon.fakeServer.create();
                 argument.menu.click();
                 argument.deleteButton.click();
                 server.respondWith([401, {}, '{}']);
@@ -306,8 +300,7 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
                     $('.argument-widget'), 1,
                     'Widget remains in DOM.'
                 );
-                done();
-            });
+            }));
         });
     });
 });
