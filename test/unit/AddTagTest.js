@@ -104,6 +104,18 @@ function(chai, undefined, fixtures, AddTag, Base) {
             });
         });
 
+        describe('getCitationText()', function() {
+            it('should return the citation text', function() {
+                var data = fixtures.validAddTagData();
+                var addTag = new AddTag(data);
+                assert.equal(
+                    addTag.getCitationText(),
+                    data.citation_text,
+                    'Check citation text.'
+                );
+            });
+        });
+
         describe('Tag type buttons', function() {
 
             it('should have a button for each tag type', function() {
@@ -140,6 +152,17 @@ function(chai, undefined, fixtures, AddTag, Base) {
                 assert.equal(
                     addTag.getTagType(), 'support',
                     'Check support button.'
+                );
+            });
+        });
+
+        describe('Citation text', function() {
+            it('should have a citation textarea', function() {
+                var data = fixtures.validAddTagData();
+                var addTag = new AddTag(data);
+                assert.lengthOf(
+                    addTag.citationTextarea, 1,
+                    'Check citation textarea.'
                 );
             });
         });

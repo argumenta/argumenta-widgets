@@ -91,9 +91,15 @@ define([
             target_type: target.object_type,
             target_sha1: target.sha1,
             source_type: source.object_type,
-            source_sha1: source.sha1
+            source_sha1: source.sha1,
+            citation_text: Fixtures.validCitationText()
         };
         return data;
+    };
+
+    Fixtures.validCitationText = function() {
+        return 'The citation text,' +
+               'with URL: http://wikipedia.org/wiki/Citation';
     };
 
     // Users

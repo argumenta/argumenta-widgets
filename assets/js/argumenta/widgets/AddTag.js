@@ -17,7 +17,8 @@ function( $, Base, Template, Sandbox ) {
             target_type : '',
             target_sha1 : '',
             source_type : '',
-            source_sha1 : ''
+            source_sha1 : '',
+            citation_text: ''
         },
 
         init: function( options ) {
@@ -32,6 +33,7 @@ function( $, Base, Template, Sandbox ) {
                 self.setTagType( self.options.tag_type );
                 self.setTagTarget( self.options.target_type, self.options.target_sha1 );
                 self.setTagSource( self.options.source_type, self.options.source_sha1 );
+                self.setCitationText( self.options.citation_text );
             },
 
             // Gets the tag type.
@@ -61,7 +63,7 @@ function( $, Base, Template, Sandbox ) {
 
             // Gets any citation text, if set.
             getCitationText: function() {
-                return this.element.find('textarea[name=citation_text]').val();
+                return this.citationTextarea.val();
             },
 
             // Sets the tag type.
@@ -90,6 +92,13 @@ function( $, Base, Template, Sandbox ) {
                 self.element.find('input[name=source_sha1]').val( source_sha1 );
             },
 
+            // Sets the citation text.
+            setCitationText: function( citation_text ) {
+                var self = this;
+                self.options.citation_text = citation_text;
+                self.citationTextarea.val( citation_text );
+            },
+
             // Binds UI events after refresh.
             _bindUI: function() {
                 var self = this;
@@ -105,6 +114,7 @@ function( $, Base, Template, Sandbox ) {
                 self.supportContents = form.children('.support-contents');
                 self.disputeContents = form.children('.dispute-contents');
                 self.citationContents = form.children('.citation-contents');
+                self.citationTextarea = fieldsets.children('[name=citation_text]');
 
                 // Listen for clicks on tag-type buttons.
                 widget.on(
