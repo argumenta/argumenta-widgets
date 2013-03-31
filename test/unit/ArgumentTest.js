@@ -222,6 +222,33 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
                     'Propositions hidden after second click.'
                 );
             });
+
+            it('should request propositions if not in options',
+            sinon.test(function() {
+                var data = fixtures.validArgumentData();
+                var props = data.propositions;
+                delete data.propositions;
+                var argument = new Argument(data);
+                var spy = sinon.spy(argument, "setPropositions");
+                var server = sinon.fakeServer.create();
+                server.respondWith(
+                    'GET',
+                    '/arguments/' + data.sha1 + '/propositions.json',
+                    [
+                        200,
+                        fixtures.headers('JSON'),
+                        JSON.stringify({
+                            propositions: props
+                        })
+                    ]
+                );
+                argument.main.click();
+                server.respond();
+                assert.equal(
+                    spy.calledWith(props), true,
+                    'Check propositions request callback.'
+                );
+            }));
         });
 
         describe('Argument menu', function() {
