@@ -66,6 +66,11 @@ define([
         return new Proposition(data);
     };
 
+    Fixtures.validProposition = function() {
+        var data = Fixtures.validPropositionData();
+        return new Proposition(data);
+    };
+
     Fixtures.validPropositionMetadata = function() { return {
         sha1: '71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178',
         object_type: 'proposition',
@@ -83,17 +88,26 @@ define([
 
     // Add Tag
 
-    Fixtures.validAddTagData = function() {
-        var target = Fixtures.validPropositionData();
-        var source = Fixtures.validArgumentData();
+    Fixtures.addTagDataFor = function( type, target, source ) {
+        type = type || 'support';
+        target = target || {};
+        source = source || {};
         var data = {
-            tag_type:   'support',
+            tag_type: type,
             target_type: target.object_type,
             target_sha1: target.sha1,
             source_type: source.object_type,
             source_sha1: source.sha1,
-            citation_text: Fixtures.validCitationText()
-        };
+            citation_text: source.citation_text
+        }
+        return data;
+    };
+
+    Fixtures.validAddTagData = function() {
+        var target = Fixtures.validPropositionData();
+        var source = Fixtures.validArgumentData();
+        source.citation_text = Fixtures.validCitationText();
+        var data = Fixtures.addTagDataFor('support', target, source);
         return data;
     };
 

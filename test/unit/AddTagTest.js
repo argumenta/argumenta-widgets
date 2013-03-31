@@ -169,10 +169,53 @@ function(chai, undefined, fixtures, AddTag, Base) {
 
         describe('Drop box', function() {
 
-            it('should set tag source when proposition dropped', null, function() {
+            it('should have a dropbox for tag source', function() {
+                var data = fixtures.validAddTagData();
+                var addTag = new AddTag(data);
+                assert.lengthOf(
+                    addTag.dropbox, 1,
+                    'Check dropbox.'
+                );
             });
 
-            it('should set tag source when argument dropped', null, function() {
+            it('should set tag source when proposition dropped', function() {
+                var prop = fixtures.validProposition();
+                var data = fixtures.addTagDataFor('', {}, {});
+                var addTag = new AddTag(data);
+                var event = {};
+                var ui = {
+                    draggable: prop.element
+                };
+                var onDrop = AddTag.dropboxOptions.drop;
+                onDrop.apply(addTag.dropbox, [event, ui]);
+                assert.equal(
+                    addTag.getSourceType(), prop.getType(),
+                    'Check dropped source type.'
+                );
+                assert.equal(
+                    addTag.getSourceSha1(), prop.getSha1(),
+                    'Check dropped source SHA-1.'
+                );
+            });
+
+            it('should set tag source when argument dropped', function() {
+                var arg = fixtures.validArgument();
+                var data = fixtures.addTagDataFor('', {}, {});
+                var addTag = new AddTag(data);
+                var event = {};
+                var ui = {
+                    draggable: arg.element
+                };
+                var onDrop = AddTag.dropboxOptions.drop;
+                onDrop.apply(addTag.dropbox, [event, ui]);
+                assert.equal(
+                    addTag.getSourceType(), arg.getType(),
+                    'Check dropped source type.'
+                );
+                assert.equal(
+                    addTag.getSourceSha1(), arg.getSha1(),
+                    'Check dropped source SHA-1.'
+                );
             });
         });
     });

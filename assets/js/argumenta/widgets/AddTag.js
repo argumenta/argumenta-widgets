@@ -115,6 +115,7 @@ function( $, Base, Template, Sandbox ) {
                 self.disputeContents = form.children('.dispute-contents');
                 self.citationContents = form.children('.citation-contents');
                 self.citationTextarea = fieldsets.children('[name=citation_text]');
+                self.dropbox = fieldsets.children('.tag-dropbox');
 
                 // Listen for clicks on tag-type buttons.
                 widget.on(
