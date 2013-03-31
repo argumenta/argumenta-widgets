@@ -116,6 +116,11 @@ define([
                'with URL: http://wikipedia.org/wiki/Citation';
     };
 
+    Fixtures.citationTextWithMedia = function() {
+        return 'The citation text, ' +
+               'with media URL: http://youtu.be/5i1lbhc0c_s'
+    };
+
     // Citation
 
     Fixtures.validCitationData = function() {

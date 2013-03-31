@@ -42,6 +42,22 @@ function(chai, undefined, fixtures, Citation, Base) {
                     'Check citation text.'
                 );
             });
+
+            it('should support embedded media', function() {
+                var data = fixtures.validCitationData();
+                data.citation_text = fixtures.citationTextWithMedia();
+                var citation = new Citation(data);
+                var anchor = citation.element.find('.citation-text > a');
+                var iframe = citation.element.find('.citation-media > iframe');
+                assert.lengthOf(
+                    anchor, 1,
+                    'Check linkified URL anchor.'
+                );
+                assert.lengthOf(
+                    iframe, 1,
+                    'Check embedded media iframe.'
+                );
+            });
         });
 
         describe('Citation.linkify( text )', function() {
@@ -54,6 +70,18 @@ function(chai, undefined, fixtures, Citation, Base) {
                 assert.equal(
                     result, expected,
                     'Check linkify result.'
+                );
+            });
+        });
+
+        describe('Citation.youtubeIdFor( url )', function() {
+            it('should return video ID for youtube URL', function() {
+                var url = 'http://www.youtube.com/watch?v=9ZaLMPyuOAI';
+                var result = Citation.youtubeIdFor(url);
+                var expected = '9ZaLMPyuOAI';
+                assert.equal(
+                    result, expected,
+                    'Check video ID.'
                 );
             });
         });

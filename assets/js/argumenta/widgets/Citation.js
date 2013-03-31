@@ -84,21 +84,10 @@ function( $, Base, Template ) {
                     return embed;
                 };
 
-                // Returns the videoID found within a youtube url, ie:
-                // "http://www.youtube.com/watch?v=9ZaLMPyuOAI"
-                // "http://youtu.be/9ZaLMPyuOAI"
-                var youtubeIdFor = function( url ) {
-                    var matches = (
-                        url.match( /v=([\-_0-9a-zA-Z]{11})/ ) ||
-                        url.match( /youtu.be\/([\-_0-9a-zA-Z]{11})/ )
-                    );
-                    return matches ? matches[1] : null;
-                };
-
                 // Youtube.
                 // oEmbed would be ideal, but YT doesn't support JSONP for this.
                 if ( url.match( /https?:\/\/[^\/]*youtu(?:.be|be.com)/ ) ) {
-                    var videoID = youtubeIdFor( url );
+                    var videoID = Citation.youtubeIdFor( url );
                     if ( videoID )
                         self._appendMedia( youtubeEmbedFor( videoID ) );
                 }
@@ -143,6 +132,17 @@ function( $, Base, Template ) {
                 return text.replace( urlRe, function(str, p1, p2, p3, offset, s) {
                     return linkify( p1 ) + linkFor( p2 ) + linkify( p3 );
                 } );
+            },
+
+            // Returns the videoID found within a youtube url, ie:
+            // "http://www.youtube.com/watch?v=9ZaLMPyuOAI"
+            // "http://youtu.be/9ZaLMPyuOAI"
+            youtubeIdFor: function( url ) {
+                var matches = (
+                    url.match( /v=([\-_0-9a-zA-Z]{11})/ ) ||
+                    url.match( /youtu.be\/([\-_0-9a-zA-Z]{11})/ )
+                );
+                return matches ? matches[1] : null;
             }
         }
     } );
