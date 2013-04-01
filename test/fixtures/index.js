@@ -111,6 +111,19 @@ define([
         return data;
     };
 
+    // Tags
+
+    Fixtures.validTagsData = function() {
+        var target = Fixtures.validPropositionData();
+        var data = {
+            target_sha1: target.sha1,
+            target_type: target.object_type
+        };
+        return data;
+    };
+
+    // Citation
+
     Fixtures.validCitationText = function() {
         return 'The citation text, ' +
                'with URL: http://wikipedia.org/wiki/Citation';
@@ -120,8 +133,6 @@ define([
         return 'The citation text, ' +
                'with media URL: http://youtu.be/5i1lbhc0c_s'
     };
-
-    // Citation
 
     Fixtures.validCitationData = function() {
         var type = 'citation';
