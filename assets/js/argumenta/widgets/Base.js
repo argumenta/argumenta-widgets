@@ -391,7 +391,7 @@ function( $, Mustache, Template, Sandbox ) {
                 var self = this;
                 // Call Base._init, and then the new init.
                 self._super('_init', [ options ] );
-                self[ funcName ]( options, origElem );
+                self[ funcName ]( self.options, origElem );
             };
         }
 
