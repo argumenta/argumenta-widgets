@@ -200,9 +200,16 @@ function(chai, undefined, fixtures, Proposition, Base) {
 
             it('should toggle tags when element clicked',
             sinon.test(function() {
+                var server = sinon.fakeServer.create();
                 var data = fixtures.validPropositionData();
                 var prop = new Proposition(data);
-                var server = withTagsServer();
+                server.respondWith(
+                    [
+                        200,
+                        fixtures.headers('JSON'),
+                        JSON.stringify(fixtures.tagsPlusSourcesData())
+                    ]
+                );
                 var checkTagsVisible = function() {
                     assertTagsVisible(prop);
                 };

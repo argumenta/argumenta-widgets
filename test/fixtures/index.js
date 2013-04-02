@@ -122,6 +122,17 @@ define([
         return data;
     };
 
+    Fixtures.tagsPlusSourcesData = function() {
+        var target = Fixtures.validPropositionData();
+        var source = Fixtures.validArgumentData();
+        var tag = Fixtures.tagDataFor('support', target, source)
+        var data = {
+            tags: [ tag ],
+            sources: [ source ]
+        };
+        return data;
+    };
+
     // Citation
 
     Fixtures.validCitationText = function() {

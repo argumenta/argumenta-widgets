@@ -12,12 +12,13 @@ function( $, Base, Template, Sandbox ) {
      *
      * A widget for loading and displaying an object's tags.
      *
-     * @param {Object}   options                A hash of init options for the tags widget.
+     * @param {Object}   options                Tags widget options.
      * @param {String}   options.target_type    The target object's type.
      * @param {String}   options.target_sha1    The target object's sha1.
      * @param {Function} options.onLoad(widget) Optional callback to run once tags are loaded.
-     * @param {Tags}     widget                 The new widget.
+     * @return {Tags}    widget                 The new widget.
      */
+
     var Tags = Base.module( {
 
         moduleID: 'Tags',
@@ -35,12 +36,37 @@ function( $, Base, Template, Sandbox ) {
                 self.setTarget( options.target_type, options.target_sha1 );
             },
 
+            // Gets the target type.
+            getTargetType: function() {
+                return this.options.target_type;
+            },
+
+            // Gets the target SHA-1.
+            getTargetSha1: function() {
+                return this.options.target_sha1;
+            },
+
+            // Gets any tags data.
+            getTags: function() {
+                return this.options.tags;
+            },
+
+            // Gets any tags with given type.
+            getTagsByType: function( type ) {
+                return this.options.tagsByType[ type + 's' ];
+            },
+
+            // Gets any sources data.
+            getSources: function() {
+                return this.options.sources;
+            },
+
             // Sets the target object.
             setTarget: function( type, sha1 ) {
                 var self = this;
 
-                self.targetType = type;
-                self.targetSha1 = sha1;
+                self.options.target_type = type;
+                self.options.target_sha1 = sha1;
 
                 self._update();
             },
@@ -55,35 +81,37 @@ function( $, Base, Template, Sandbox ) {
                     };
                 };
 
-                self.tags = { citations: {}, supports: {}, disputes: {} };
+                var tags = { citations: {}, supports: {}, disputes: {} };
 
-                self.tags.citations = $.grep( tagsData, tagTypeFilter('citation') );
-                self.tags.supports  = $.grep( tagsData, tagTypeFilter('support') );
-                self.tags.disputes  = $.grep( tagsData, tagTypeFilter('dispute') );
+                tags.citations = $.grep( tagsData, tagTypeFilter('citation') );
+                tags.supports  = $.grep( tagsData, tagTypeFilter('support') );
+                tags.disputes  = $.grep( tagsData, tagTypeFilter('dispute') );
 
-                // Save reference to tags in options (for use in template)
-                self.options.tags = self.tags;
+                self.options.tagsByType = tags;
+                self.options.tags = tagsData;
             },
 
-            // Sets the sources dict, given an array of source objects.
-            setSources: function( sources ) {
+            // Sets sources, given an array of sources data.
+            setSources: function( sourcesData ) {
                 var self = this;
                 var dict = {};
 
-                $(sources).each(function(index, source) {
+                $(sourcesData).each(function(index, source) {
                    dict[source.sha1] = source;
                 });
 
-                self.sources = dict;
+                self.sourceBySha1 = dict;
+                self.options.sources = sourcesData;
             },
 
             // Updates this tags widget.
             _update: function() {
                 var self = this;
+                var sha1 = self.getTargetSha1();
 
                 // Get tags data, then refresh.
                 $.ajax( {
-                    url: '/propositions/' + self.targetSha1 + '/tags-plus-sources.json',
+                    url: '/propositions/' + sha1 + '/tags-plus-sources.json',
                     success: function( data ) {
                         self.setSources( data.sources );
                         self.setTags( data.tags );
@@ -108,14 +136,15 @@ function( $, Base, Template, Sandbox ) {
             // Populates tags for the widget.
             _populateTagsContainer: function() {
                 var self = this;
+                var tags = self.getTags();
 
-                if (self.tags) {
+                if (tags) {
                     this.element.hide();
                     var types = ['support', 'dispute', 'citation'];
 
                     for (var i in types) {
                         var type = types[i];
-                        var tagsData = self.tags[ type + 's' ];
+                        var tagsData = self.getTagsByType(type);
                         var container = self.element.children('.' + type + '-tags');
 
                         container.empty();
@@ -129,7 +158,7 @@ function( $, Base, Template, Sandbox ) {
                             }
                             else {
                                 var sourceSha1 = tag.source_sha1;
-                                var sourceData = self.sources[ sourceSha1 ];
+                                var sourceData = self.sourceBySha1[ sourceSha1 ];
                                 objectData = sourceData;
                             }
 
