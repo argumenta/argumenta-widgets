@@ -75,13 +75,27 @@ function( $, Base, Template ) {
                 } );
             },
 
+            // Gets previous element.
+            getPrev: function() {
+                var self = this;
+                var prev = self.element.prev();
+
+                // If no previous element exists, prepend a placeholder.
+                if (prev.length === 0) {
+                    prev = $('<div class="sidebar-prev"></div>');
+                    prev.css('display', 'none');
+                    self.element.before(prev);
+                }
+                return prev;
+            },
+
             // Updates size of sidebar.
             updateSize: function() {
                 var self = this;
                 var win = $( window );
                 var winHeight = win.innerHeight();
                 var parent = self.element.parent();
-                var prev = self.element.prev();
+                var prev = self.getPrev();
 
                 // Record the parent and previous size on last update.
                 self.lastParentHeight = parent.height();
@@ -114,7 +128,7 @@ function( $, Base, Template ) {
             update: function() {
                 var self = this;
                 var parent = self.element.parent();
-                var prev = self.element.prev();
+                var prev = self.getPrev();
                 var win = $( window );
 
                 if ( self.lastParentHeight !== parent.height() ||
