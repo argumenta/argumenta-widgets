@@ -15,7 +15,7 @@ function( $, Base, Template ) {
             "max-width": "50%",
             "rightBound": 5,
             "scrollbarWidth": 16,
-            "topBound": 40
+            "topBound": 0
         },
 
         init: function( options, originalElem ) {
