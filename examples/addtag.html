@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <title>AddTag Widget Example</title>
+
+  <!-- Widgets CSS. Include in document head for best performance. -->
+  <link rel="stylesheet" href="/widgets/css/argumenta.css">
+
+  <!-- Include styles for your site after widgets CSS. -->
+  <link rel="stylesheet" href="/examples.css">
+
+</head>
+<body>
+
+  <h1>AddTag Widget Example</h1>
+
+  <!-- An AddTag widget. Set options with the `data-addtag` attribute. -->
+  <div class="addtag-widget" data-addtag='{"tag_type":"support","target_type":"proposition","target_sha1":"71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178","source_type":"argument","source_sha1":"7077e1ce31bc8e9d2a88479aa2d159f2f9de4856","citation_text":"The citation text, with URL: http://wikipedia.org/wiki/Citation"}'></div>
+
+  <!-- Configuration. This is optional. -->
+  <script>
+    var ARGUMENTA_CONFIG = {
+      baseUrl:    '/',          // default: 'http://argumenta.io/'
+      widgetsUrl: '/widgets/'   // default: 'http://argumenta.io/widgets/'
+    };
+  </script>
+
+  <!-- Widgets JS. Activates all widgets! -->
+  <script data-main="/widgets/js/main" src="/widgets/js/require.js"></script>
+
+</body>
+</html>
