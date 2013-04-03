@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <title>Citation Widget Example</title>
+
+  <!-- Widgets CSS. Include in document head for best performance. -->
+  <link rel="stylesheet" href="/widgets/css/argumenta.css">
+
+  <!-- Include styles for your site after widgets CSS. -->
+  <link rel="stylesheet" href="/examples.css">
+
+</head>
+<body>
+
+  <h1>Example Citation Widgets</h1>
+
+  <!-- A citation widget. Set options with the `data-citation` attribute. -->
+  <h2>Citation with description and URL:</h2>
+  <div class="citation-widget" data-citation='{"object_type":"tag","tag_type":"citation","target_type":"proposition","target_sha1":"71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178","citation_text":"The citation text, with URL: http://wikipedia.org/wiki/Citation"}'></div>
+
+  <!-- A citation widget with a media link. -->
+  <h2>Citation with media URL (YouTube):</h2>
+  <div class="citation-widget" data-citation='{"object_type":"tag","tag_type":"citation","target_type":"proposition","target_sha1":"71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178","citation_text":"The citation text, with media URL: http://youtu.be/5i1lbhc0c_s"}'></div>
+
+  <!-- Configuration. This is optional. -->
+  <script>
+    var ARGUMENTA_CONFIG = {
+      baseUrl:    '/',          // default: 'http://argumenta.io/'
+      widgetsUrl: '/widgets/'   // default: 'http://argumenta.io/widgets/'
+    };
+  </script>
+
+  <!-- Widgets JS. Activates all widgets! -->
+  <script data-main="/widgets/js/main" src="/widgets/js/require.js"></script>
+
+</body>
+</html>
