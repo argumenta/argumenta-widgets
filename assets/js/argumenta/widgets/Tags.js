@@ -15,6 +15,8 @@ function( $, Base, Template, Sandbox ) {
      * @param {Object}   options                Tags widget options.
      * @param {String}   options.target_type    The target object's type.
      * @param {String}   options.target_sha1    The target object's sha1.
+     * @param {Array}    options.tags           Optional tags data.
+     * @param {Array}    options.sources        Optional sources data.
      * @param {Function} options.onLoad(widget) Optional callback to run once tags are loaded.
      * @return {Tags}    widget                 The new widget.
      */
@@ -28,11 +30,19 @@ function( $, Base, Template, Sandbox ) {
             this.initTags( options );
         },
 
+        defaults: {
+            tags: [],
+            sources: [],
+            tagsByType: { supports: [], disputes: [], citations: [] },
+        },
+
         prototype: {
 
             // Inits this tags widget.
             initTags: function( options ) {
                 var self = this;
+                self.setTags( options.tags );
+                self.setSources( options.sources );
                 self.setTarget( options.target_type, options.target_sha1 );
             },
 

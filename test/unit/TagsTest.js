@@ -38,6 +38,23 @@ function(chai, undefined, fixtures, Tags, Base) {
                     'Tags widgets are instances of Tags.'
                 );
             }));
+
+            it('should accept tags and sources options', sinon.test(function() {
+                var server = sinon.fakeServer.create();
+                var data = fixtures.validTagsData();
+                var opts = fixtures.tagsPlusSourcesData();
+                data.tags = opts.tags;
+                data.sources = opts.sources;
+                var tags = new Tags(data);
+                assert.equal(
+                    tags.getTags(), opts.tags,
+                    'Check tags option.'
+                );
+                assert.equal(
+                    tags.getSources(), opts.sources,
+                    'Check sources option.'
+                );
+            }));
         });
 
         describe('getTargetType()', function() {
