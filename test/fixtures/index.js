@@ -93,6 +93,7 @@ define([
         target = target || {};
         source = source || {};
         var data = {
+            object_type: 'tag',
             tag_type: type,
             target_type: target.object_type,
             target_sha1: target.sha1,
