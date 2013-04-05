@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <title>Sidebar Widget Example</title>
+
+  <!-- Widgets CSS. Include in document head for best performance. -->
+  <link rel="stylesheet" href="/widgets/css/argumenta.css">
+
+  <!-- Include styles for your site after widgets CSS. -->
+  <link rel="stylesheet" href="/examples.css">
+
+</head>
+<body>
+
+  <h1>Sidebar Widget Example</h1>
+
+  <div class="parent">
+
+    <div class="main" style="width: 50%; height: 1800px; background: #eee;">
+      <h3>Main contents</h3>
+      <p>This is hopefully tall enough to demonstrate sidebar scrolling!</p>
+    </div>
+
+    <!-- A Sidebar widget. Set options with the `data-sidebar` attribute. -->
+    <div class="sidebar-widget" data-sidebar='{}'>
+
+      <!-- Sidebar contents. Anything goes here! -->
+      <div style="background: #f8c;">
+        <h3>Sidebar contents</h3>
+        <p>The sidebar should scroll with the window view, while staying within its parent container.</p>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Configuration. This is optional. -->
+  <script>
+    var ARGUMENTA_CONFIG = {
+      baseUrl:    '/',          // default: 'http://argumenta.io/'
+      widgetsUrl: '/widgets/'   // default: 'http://argumenta.io/widgets/'
+    };
+  </script>
+
+  <!-- Widgets JS. Activates all widgets! -->
+  <script data-main="/widgets/js/main" src="/widgets/js/require.js"></script>
+
+</body>
+</html>
