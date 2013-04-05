@@ -18,175 +18,198 @@ function( $, Mustache, Template, Sandbox ) {
      * @property {Object} options The instance options (merged with defaults).
      * @property {Object} element The element node (as a jQuery object).
      */
+
     var Base = function( options, originalElement ) {
         this._init( options, originalElement );
     };
 
-    Base.prototype = {
 
-        /**
-         *  Clones this widget.
-         *
-         *  @returns {Object} The new clone.
-         */
-        clone: function() {
-            return Sandbox.widgetFor(this.getOptions());
-        },
+    /**
+     * The module ID.
+     */
 
-        /**
-         * Gets this widget's CSS classname.
-         *
-         * @returns {String} The widget CSS classname.
-         */
-        getClassName: function() {
-            return this.moduleID.toLowerCase() + '-widget';
-        },
-
-        /**
-         *  Gets this widget's CSS class selector.
-         *
-         *  @returns {String} The widget CSS class selector.
-         */
-        getClassSelector: function() {
-            return '.' + this.getClassName();
-        },
-
-        /**
-         * Gets a copy of this widget's options.
-         *
-         * @returns {Object} A widget options copy.
-         */
-        getOptions: function() {
-            return $.extend({}, this.options);
-        },
-
-        /**
-         * Calls an instance method inherited from the object's parent.
-         *
-         * @param {String} methodName The name of the inherited method to call.
-         * @param {Array}  args       An array of argument parameters to be passed.
-         */
-        _super : function( methodName, args ) {
-            return this.parent[methodName].apply( this, args );
-        },
-
-        /**
-         * Initializes the widget instance, including properties and element.
-         */
-        _init : function( opts ) {
-
-            var options = opts || {};
-
-            // Merge default options and parameters for this instance.
-            this.options = $.extend(
-                {},
-                this.defaultOptions,
-                options,
-                options[this.moduleID.toLowerCase()]
-            );
-
-            // Initialize element for this instance.
-            this.element = $('<div class="' + this.getClassName() + '">' );
-
-            // Save a reference to this widget instance in the element's "data-<classname>" attribute.
-            this.element.data(this.getClassName(), this);
-
-            // Save merged options on element as "data-options" attribute.
-            this.element.data('options', this.options);
-
-            // Save the data object.
-            this.data = this.element.data();
-
-            // Make options an alias for data.options.
-            this.options = this.data.options;
-
-            // Update the element contents.
-            this._refresh();
-        },
-
-        /**
-         * Refreshes the widget view by rendering and binding the UI.
-         */
-        _refresh : function() {
-            this._renderUI();
-            this._bindUI();
-        },
-
-        /**
-         * Renders UI by updating the widget element's contents.
-         */
-        _renderUI : function() {
-
-            // Get the updated html.
-            var html = this._renderHtml();
-            var innerHtml = $( html ).html();
-
-            // Update the element contents.
-            this.element.html( innerHtml );
-        },
-
-        /**
-         * Binds UI event listeners after each refresh.
-         */
-        _bindUI : function() {},
-
-        /**
-         * Gets template view options for rendering.
-         *
-         * @returns {Object} The view-accessible options.
-         */
-        _getViewOptions: function() {
-            return this.options;
-        },
-
-        /**
-         * Renders HTML from the widget template and options.
-         *
-         * @returns {String} The rendered HTML.
-         */
-        _renderHtml: function() {
-            return this._renderMustache( this.template, this._getViewOptions() );
-        },
-
-        /**
-         * Renders HTML from a mustache template and view options.
-         *
-         * @returns {String} The rendered HTML.
-         */
-        _renderMustache: function( template, view ) {
-            return Mustache.to_html( template, view );
-        }
-
-    };
-
-
-    // Prototype Fields
-
-
-    // The module ID.
     Base.prototype.moduleID = 'Base';
 
-    // The default widget options.
+    /**
+     * The default widget options.
+     */
+
     Base.prototype.defaultOptions = {};
 
-    // The widget template.
+    /**
+     * The widget template.
+     */
+
     Base.prototype.template = Template;
 
 
-    // Static Fields & Methods
+    /**
+     *  Clones this widget.
+     *
+     *  @returns {Object} The new clone.
+     */
+
+    Base.prototype.clone = function() {
+        return Sandbox.widgetFor(this.getOptions());
+    };
+
+    /**
+     * Gets this widget's CSS classname.
+     *
+     * @returns {String} The widget CSS classname.
+     */
+
+    Base.prototype.getClassName = function() {
+        return this.moduleID.toLowerCase() + '-widget';
+    };
+
+    /**
+     *  Gets this widget's CSS class selector.
+     *
+     *  @returns {String} The widget CSS class selector.
+     */
+
+    Base.prototype.getClassSelector = function() {
+        return '.' + this.getClassName();
+    };
+
+    /**
+     * Gets a copy of this widget's options.
+     *
+     * @returns {Object} A widget options copy.
+     */
+
+    Base.prototype.getOptions = function() {
+        return $.extend({}, this.options);
+    };
+
+    /**
+     * Calls an instance method inherited from the object's parent.
+     *
+     * @param {String} methodName The name of the inherited method to call.
+     * @param {Array}  args       An array of argument parameters to pass.
+     */
+
+    Base.prototype._super = function( methodName, args ) {
+        return this.parent[methodName].apply( this, args );
+    };
+
+    /**
+     * Initializes the widget instance, including properties and element.
+     */
+
+    Base.prototype._init = function( opts ) {
+
+        var options = opts || {};
+
+        // Merge default options and parameters for this instance.
+        this.options = $.extend(
+            {},
+            this.defaultOptions,
+            options,
+            options[this.moduleID.toLowerCase()]
+        );
+
+        // Initialize element for this instance.
+        this.element = $('<div class="' + this.getClassName() + '">' );
+
+        // Save a reference to this widget instance in the element's
+        // "data-<classname>" attribute.
+        this.element.data(this.getClassName(), this);
+
+        // Save merged options on element as "data-options" attribute.
+        this.element.data('options', this.options);
+
+        // Save the data object.
+        this.data = this.element.data();
+
+        // Make options an alias for data.options.
+        this.options = this.data.options;
+
+        // Update the element contents.
+        this._refresh();
+    };
+
+    /**
+     * Refreshes the widget view by rendering and binding the UI.
+     */
+
+    Base.prototype._refresh = function() {
+        this._renderUI();
+        this._bindUI();
+    };
+
+    /**
+     * Renders UI by updating the widget element's contents.
+     */
+
+    Base.prototype._renderUI = function() {
+
+        // Get the updated html.
+        var html = this._renderHtml();
+        var innerHtml = $( html ).html();
+
+        // Update the element contents.
+        this.element.html( innerHtml );
+    };
+
+    /**
+     * Binds UI event listeners after each refresh.
+     */
+
+    Base.prototype._bindUI = function() {},
+
+    /**
+     * Gets template view options for rendering.
+     *
+     * @returns {Object} The view-accessible options.
+     */
+
+    Base.prototype._getViewOptions = function() {
+        return this.options;
+    };
+
+    /**
+     * Renders HTML from the widget template and options.
+     *
+     * @returns {String} The rendered HTML.
+     */
+
+    Base.prototype._renderHtml = function() {
+        return this._renderMustache( this.template, this._getViewOptions() );
+    };
+
+    /**
+     * Renders HTML from a mustache template and view options.
+     *
+     * @returns {String} The rendered HTML.
+     */
+
+    Base.prototype._renderMustache = function( template, view ) {
+        return Mustache.to_html( template, view );
+    };
 
 
-    // Gets the module ID.
+    /**
+     * Gets the module ID.
+     */
+
     Base.getModuleID = function() {
         return this.prototype.moduleID;
     };
 
-    // Gets the CSS classname.
+    /**
+     * Gets the CSS classname.
+     */
+
     Base.getClassName = function() {
         return this.prototype.getClassName();
     };
 
-    // Gets the CSS class selector.
+    /**
+     * Gets the CSS class selector.
+     */
+
     Base.getClassSelector = function() {
         return this.prototype.getClassSelector();
     };
@@ -202,6 +225,7 @@ function( $, Mustache, Template, Sandbox ) {
      * @param {Object} element The placeholder element. May be a jQuery object.
      * @returns {Object}       The new widget element, as a jQuery object.
      */
+
     Base.activate = function( element ) {
 
         element = $(element);
@@ -238,6 +262,7 @@ function( $, Mustache, Template, Sandbox ) {
      * @param {Object}    staticExt    Any static extensions.
      * @returns {Function}             The extended subclass.
      */
+
     function _subclass( baseClass, prototypeExt, staticExt ) {
 
         // Constructor for the new class.
@@ -263,6 +288,7 @@ function( $, Mustache, Template, Sandbox ) {
      * @param {Object} prototypeExt Prototype properties to override.
      * @param {Object} staticExt    Static properties to override.
      */
+
     Base.subclass = function( prototypeExt, staticExt ) {
         return _subclass( this, prototypeExt, staticExt );
     };
@@ -270,6 +296,7 @@ function( $, Mustache, Template, Sandbox ) {
     /**
      * Registers a new widget module.
      */
+
     Base.register = function( module ) {
         Sandbox.register( module );
     };
@@ -345,6 +372,7 @@ function( $, Mustache, Template, Sandbox ) {
      * @param {Object}   opts.static    Module static properties.
      * @returns {Function}              The new module.
      */
+
     Base.module = function( opts ) {
 
         var moduleID = opts.moduleID || opts.prototype.moduleID;
@@ -399,6 +427,7 @@ function( $, Mustache, Template, Sandbox ) {
         Base.register( module );
         return module;
     };
+
 
     // Register the Base widget module.
     Base.register( Base );
