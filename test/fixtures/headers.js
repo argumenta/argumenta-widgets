@@ -3,13 +3,15 @@ define(
 [],
 function() {
 
-    // Builds a merged headers object for given fixtures.
-    // Example:
-    //
-    //     var headers = Headers('JSON');
-    //
-    // @param fixtures {String} Space-separated list of fixture names.
-    // @return {Object} The merged fixture headers.
+    /**
+     * Builds a merged headers object for given fixtures.
+     *
+     *     var headers = Headers('JSON');
+     *
+     * @param {String} fixtures Space-separated list of fixture names.
+     * @returns {Object} The merged fixture headers.
+     */
+
     var Headers = function( fixtures ) {
         var result = {};
         var names = fixtures.split(' ');

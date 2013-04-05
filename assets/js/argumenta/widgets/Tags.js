@@ -18,7 +18,7 @@ function( $, Base, Template, Sandbox ) {
      * @param {Array}    options.tags           Optional tags data.
      * @param {Array}    options.sources        Optional sources data.
      * @param {Function} options.onLoad(widget) Optional callback to run once tags are loaded.
-     * @return {Tags}    widget                 The new widget.
+     * @returns {Tags}    widget                The new widget.
      */
 
     var Tags = Base.module( {

@@ -27,7 +27,7 @@ function( $, Mustache, Template, Sandbox ) {
         /**
          *  Clones this widget.
          *
-         *  @return {Object} The new clone.
+         *  @returns {Object} The new clone.
          */
         clone: function() {
             return Sandbox.widgetFor(this.getOptions());
@@ -36,7 +36,7 @@ function( $, Mustache, Template, Sandbox ) {
         /**
          * Gets this widget's CSS classname.
          *
-         * @return {String} The widget CSS classname.
+         * @returns {String} The widget CSS classname.
          */
         getClassName: function() {
             return this.moduleID.toLowerCase() + '-widget';
@@ -45,7 +45,7 @@ function( $, Mustache, Template, Sandbox ) {
         /**
          *  Gets this widget's CSS class selector.
          *
-         *  @return {String} The widget CSS class selector.
+         *  @returns {String} The widget CSS class selector.
          */
         getClassSelector: function() {
             return '.' + this.getClassName();
@@ -54,7 +54,7 @@ function( $, Mustache, Template, Sandbox ) {
         /**
          * Gets a copy of this widget's options.
          *
-         * @return {Object} A widget options copy.
+         * @returns {Object} A widget options copy.
          */
         getOptions: function() {
             return $.extend({}, this.options);
@@ -133,7 +133,7 @@ function( $, Mustache, Template, Sandbox ) {
         /**
          * Gets template view options for rendering.
          *
-         * @return {Object} The view-accessible options.
+         * @returns {Object} The view-accessible options.
          */
         _getViewOptions: function() {
             return this.options;
@@ -142,7 +142,7 @@ function( $, Mustache, Template, Sandbox ) {
         /**
          * Renders HTML from the widget template and options.
          *
-         * @return {String} The rendered HTML.
+         * @returns {String} The rendered HTML.
          */
         _renderHtml: function() {
             return this._renderMustache( this.template, this._getViewOptions() );
@@ -151,7 +151,7 @@ function( $, Mustache, Template, Sandbox ) {
         /**
          * Renders HTML from a mustache template and view options.
          *
-         * @return {String} The rendered HTML.
+         * @returns {String} The rendered HTML.
          */
         _renderMustache: function( template, view ) {
             return Mustache.to_html( template, view );
@@ -200,7 +200,7 @@ function( $, Mustache, Template, Sandbox ) {
      * Modules may optionally process the original element on initialization.
      *
      * @param {Object} element The placeholder element. May be a jQuery object.
-     * @return {Object}        The new widget element, as a jQuery object.
+     * @returns {Object}       The new widget element, as a jQuery object.
      */
     Base.activate = function( element ) {
 
@@ -236,7 +236,7 @@ function( $, Mustache, Template, Sandbox ) {
      * @param {Function}  baseClass    The base class to extend.
      * @param {Object}    prototypeExt Any prototype extensions.
      * @param {Object}    staticExt    Any static extensions.
-     * @return {Function}              The extended subclass.
+     * @returns {Function}             The extended subclass.
      */
     function _subclass( baseClass, prototypeExt, staticExt ) {
 
@@ -343,7 +343,7 @@ function( $, Mustache, Template, Sandbox ) {
      * @param {Function} opts.init      Runs on widget instance creation, after Base#_init().
      * @param {Object}   opts.prototype Module prototype properties. May override Base properties.
      * @param {Object}   opts.static    Module static properties.
-     * @return {Function}               The new module.
+     * @returns {Function}              The new module.
      */
     Base.module = function( opts ) {
 
