@@ -33,6 +33,7 @@ function( $, Base, Template, Sandbox ) {
         defaults: {
             tags: [],
             sources: [],
+            onLoad: function() {},
             tagsByType: { supports: [], disputes: [], citations: [] },
         },
 
@@ -44,6 +45,7 @@ function( $, Base, Template, Sandbox ) {
                 self.setTags( options.tags );
                 self.setSources( options.sources );
                 self.setTarget( options.target_type, options.target_sha1 );
+                self._refresh();
             },
 
             // Gets the target type.

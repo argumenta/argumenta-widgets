@@ -55,6 +55,26 @@ function(chai, undefined, fixtures, Tags, Base) {
                     'Check sources option.'
                 );
             }));
+
+            it('should show tags passed as options', sinon.test(function () {
+                var server = sinon.fakeServer.create();
+                var data = fixtures.validTagsData();
+                var opts = fixtures.tagsPlusSourcesData();
+                data.tags = opts.tags;
+                data.sources = opts.sources;
+                var tags = new Tags(data);
+                data.sources.forEach(function(source, i, sources) {
+                    var type = source.object_type;
+                    var $widgets = tags.element.find('.' + type + '-widget');
+                    var expected = data.sources.filter(function(src) {
+                        return src.object_type === type;
+                    });
+                    assert.ok(
+                        $widgets.length === expected.length,
+                        'Check source widgets.'
+                    );
+                });
+            }));
         });
 
         describe('getTargetType()', function() {
