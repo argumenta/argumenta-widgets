@@ -5,7 +5,7 @@ var fs = require('fs');
  * Loads config source for the given filename.
  *
  *      var shared = require(__dirname + '/shared');
- *      var conf = shared('./testacular.conf.js');
+ *      var conf = shared('./karma.conf.js');
  *      eval(conf);
  *
  * @param filename {String} Filename to load, as relative path.

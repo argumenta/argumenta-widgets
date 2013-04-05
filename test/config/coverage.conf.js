@@ -2,7 +2,7 @@
 // Shared
 
 var shared = require(__dirname + '/shared');
-var main = shared('./testacular.conf.js');
+var main = shared('./karma.conf.js');
 eval(main);
 
 // Coverage
