@@ -1,10 +1,17 @@
 
 # Changes
 
-## 0.0.2pre / In Development
+## 0.0.3pre / In Development
 
-+ Add argument widget test.
-+ Add README.
+- Add README.
+- Add install script.
+
+## 0.0.2
+
++ Test all the widgets!
++ Use Karma, Mocha, Chai, Sinon.
++ Add makefile targets: test, test_forever, coverage.
++ Add examples for all widgets.
 
 ## 0.0.1 / 2012-03-16
 
