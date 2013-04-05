@@ -4,9 +4,9 @@
 OPTIMIZE ?= uglify
 RJS := ./node_modules/requirejs/bin/r.js
 
-all: build
+all: build coverage
 
-build: public coverage
+build: public
 
 public: optimize
 
@@ -22,7 +22,7 @@ test_forever:
 	testacular start test/config/testacular.conf.js
 
 coverage:
-	testacular start test/config/coverage.conf.js
+	testacular start test/config/coverage.conf.js --browsers="Chrome"
 
 clean:
 	rm -fr build coverage
