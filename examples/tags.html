@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <title>Tags Widget Example</title>
+
+  <!-- Widgets CSS. Include in document head for best performance. -->
+  <link rel="stylesheet" href="/widgets/css/argumenta.css">
+
+  <!-- Include styles for your site after widgets CSS. -->
+  <link rel="stylesheet" href="/examples.css">
+
+</head>
+<body>
+
+  <h1>Tags Widget Example</h1>
+
+  <!-- A Tags widget. Set options with the `data-tags` attribute. -->
+  <h2>Tags widget without tags.</h2>
+  <p>
+    With the target's object type and SHA-1 specified, any tags will be retrieved via HTTP.
+  </p>
+  <div class="tags-widget" data-tags='{"target_sha1":"71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178","target_type":"proposition"}'></div>
+
+  <!-- Tags widget with tags and sources. -->
+  <h2>Tags widget with tags.</h2>
+  <p>
+    With tag and source objects specified, tags can be shown immediately.
+  </p>
+  <div class="tags-widget" data-tags='{"target_sha1":"71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178","target_type":"proposition", "tags":[{"object_type":"tag","tag_type":"support","target_type":"proposition","target_sha1":"71a7ccf87a4ba1fbb3b3199fdf5a56c6ee209178","source_type":"argument","source_sha1":"7077e1ce31bc8e9d2a88479aa2d159f2f9de4856"}],"sources":[{"object_type":"argument","sha1":"7077e1ce31bc8e9d2a88479aa2d159f2f9de4856","title":"The Argument Title","premises":["The first premise.","The second premise."],"conclusion":"The conclusion.","propositions":[{"text":"The first premise.","sha1":"d7574671f9327761109829761d97d7001b60cd43"},{"text":"The second premise.","sha1":"503db2aa0a6d31e73f66c3efd8e15f92ee7d11be"},{"text":"The conclusion.","sha1":"3940b2a6a3d5778297f0e37a06109f9d3dcffe6d"}],"repo":"the-argument-title"}]}'></div>
+
+  <!-- Configuration. This is optional. -->
+  <script>
+    var ARGUMENTA_CONFIG = {
+      baseUrl:    '/',          // default: 'http://argumenta.io/'
+      widgetsUrl: '/widgets/'   // default: 'http://argumenta.io/widgets/'
+    };
+  </script>
+
+  <!-- Widgets JS. Activates all widgets! -->
+  <script data-main="/widgets/js/main" src="/widgets/js/require.js"></script>
+
+</body>
+</html>
