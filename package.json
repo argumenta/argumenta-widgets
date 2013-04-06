@@ -6,8 +6,8 @@
   "author": "Tyler Florez <qualiabyte@gmail.com>",
   "main": "",
   "scripts": {
-    "prepublish": "make all",
-    "test": "OPTIMIZE=none make all"
+    "prepublish": "make build",
+    "test": "make test"
   },
   "repository": {
     "type": "git",
