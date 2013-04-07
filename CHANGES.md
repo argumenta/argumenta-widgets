@@ -5,6 +5,7 @@
 
 + Add readme file.
 + Change organization to argumenta.
++ Publish `argumenta-widgets` on npm.
 
 ## 0.0.2 / 2013-04-06
 
