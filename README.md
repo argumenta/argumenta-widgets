@@ -4,6 +4,8 @@
 JavaScript widgets for Argumenta. Designed for [argumenta.io](http://argumenta.io). Use anywhere on the web!  
 Includes arguments, propositions, and (support, dispute, citation) tags.
 
+<img src="https://raw.github.com/qualiabyte/argumenta-widgets/master/examples/images/argument.png">
+
 ## Example
 
 Argumenta widgets may be included on any web page.  
@@ -20,7 +22,7 @@ Here's an argument widget. It will display the argument with the given SHA-1:
   </head>
   <body>
     <!-- Widget placeholder. -->
-    <div class="argument-widget" data-sha1="7077e1ce31bc8e9d2a88479aa2d159f2f9de4856"></div>
+    <div class="argument-widget" data-sha1="50250211801dabf9cbf0e574af270ba2c3fe83cb"></div>
 
     <!-- Widgets JS. -->
     <script src="http://argumenta.io/widgets/js/require.js" data-main="/widgets/js/main"></script>
