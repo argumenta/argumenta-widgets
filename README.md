@@ -4,7 +4,7 @@
 JavaScript widgets for Argumenta. Designed for [argumenta.io](http://argumenta.io). Use anywhere on the web!  
 Includes arguments, propositions, and (support, dispute, citation) tags.
 
-<img src="https://raw.github.com/qualiabyte/argumenta-widgets/master/examples/images/argument.png">
+<img src="https://raw.github.com/argumenta/argumenta-widgets/master/examples/images/argument.png">
 
 ## Example
 
