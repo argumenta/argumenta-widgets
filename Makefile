@@ -6,7 +6,11 @@ KARMA := ./node_modules/.bin/karma
 
 all: build coverage
 
-build: public
+build: public links
+
+links:
+	ln -sf -T 'assets/' development
+	ln -sf -T 'build/public/' production
 
 public: optimize
 
@@ -27,4 +31,4 @@ coverage:
 clean:
 	rm -fr build coverage
 
-.PHONY: all test test_forever coverage clean
+.PHONY: all links test test_forever coverage clean
