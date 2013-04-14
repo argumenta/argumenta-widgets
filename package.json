@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "mocha": "~1.8.2",
-    "requirejs": "~1.0.8",
+    "requirejs": "~2.1.5",
     "karma": "~0.8.4"
   },
   "keywords": [
