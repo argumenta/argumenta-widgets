@@ -1,7 +1,7 @@
 
 # Changes
 
-## 0.0.4 / 2013.04.14
+## 0.0.4 / 2013-04-14
 
 + Add makefile target for links.
 + Import external stylesheet resources first.
