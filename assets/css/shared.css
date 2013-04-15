@@ -1,5 +1,9 @@
 /* Argumenta - Shared Stylesheet */
 
+/* External Fonts */
+
+@import url("http://fonts.googleapis.com/css?family=Duru+Sans|Monda");
+
 /* Bootstrap */
 
 @import url("./bootstrap.css");
