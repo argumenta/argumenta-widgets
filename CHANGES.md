@@ -1,6 +1,11 @@
 
 # Changes
 
+## 0.0.5 / 2013-04-26
+
++ Use HTTPS for external resources.
++ Fix link to user page in Argument widget.
+
 ## 0.0.4 / 2013-04-14
 
 + Add makefile target for links.
