@@ -34,7 +34,9 @@ function( $, Mustache, Template, Sandbox ) {
      * The default widget options.
      */
 
-    Base.prototype.defaultOptions = {};
+    Base.prototype.defaultOptions = {
+        baseUrl: ARGUMENTA_CONFIG.baseUrl
+    };
 
     /**
      * The widget template.
