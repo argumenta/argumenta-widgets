@@ -3,9 +3,10 @@ define( 'argumenta/widgets/Base',
     "require-jquery",
     "require-mustache",
     "text!./Base/template.html.mustache",
+    "argumenta/config",
     "argumenta/sandbox"
 ],
-function( $, Mustache, Template, Sandbox ) {
+function( $, Mustache, Template, Config, Sandbox ) {
 
     /**
      * @class Base
@@ -35,7 +36,7 @@ function( $, Mustache, Template, Sandbox ) {
      */
 
     Base.prototype.defaultOptions = {
-        baseUrl: ARGUMENTA_CONFIG.baseUrl
+        baseUrl: Config.baseUrl
     };
 
     /**
