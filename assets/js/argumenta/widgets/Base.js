@@ -108,6 +108,7 @@ function( $, Mustache, Template, Config, Sandbox ) {
         // Merge default options and parameters for this instance.
         this.options = $.extend(
             {},
+            Base.prototype.defaultOptions,
             this.defaultOptions,
             options,
             options[this.moduleID.toLowerCase()]
