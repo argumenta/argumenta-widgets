@@ -17,7 +17,7 @@ function(chai, undefined, fixtures, Base) {
             it('should set the default option for baseUrl', function() {
                 var base = new Base({});
                 assert.equal(
-                    base.options.baseUrl, "http://argumenta.io/",
+                    base.options.base_url, "http://argumenta.io/",
                     "Check the baseUrl default option."
                 );
             });

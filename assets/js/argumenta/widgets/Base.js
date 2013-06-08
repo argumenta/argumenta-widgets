@@ -36,7 +36,7 @@ function( $, Mustache, Template, Config, Sandbox ) {
      */
 
     Base.prototype.defaultOptions = {
-        baseUrl: Config.baseUrl
+        base_url: Config.baseUrl
     };
 
     /**
