@@ -6,11 +6,13 @@ define(
     'fixtures',
     'argumenta/widgets/Argument',
     'argumenta/widgets/Proposition',
-    'argumenta/widgets/Base'
+    'argumenta/widgets/Base',
+    'argumenta/config'
 ],
-function(chai, undefined, fixtures, Argument, Proposition, Base) {
+function(chai, undefined, fixtures, Argument, Proposition, Base, Config ) {
 
     var assert = chai.assert;
+    var baseUrl = Config.baseUrl;
 
     // Assertions
 
@@ -37,6 +39,20 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
     var assertShowsPropositions = function( argument, data ) {
         assertContainsPropositions(argument, data);
         assertPropositionsVisible(argument);
+    };
+
+    // Asserts that object A is a superset of B.
+    var assertSuperset = function( A, B, message ) {
+        try {
+            for (var key in B) {
+                assert.deepEqual(
+                    A[key], B[key],
+                    "Check key '" + key + "' of superset for deep equality."
+                );
+            }
+        } catch (e) {
+            throw new Error("Failed '" + message + "':\n" + e.message);
+        }
     };
 
     // Helpers
@@ -132,6 +148,27 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
                     'Inherits the default option.'
                 );
             });
+
+            it('should request argument data when only SHA-1 is given',
+            sinon.test(function() {
+                var data = fixtures.validArgumentData();
+                var server = sinon.fakeServer.create();
+                var argument = new Argument({sha1: data.sha1});
+                server.respondWith(
+                    'GET',
+                    baseUrl + 'arguments/' + data.sha1 + '.json',
+                    [
+                        200,
+                        fixtures.headers('JSON'),
+                        JSON.stringify( { argument: data } )
+                    ]
+                );
+                server.respond();
+                assertSuperset(
+                    argument.options, data,
+                    "Check data was requested and retrieved."
+                );
+            }));
         });
 
         describe('getType()', function() {
@@ -233,7 +270,7 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
                 var server = sinon.fakeServer.create();
                 server.respondWith(
                     'GET',
-                    '/arguments/' + data.sha1 + '/propositions.json',
+                    baseUrl + 'arguments/' + data.sha1 + '/propositions.json',
                     [
                         200,
                         fixtures.headers('JSON'),
@@ -267,7 +304,7 @@ function(chai, undefined, fixtures, Argument, Proposition, Base) {
                     spy.calledWith(
                         sinon.match({
                             type: 'DELETE',
-                            url: '/tester/the-argument-title.json'
+                            url: baseUrl + 'tester/the-argument-title.json'
                         })
                     ),
                     'Sends DELETE request for repo.'

@@ -22,14 +22,14 @@
                 </span>
             </div>
             <div class="argument-sha1">
-                <a class="light" href="/arguments/{{ sha1 }}" title="{{ details_desc }}">
+                <a class="light" href="{{ base_url }}arguments/{{ sha1 }}" title="{{ details_desc }}">
                     {{ partial_sha1 }}
                 </a>
             </div>
             <div class="commit-info">
                 by
                 <span class="committer">
-                    <a href="/{{ commit.committer }}">{{ commit.committer }}</a>
+                    <a href="{{ base_url }}{{ commit.committer }}">{{ commit.committer }}</a>
                 </span>
                 on <span class="commit-date">{{ commit.commit_date }}</span>
             </div>

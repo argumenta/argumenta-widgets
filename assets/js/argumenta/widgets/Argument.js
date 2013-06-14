@@ -68,9 +68,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 var self = this;
                 self.propositionWidgets = [];
                 self.propositionsVisible = false;
-                if ( self.options.show_propositions === true ) {
-                    self._initPropositions();
-                }
+                self._initData();
             },
 
             // Gets the object type.
@@ -133,7 +131,9 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 self.deleteButton.on('click', function( event ) {
                     var name = self.options.commit.committer;
                     var repo = self.options.repo;
-                    var url  = '/' + name + '/' + repo + '.json';
+                    var base = self.options.base_url;
+                    var path = name + '/' + repo + '.json';
+                    var url  = base + path;
                     var settings = {
                         type: 'DELETE'
                       , url: url
@@ -209,6 +209,42 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 } );
             },
 
+            // Inits widget data.
+            _initData: function() {
+                var self = this;
+                if ( !self.options.title ||
+                     !self.options.premises ||
+                     !self.options.conclusion )
+                {
+                    self._loadDataBySha1();
+                }
+                else if ( self.options.show_propositions === true ) {
+                    self._initPropositions();
+                }
+            },
+
+            // Loads argument data by SHA-1.
+            _loadDataBySha1: function() {
+                var self = this;
+                var sha1 = self.options.sha1;
+                var base = self.options.base_url;
+                var path = 'arguments/' + sha1 + '.json';
+                var url  = base + path;
+                var success = function(data) {
+                    $.extend(self.options, data.argument);
+                    self.options.commit = data.commit;
+                    self._refresh();
+                    if ( self.options.show_propositions === true ) {
+                        self._initPropositions();
+                    }
+                };
+                var error = function(data) {
+                    json = JSON.parse(data.responseText);
+                    Sandbox.warn(json.error);
+                };
+                $.ajax(url).done(success).fail(error);
+            },
+
             // Inits propositions data and elements.
             _initPropositions: function() {
                 var self = this;
@@ -218,7 +254,9 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 }
                 else {
                     var sha1 = this.options.sha1;
-                    var url = '/arguments/' + sha1 + '/propositions.json';
+                    var base = self.options.base_url;
+                    var path = 'arguments/' + sha1 + '/propositions.json';
+                    var url  = base + path;
                     var success = function(data) {
                         self.setPropositions( data.propositions );
                     }
