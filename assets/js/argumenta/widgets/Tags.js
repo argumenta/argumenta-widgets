@@ -120,10 +120,11 @@ function( $, Base, Template, Sandbox ) {
             _update: function() {
                 var self = this;
                 var sha1 = self.getTargetSha1();
+                var base = self.options.base_url;
 
                 // Get tags data, then refresh.
                 $.ajax( {
-                    url: '/propositions/' + sha1 + '/tags-plus-sources.json',
+                    url: base + '/propositions/' + sha1 + '/tags-plus-sources.json',
                     success: function( data ) {
                         self.setSources( data.sources );
                         self.setTags( data.tags );

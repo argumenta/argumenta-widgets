@@ -4,12 +4,14 @@ define(
     'chai',
     'sinon',
     'fixtures',
+    'argumenta/config',
     'argumenta/widgets/Tags',
     'argumenta/widgets/Base'
 ],
-function(chai, undefined, fixtures, Tags, Base) {
+function(chai, undefined, fixtures, Config, Tags, Base) {
 
     var assert = chai.assert;
+    var baseUrl = Config.baseUrl;
 
     // Tests
 
@@ -118,7 +120,7 @@ function(chai, undefined, fixtures, Tags, Base) {
                 var responseData = fixtures.tagsPlusSourcesData();
                 server.respondWith(
                     'GET',
-                    '/propositions/' + sha1 + '/tags-plus-sources.json',
+                    baseUrl + '/propositions/' + sha1 + '/tags-plus-sources.json',
                     [
                         200,
                         fixtures.headers('JSON'),
@@ -145,7 +147,7 @@ function(chai, undefined, fixtures, Tags, Base) {
                 var responseData = fixtures.tagsPlusSourcesData();
                 server.respondWith(
                     'GET',
-                    '/propositions/' + sha1 + '/tags-plus-sources.json',
+                    baseUrl + '/propositions/' + sha1 + '/tags-plus-sources.json',
                     [
                         200,
                         fixtures.headers('JSON'),
