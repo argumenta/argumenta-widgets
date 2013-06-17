@@ -132,7 +132,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
                     var name = self.options.commit.committer;
                     var repo = self.options.repo;
                     var base = self.options.base_url;
-                    var path = name + '/' + repo + '.json';
+                    var path = '/' + name + '/' + repo + '.json';
                     var url  = base + path;
                     var settings = {
                         type: 'DELETE'
@@ -228,7 +228,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 var self = this;
                 var sha1 = self.options.sha1;
                 var base = self.options.base_url;
-                var path = 'arguments/' + sha1 + '.json';
+                var path = '/arguments/' + sha1 + '.json';
                 var url  = base + path;
                 var success = function(data) {
                     $.extend(self.options, data.argument);
@@ -255,7 +255,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 else {
                     var sha1 = this.options.sha1;
                     var base = self.options.base_url;
-                    var path = 'arguments/' + sha1 + '/propositions.json';
+                    var path = '/arguments/' + sha1 + '/propositions.json';
                     var url  = base + path;
                     var success = function(data) {
                         self.setPropositions( data.propositions );

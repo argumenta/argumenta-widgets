@@ -9,10 +9,10 @@ function() {
     var Config = {
 
         // The base url for API requests.
-        baseUrl: CONFIG.baseUrl || 'http://argumenta.io/',
+        baseUrl: CONFIG.baseUrl || 'https://argumenta.io',
 
         // The base url for widget resources.
-        widgetsUrl: CONFIG.widgetsUrl || 'http://argumenta.io/widgets/',
+        widgetsUrl: CONFIG.widgetsUrl || 'https://argumenta.io/widgets',
 
         // Gets a config property by name.
         get: function( name ) {

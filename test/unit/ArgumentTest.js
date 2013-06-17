@@ -156,7 +156,7 @@ function(chai, undefined, fixtures, Argument, Proposition, Base, Config ) {
                 var argument = new Argument({sha1: data.sha1});
                 server.respondWith(
                     'GET',
-                    baseUrl + 'arguments/' + data.sha1 + '.json',
+                    baseUrl + '/arguments/' + data.sha1 + '.json',
                     [
                         200,
                         fixtures.headers('JSON'),
@@ -270,7 +270,7 @@ function(chai, undefined, fixtures, Argument, Proposition, Base, Config ) {
                 var server = sinon.fakeServer.create();
                 server.respondWith(
                     'GET',
-                    baseUrl + 'arguments/' + data.sha1 + '/propositions.json',
+                    baseUrl + '/arguments/' + data.sha1 + '/propositions.json',
                     [
                         200,
                         fixtures.headers('JSON'),
@@ -304,7 +304,7 @@ function(chai, undefined, fixtures, Argument, Proposition, Base, Config ) {
                     spy.calledWith(
                         sinon.match({
                             type: 'DELETE',
-                            url: baseUrl + 'tester/the-argument-title.json'
+                            url: baseUrl + '/tester/the-argument-title.json'
                         })
                     ),
                     'Sends DELETE request for repo.'
