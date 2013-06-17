@@ -2,12 +2,12 @@
     <div class="proposition-main">
         <span class="index" title="{{proposition_desc}}"> {{index}}.</span>
         <span class="text" title="{{proposition_desc}}"> {{text}}</span><br>
-        <span class="sha1"> <a href="/propositions/{{sha1}}" title="{{details_desc}}">{{partial_sha1}}</a> </span>
+        <span class="sha1"> <a href="{{base_url}}/propositions/{{sha1}}" title="{{details_desc}}">{{partial_sha1}}</a> </span>
         <div class="tag-info float-right">
             <span class="tag-counts">
-                <span class="supports support-bg card ivory bold sans" title="Support Tags"  data-count="{{metadata.tag_counts.support}}"> {{metadata.tag_counts.support}} </span>
-                <span class="disputes dispute-bg card ivory bold sans" title="Dispute Tags"  data-count="{{metadata.tag_counts.dispute}}"> {{metadata.tag_counts.dispute}} </span>
-                <span class="citations citation-bg card ivory bold sans" title="Citation Tags" data-count="{{metadata.tag_counts.citation}}">{{metadata.tag_counts.citation}} </span>
+                <span class="supports support-bg card ivory bold sans"   title="Support Tags"  data-count="{{metadata.tag_counts.support}}">{{metadata.tag_counts.support}}</span>
+                <span class="disputes dispute-bg card ivory bold sans"   title="Dispute Tags"  data-count="{{metadata.tag_counts.dispute}}">{{metadata.tag_counts.dispute}}</span>
+                <span class="citations citation-bg card ivory bold sans" title="Citation Tags" data-count="{{metadata.tag_counts.citation}}">{{metadata.tag_counts.citation}}</span>
                 <a href="#" class="addtag-link">
                     <span class="addtag-button card ivory-gradient bold sans" title="Add Tag!"> + </span>
                 </a>
