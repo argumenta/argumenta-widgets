@@ -1,6 +1,10 @@
 
 # Changes
 
+## 0.0.6 / 2013-07-03
+
++ Add baseUrl config option.
+
 ## 0.0.5 / 2013-04-26
 
 + Use HTTPS for external resources.
