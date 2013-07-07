@@ -1,6 +1,12 @@
 
 # Changes
 
+## 0.0.7 / 2013-07-06
+
++ Use namespaced version of Bootstrap.
++ Use namespace for Bootstrap menus.
++ Fix CSS for argument menu and add-tag legends.
+
 ## 0.0.6 / 2013-07-03
 
 + Add baseUrl config option.
