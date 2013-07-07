@@ -17,6 +17,10 @@ form.new-tag {
   border: 0px solid #ccc;
   vertical-align: middle;
 }
+.tag-dialogue fieldset legend {
+  text-align: center;
+  width: 100%;
+}
 .tag-dialogue button {
   padding: 4px;
   font-size: 13px;
