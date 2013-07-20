@@ -38,12 +38,9 @@
     float: right;
     padding: 0px 2px;
 }
+
 .argument-menu .btn {
     padding: 2px 8px;
-}
-.argument-menu .dropdown-toggle {
-    display: inline-block;
-    height: 20px;
 }
 
 .argument-title {
