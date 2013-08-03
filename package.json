@@ -1,7 +1,7 @@
 {
   "name": "argumenta-widgets",
   "description": "JavaScript Widgets for Argumenta.",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "author": "Tyler Florez <qualiabyte@gmail.com>",
   "main": "",
   "scripts": {
