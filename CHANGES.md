@@ -1,6 +1,11 @@
 
 # Changes
 
+## 0.0.8 / 2013-08-02
+
++ Revert "fix" for argument menu size.
++ Require HTML5 until Bootstrap is replaced.
+
 ## 0.0.7 / 2013-07-06
 
 + Use namespaced version of Bootstrap.
