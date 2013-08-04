@@ -163,7 +163,7 @@ function( $, Base, Template ) {
                         } );
                         self.lastPosition = "top";
                         if (Sidebar.DEBUG) {
-                            console.log("Sidebar in top position.");
+                            console.log("Sidebar in top position.", self, self.element.height());
                         }
                     }
                 }
@@ -179,7 +179,7 @@ function( $, Base, Template ) {
                         } );
                         self.lastPosition = "bottom";
                         if (Sidebar.DEBUG) {
-                            console.log("Sidebar in bottom position.", self);
+                            console.log("Sidebar in bottom position.", self, self.element.height());
                         }
                     }
                 }
@@ -194,7 +194,7 @@ function( $, Base, Template ) {
                         } );
                         self.lastPosition = "middle";
                         if (Sidebar.DEBUG) {
-                            console.log("Sidebar in middle position.");
+                            console.log("Sidebar in middle position.", self, self.element.height());
                         }
                     }
                 }
