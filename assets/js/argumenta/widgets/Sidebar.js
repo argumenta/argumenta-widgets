@@ -83,7 +83,7 @@ function( $, Base, Template ) {
                 // If no previous element exists, prepend a placeholder.
                 if (prev.length === 0) {
                     prev = $('<div class="sidebar-prev"></div>');
-                    prev.css('display', 'none');
+                    prev.css({'height': '0px', 'width': '0px'});
                     self.element.before(prev);
                 }
                 return prev;
