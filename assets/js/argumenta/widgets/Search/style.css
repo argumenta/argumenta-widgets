@@ -1,13 +1,15 @@
 .search-widget {
   max-width: 500px;
 }
-
-.search-widget .search-form {}
-
-.search-widget .search-query {
-  width: 70%;
+.search-widget .search-form {
+  border-width: 3px;
+  text-align: center;
 }
-
-.search-widget .search-button {}
-
+.search-widget .search-query {
+  padding-right: 10px;
+  min-width: 68%;
+}
+.search-widget .search-button {
+  padding: 5px 10px;
+}
 .search-widget .search-results {}
