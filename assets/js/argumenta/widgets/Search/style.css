@@ -6,10 +6,11 @@
   text-align: center;
 }
 .search-widget .search-query {
+  font-family: Monda;
   padding-right: 10px;
-  min-width: 68%;
+  min-width: 82%;
 }
 .search-widget .search-button {
-  padding: 5px 10px;
+  padding: 5px 12px;
 }
 .search-widget .search-results {}
