@@ -173,7 +173,6 @@ function( $, Base, AddTag, Tags, Template ) {
                     cancel: 'span, input',
                     handle: self.element.children(".proposition-main"),
                     cursor: 'move',
-                    opacity: 0.90,
 
                     start: function(event, ui) {
 

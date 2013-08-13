@@ -181,7 +181,6 @@ function( $, Base, Template, Proposition, Sandbox ) {
                     cancel: 'span, input',
                     handle: self.container.children(".argument-main"),
                     cursor: 'move',
-                    opacity: 0.90,
 
                     start: function(event, ui) {
                         // Prevent other actions on drag.
