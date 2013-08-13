@@ -51,6 +51,16 @@ function( Config ) {
 
         // Activates all widgets on current page.
         activateAll: function() {
+            var activationList = [
+                'Base',
+                'Sidebar',
+                'Search',
+                'Argument',
+                'AddTag',
+                'Tags',
+                'Proposition',
+                'Citation'
+            ];
 
             // Returns function to activate placeholders for a module.
             var activateFor = function( module ) {
@@ -58,7 +68,8 @@ function( Config ) {
             };
 
             // Activate widgets for each module.
-            for ( var id in Widgets.modules ) {
+            for ( var n in activationList ) {
+                var id = activationList[n];
                 var module = Widgets.modules[id];
                 var activateFunc = activateFor( module );
                 $( module.getClassSelector() ).each( activateFunc );
