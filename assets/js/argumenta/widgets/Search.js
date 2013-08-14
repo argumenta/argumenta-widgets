@@ -18,6 +18,7 @@ function( $, Base, Template, Sandbox ) {
 
         init: function( options, originalElem ) {
             var self = this;
+            self.offset = 0;
         },
 
         prototype: {
@@ -50,14 +51,26 @@ function( $, Base, Template, Sandbox ) {
                 return self.lastQuery;
             },
 
+            // Gets the current offset for query results.
+            getOffset: function() {
+                var self = this;
+                return self.offset;
+            },
+
             // Searches for results with the given query.
             search: function(query) {
                 var self = this;
+                if (self.getQuery() !== self.getLastQuery()) {
+                    self.clearResults();
+                }
                 var base = self.options.base_url;
-                var url = base + '/search/' + encodeURIComponent(query) + '.json';
+                var path = '/search/' + encodeURIComponent(query) + '.json';
+                var qs = 'offset=' + self.offset;
+                var url = base + path + '?' + qs;
                 var success = function(data, textStatus, jqXHR) {
                     self.showResults( data );
                     self.lastQuery = query;
+                    self.offset += 20;
                 };
                 var error = function(data) {
                     try { Sandbox.warn( JSON.parse(data).error ); }
@@ -69,9 +82,6 @@ function( $, Base, Template, Sandbox ) {
             // Shows the given search results.
             showResults: function(results) {
                 var self = this;
-                if (self.getQuery() !== self.getLastQuery()) {
-                    self.clearResults();
-                }
                 for (var i in results.arguments) {
                     var argument = results.arguments[i];
                     var widget = Sandbox.widgetFor(argument);
@@ -83,6 +93,7 @@ function( $, Base, Template, Sandbox ) {
             clearResults: function() {
                 var self = this;
                 self.argumentResults.empty();
+                self.offset = 0;
             }
         },
 
