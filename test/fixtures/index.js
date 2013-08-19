@@ -157,8 +157,22 @@ define([
 
     // Users
 
+    Fixtures.validJoinDate = function() {
+        return new Date();
+    };
+
+    Fixtures.validGravatarID = function() {
+        return '47d76f2756b5239dd9973596519bdcb6';
+    }
+
+    Fixtures.validUsername = function() {
+        return 'tester';
+    }
+
     Fixtures.validPublicUserData = function() { return {
-        username: 'tester'
+        username    : Fixtures.validUsername(),
+        join_date   : Fixtures.validJoinDate().toISOString(),
+        gravatar_id : Fixtures.validGravatarID()
     }; };
 
     // Repos
