@@ -1,0 +1,18 @@
+.user-widget {
+  background: #fff;
+  padding: 5px;
+}
+.user-widget .user-avatar {
+  margin-bottom: -4px;
+}
+.user-widget .user-info {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 5px;
+}
+.user-widget .user-username {
+  font: bold 16px Monda;
+}
+.user-widget .user-username a {
+  color: #333;
+}

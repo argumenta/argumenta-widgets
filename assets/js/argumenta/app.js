@@ -9,11 +9,14 @@ define( 'argumenta/app',
     "argumenta/widgets/Proposition",
     "argumenta/widgets/Search",
     "argumenta/widgets/Sidebar",
-    "argumenta/widgets/Tags"
+    "argumenta/widgets/Tags",
+    "argumenta/widgets/User"
 ],
 function( Sandbox, Widgets, Base,
           Argument, AddTag, Citation,
-          Proposition, Search, Sidebar, Tags ) {
+          Proposition, Search, Sidebar, Tags,
+          User
+        ) {
 
     var App = {
 

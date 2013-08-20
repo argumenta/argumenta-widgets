@@ -55,6 +55,7 @@ function( Config ) {
                 'Base',
                 'Sidebar',
                 'Search',
+                'User',
                 'Argument',
                 'AddTag',
                 'Tags',

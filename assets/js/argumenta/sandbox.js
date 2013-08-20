@@ -74,8 +74,8 @@ function( $, Widgets ) {
             return widgets;
         },
 
-        // Construct an Argumenta widget from object data.
-        // Supports: argument, proposition, and citation.
+        // Creates an Argumenta widget for given object data.
+        // Supports: Argument, Proposition, Citation, User
         widgetFor: function( obj ) {
             var module, type;
 
@@ -94,6 +94,9 @@ function( $, Widgets ) {
             }
             else if ( type === 'tag' && obj.tag_type === 'citation' ) {
                 module = Widgets.module('Citation');
+            }
+            else if ( obj.username ) {
+                module = Widgets.module('User');
             }
 
             return module ? new module( obj ) : null;
