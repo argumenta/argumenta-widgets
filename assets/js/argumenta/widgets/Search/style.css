@@ -2,13 +2,14 @@
   max-width: 500px;
 }
 .search-widget .search-form {
+  margin: 10px 0;
   border-width: 3px;
   text-align: center;
 }
 .search-widget .search-query {
   font-family: Monda;
   padding-right: 10px;
-  min-width: 82%;
+  min-width: 83%;
 }
 .search-widget .search-button {
   padding: 5px 12px;

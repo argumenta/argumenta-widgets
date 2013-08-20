@@ -78,6 +78,10 @@ function(chai, undefined, fixtures, Search, Base, Config) {
                     search.argumentResults.children().length, 1,
                     "Search widget received one argument result."
                 );
+                assert.equal(
+                    search.userResults.children().length, 1,
+                    "Search widget received one user result."
+                );
             }));
         });
     });
