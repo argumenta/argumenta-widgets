@@ -172,7 +172,12 @@ define([
     Fixtures.validPublicUserData = function() { return {
         username    : Fixtures.validUsername(),
         join_date   : Fixtures.validJoinDate().toISOString(),
-        gravatar_id : Fixtures.validGravatarID()
+        gravatar_id : Fixtures.validGravatarID(),
+        metadata    : Fixtures.validUserMetadata()
+    }; };
+
+    Fixtures.validUserMetadata = function() { return {
+        repos_count : 0
     }; };
 
     // Repos

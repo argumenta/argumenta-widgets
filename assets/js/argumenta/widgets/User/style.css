@@ -11,8 +11,12 @@
   margin-left: 5px;
 }
 .user-widget .user-username {
-  font: bold 16px Monda;
+  font: 16px Monda;
 }
 .user-widget .user-username a {
-  color: #333;
+  color: #08f;
+}
+.user-widget .user-metadata {
+}
+.user-widget .user-repos {
 }

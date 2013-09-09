@@ -28,6 +28,8 @@ function( $, Base, Template, Sandbox ) {
                 self.userAvatar = self.element.children('.user-avatar');
                 self.userInfo = self.element.children('.user-info');
                 self.userUsername = self.userInfo.children('.user-username');
+                self.userMetadata = self.userInfo.children('.user-metadata');
+                self.userReposCount = self.userMetadata.children('.repos-count');
             }
         },
 

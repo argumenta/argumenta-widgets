@@ -15,8 +15,10 @@ function(chai, undefined, fixtures, User, Base, Config) {
 
     // Helpers
 
-    var withUser = function() {
-        var user = new User();
+    var withUser = function(user) {
+        if (arguments.length == 0) {
+            user = new User(fixtures.validPublicUserData());
+        }
         user.element.appendTo('body');
         assert.lengthOf(
             $('body').find(user.element), 1,
@@ -49,6 +51,16 @@ function(chai, undefined, fixtures, User, Base, Config) {
                 assert.instanceOf(
                     user, User,
                     'User widgets are instances of User.'
+                );
+            }));
+
+            it('should display the repos count', sinon.test(function() {
+                var data = fixtures.validPublicUserData();
+                data.metadata.repos_count = 1;
+                var user = new User(data);
+                withUser(user);
+                assert.equal(
+                  user.element.find('.repos-count').html(), '1'
                 );
             }));
         });
