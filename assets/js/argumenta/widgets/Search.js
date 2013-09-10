@@ -30,8 +30,11 @@ function( $, Base, Template, Sandbox ) {
                 self.searchQuery = self.searchForm.children('.search-query');
                 self.searchButton = self.searchForm.children('.search-button');
                 self.searchResults = self.element.children('.search-results');
+                self.resultsHeader = self.searchResults.children('.results-header');
                 self.argumentResults = self.searchResults.children('.argument-results');
+                self.argumentsCount = self.resultsHeader.children('.arguments-count');
                 self.userResults = self.searchResults.children('.user-results');
+                self.usersCount = self.resultsHeader.children('.users-count');
 
                 var handleSubmit = function(event) {
                     event.preventDefault();
@@ -93,6 +96,9 @@ function( $, Base, Template, Sandbox ) {
                     var widget = Sandbox.widgetFor(argument);
                     self.argumentResults.append(widget.element);
                 }
+                self.usersCount.html(self.userResults.children().length);
+                self.argumentsCount.html(self.argumentResults.children().length);
+                self.searchResults.show(250);
             },
 
             // Clears any currently displayed results.

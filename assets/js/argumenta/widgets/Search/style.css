@@ -14,4 +14,16 @@
 .search-widget .search-button {
   padding: 5px 12px;
 }
-.search-widget .search-results {}
+.search-widget .search-results {
+  display: none;
+}
+.search-widget .results-header {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 10px;
+  color: #fff;
+}
+.search-widget .search-results > *:first-child {
+  margin-top: 0;
+}

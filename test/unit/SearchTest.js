@@ -75,6 +75,14 @@ function(chai, undefined, fixtures, Search, Base, Config) {
                 );
                 server.respond();
                 assert.equal(
+                    search.argumentsCount.html(), 1,
+                    "Search widget shows arguments count of one."
+                );
+                assert.equal(
+                    search.usersCount.html(), 1,
+                    "Search widget shows users count of one."
+                );
+                assert.equal(
                     search.argumentResults.children().length, 1,
                     "Search widget received one argument result."
                 );
