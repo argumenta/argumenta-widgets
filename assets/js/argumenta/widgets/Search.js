@@ -98,7 +98,10 @@ function( $, Base, Template, Sandbox ) {
                 }
                 self.usersCount.html(self.userResults.children().length);
                 self.argumentsCount.html(self.argumentResults.children().length);
-                self.searchResults.show(250);
+                self.searchResults.show(250, whenShown);
+                function whenShown() {
+                  self.searchResults.css('overflow', 'visible');
+                }
             },
 
             // Clears any currently displayed results.
