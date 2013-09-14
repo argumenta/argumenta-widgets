@@ -233,8 +233,9 @@ function( $, Mustache, Template, Config, Sandbox ) {
     Base.activate = function( element ) {
 
         element = $(element);
+        var className = this.getClassName();
 
-        if ( element.hasClass(this.getClassName() ) ) {
+        if ( element.hasClass(className) && !element.data(className) ) {
 
             var tmp = $('<div class="tmp" style="display:none;">');
 
