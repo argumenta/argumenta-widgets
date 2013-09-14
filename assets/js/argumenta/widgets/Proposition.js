@@ -116,9 +116,9 @@ function( $, Base, AddTag, Tags, Template ) {
                     target_sha1: self.getSha1()
                 } );
 
-                // Replace the placeholder.
-                self.element.children('.addtag-widget')
-                            .replaceWith( addTag.element );
+                // Append the widget element.
+                self.element.children('.addtag-widget-container')
+                            .append( addTag.element );
 
                 // Save a reference to the nested widget.
                 self.addTag = addTag;
