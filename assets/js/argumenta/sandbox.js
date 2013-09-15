@@ -43,6 +43,16 @@ function( $, Widgets ) {
                 .delay(8000).fadeOut(2000);
         },
 
+        // Handle an error response.
+        error: function( data ) {
+            try {
+                Sandbox.warn( JSON.parse(data.responseText).error );
+            }
+            catch (e) {
+                Sandbox.warn( data.responseText );
+            }
+        },
+
         // Shows a notification warning.
         warn: function( message ) {
             message = message || '';
