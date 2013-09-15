@@ -260,10 +260,14 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 var self = this;
                 var container = self.container.children('.propositions-container');
 
+                // Hide container.
+                container.hide();
+
                 // Clear any current propositions.
                 container.empty();
                 self.propositionWidgets.length = 0;
 
+                // Create the new proposition elements.
                 for ( var i=0, len=self.propositions.length; i<len; i++ ) {
                     var p = self.propositions[i];
 
@@ -281,6 +285,8 @@ function( $, Base, Template, Proposition, Sandbox ) {
                     container.append( proposition.element );
                     self.propositionWidgets.push( proposition );
                 }
+                // Reveal container.
+                container.show(250);
                 self.propositionsVisible = true;
             },
 
