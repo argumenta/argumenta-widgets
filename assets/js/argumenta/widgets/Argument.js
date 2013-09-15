@@ -143,17 +143,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
                         self.element.remove();
                     };
                     var error = function( data ) {
-                        var json, message;
-                        try {
-                            json = JSON.parse( data.responseText );
-                            message = json.error;
-                        }
-                        catch (exception) {
-                            message = data.responseText;
-                        }
-                        finally {
-                            Sandbox.warn( message );
-                        }
+                        Sandbox.error(data);
                     };
                     $.ajax(settings).done(success).fail(error);
                 });
@@ -229,7 +219,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 var base = self.options.base_url;
                 var path = '/arguments/' + sha1 + '.json';
                 var url  = base + path;
-                var success = function(data) {
+                var success = function( data ) {
                     $.extend(self.options, data.argument);
                     self.options.commit = data.commit;
                     self._refresh();
@@ -237,9 +227,8 @@ function( $, Base, Template, Proposition, Sandbox ) {
                         self._initPropositions();
                     }
                 };
-                var error = function(data) {
-                    json = JSON.parse(data.responseText);
-                    Sandbox.warn(json.error);
+                var error = function( data ) {
+                    Sandbox.error(data);
                 };
                 $.ajax(url).done(success).fail(error);
             },
@@ -256,12 +245,11 @@ function( $, Base, Template, Proposition, Sandbox ) {
                     var base = self.options.base_url;
                     var path = '/arguments/' + sha1 + '/propositions.json';
                     var url  = base + path;
-                    var success = function(data) {
+                    var success = function( data ) {
                         self.setPropositions( data.propositions );
                     }
-                    var error = function(data) {
-                        json = JSON.parse( data.responseText );
-                        Sandbox.warn( json.error )
+                    var error = function( data ) {
+                        Sandbox.error(data);
                     }
                     $.ajax(url).done(success).fail(error);
                 }
