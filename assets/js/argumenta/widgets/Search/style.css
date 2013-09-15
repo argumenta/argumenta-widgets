@@ -2,10 +2,26 @@
   max-width: 500px;
 }
 .search-widget .search-form {
-  margin: 10px 0;
+  background-color: #eee;
+  border: 10px solid #fff;
+  border-radius: 5px;
   border-width: 3px;
-  text-align: center;
+  box-shadow: 2px 2px 2px #444;
+  margin: 10px 0;
   padding: 8px;
+  text-align: center;
+}
+.search-widget .search-form input:focus {
+  border: 1px solid #2af;
+  box-shadow: 0px 0px 3px #08f;
+  outline: none;
+}
+.search-widget .search-form input {
+  border: 1px solid #fff;
+  border-radius: 2px;
+  box-shadow: 1px 1px 1px #ccc;
+  margin: 5px;
+  padding: 3px;
 }
 .search-widget .search-query {
   font-family: Monda;
