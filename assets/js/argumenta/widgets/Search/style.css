@@ -5,6 +5,7 @@
   margin: 10px 0;
   border-width: 3px;
   text-align: center;
+  padding: 8px;
 }
 .search-widget .search-query {
   font-family: Monda;
