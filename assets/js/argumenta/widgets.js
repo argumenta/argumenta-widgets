@@ -69,8 +69,8 @@ function( Config ) {
             };
 
             // Activate widgets for each module.
-            for ( var n in activationList ) {
-                var id = activationList[n];
+            for ( var i = 0; i < activationList.length; i++ ) {
+                var id = activationList[i];
                 var module = Widgets.modules[id];
                 var activateFunc = activateFor( module );
                 $( module.getClassSelector() ).each( activateFunc );
