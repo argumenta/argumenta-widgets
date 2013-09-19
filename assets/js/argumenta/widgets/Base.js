@@ -94,6 +94,7 @@ function( $, Mustache, Template, Config, Sandbox ) {
      */
 
     Base.prototype._super = function( methodName, args ) {
+        args = args || [];
         return this.parent[methodName].apply( this, args );
     };
 
