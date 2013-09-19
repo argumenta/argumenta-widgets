@@ -12,11 +12,11 @@ require.config( {
     },
     shim: {
         'jquery' : {
-            exports: "jQuery",
+            exports: "jQuery"
         },
         'jquery-ui' : {
             exports: "jQuery.ui",
-            deps: ["jquery"],
+            deps: ["jquery"]
         },
         'jquery-temporaryClass' : {
             exports: "jQuery.fn.temporaryClass",
