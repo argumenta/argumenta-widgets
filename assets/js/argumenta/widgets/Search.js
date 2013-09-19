@@ -86,12 +86,13 @@ function( $, Base, Template, Sandbox ) {
             // Shows the given search results.
             showResults: function(results) {
                 var self = this;
-                for (var i in results.users) {
+                var i;
+                for (i = 0; i < results.users.length; i++) {
                     var user = results.users[i];
                     var widget = Sandbox.widgetFor(user);
                     self.userResults.append(widget.element);
                 }
-                for (var i in results.arguments) {
+                for (i = 0; i < results.arguments.length; i++) {
                     var argument = results.arguments[i];
                     var widget = Sandbox.widgetFor(argument);
                     self.argumentResults.append(widget.element);

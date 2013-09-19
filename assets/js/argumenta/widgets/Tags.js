@@ -155,15 +155,15 @@ function( $, Base, Template, Sandbox ) {
                     this.element.hide();
                     var types = ['support', 'dispute', 'citation'];
 
-                    for (var i in types) {
+                    for (var i = 0; i < types.length; i++) {
                         var type = types[i];
                         var tagsData = self.getTagsByType(type);
                         var container = self.element.children('.' + type + '-tags');
 
                         container.empty();
 
-                        for (var t in tagsData) {
-                            var tag = tagsData[t];
+                        for (var j = 0; j < tagsData.length; j++) {
+                            var tag = tagsData[j];
                             var objectData, widget;
 
                             if (tag.tag_type === 'citation') {
