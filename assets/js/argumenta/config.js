@@ -17,7 +17,10 @@ function() {
         // Gets a config property by name.
         get: function( name ) {
             return Config[name];
-        }
+        },
+
+        // Runs once Argumenta is loaded.
+        onLoad: CONFIG.onLoad || function() {}
     };
 
     return Config;

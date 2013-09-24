@@ -1,5 +1,6 @@
 define( 'argumenta/app',
 [
+    "argumenta/config",
     "argumenta/sandbox",
     "argumenta/widgets",
     "argumenta/widgets/Base",
@@ -12,7 +13,7 @@ define( 'argumenta/app',
     "argumenta/widgets/Tags",
     "argumenta/widgets/User"
 ],
-function( Sandbox, Widgets, Base,
+function( Config, Sandbox, Widgets, Base,
           Argument, AddTag, Citation,
           Proposition, Search, Sidebar, Tags,
           User
@@ -23,6 +24,7 @@ function( Sandbox, Widgets, Base,
         start: function() {
             Sandbox.init();
             Widgets.init();
+            Config.onLoad();
         }
     };
 
