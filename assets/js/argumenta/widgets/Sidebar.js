@@ -162,13 +162,11 @@ function( $, Base, Template ) {
                             "width": self.width + "px"
                         } );
                         self.lastPosition = "top";
-                        if (Sidebar.DEBUG) {
-                            console.log("Sidebar in top position.", self, self.element.height());
-                        }
+                        self.logStatus();
                     }
                 }
-                else if ( self.bottom > self.parentBottom && self.lastPosition !== "top" ||
-                          self.bottom === self.parentBottom && self.lastPosition === "bottom" ) {
+                else if ( self.bottom > self.parentBottom ||
+                          Math.abs(self.bottom - self.parentBottom) < 1 ) {
                     if ( self.lastPosition !== "bottom" ) {
                         self.element.css( {
                             "position": "absolute",
@@ -178,9 +176,7 @@ function( $, Base, Template ) {
                             "width": self.width + "px"
                         } );
                         self.lastPosition = "bottom";
-                        if (Sidebar.DEBUG) {
-                            console.log("Sidebar in bottom position.", self, self.element.height());
-                        }
+                        self.logStatus();
                     }
                 }
                 else {
@@ -193,10 +189,17 @@ function( $, Base, Template ) {
                             "width": self.width + "px"
                         } );
                         self.lastPosition = "middle";
-                        if (Sidebar.DEBUG) {
-                            console.log("Sidebar in middle position.", self, self.element.height());
-                        }
+                        self.logStatus();
                     }
+                }
+            },
+
+            logStatus: function() {
+                var self = this;
+                if (Sidebar.DEBUG) {
+                    console.log("Sidebar in " + self.lastPosition + " position.");
+                    console.log("height: " + self.element.height());
+                    console.log("self: ", self);
                 }
             }
         },
