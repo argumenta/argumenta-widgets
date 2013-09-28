@@ -1,6 +1,20 @@
 
 # Changes
 
+## 0.1.0 / 2013-09-27
+
++ Add Config.onLoad property.
++ Improve browser compatibility.
++ Improve sidebar position detection.
+
+## 0.0.9 / 2013-09-16
+
++ Add glyphicons.
++ Add Search, User widgets.
++ Load widgets in fixed order.
++ Add Sandbox.error() method.
++ Update config URLs in examples.
+
 ## 0.0.8 / 2013-08-02
 
 + Revert "fix" for argument menu size.
