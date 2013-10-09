@@ -43,7 +43,7 @@ function( $, Base, AddTag, Tags, Template ) {
 
                 // Elements.
                 self.main = self.element.children('.proposition-main');
-                self.addTagButton = self.main.find('.addtag-button');
+                self.addTagButton = self.main.find('.add-tag-button');
 
                 // Toggle details on click.
                 self.element.on('click', function(event) {
@@ -117,7 +117,7 @@ function( $, Base, AddTag, Tags, Template ) {
                 } );
 
                 // Append the widget element.
-                self.element.children('.addtag-widget-container')
+                self.element.children('.add-tag-widget-container')
                             .append( addTag.element );
 
                 // Save a reference to the nested widget.
@@ -153,7 +153,7 @@ function( $, Base, AddTag, Tags, Template ) {
             // Binds AddTag button behavior.
             _bindAddTagButton: function() {
                 var self = this;
-                var link = $('.addtag-link', self.element).first();
+                var link = $('.add-tag-link', self.element).first();
 
                 link.on( 'click', function(event) {
                     self.toggleAddTag();

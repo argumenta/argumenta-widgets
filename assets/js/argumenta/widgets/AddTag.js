@@ -210,8 +210,8 @@ function( $, Base, Template, Sandbox ) {
 
                 drop: function (event, ui) {
 
-                    // Get addtag widget instance.
-                    var addTagElem = $(this).closest('.addtag-widget');
+                    // Get add-tag widget instance.
+                    var addTagElem = $(this).closest('.add-tag-widget');
                     var addTag = addTagElem.data( AddTag.getClassName() );
 
                     // Dropped widget (the tag source) may be a proposition or argument.
@@ -219,7 +219,7 @@ function( $, Base, Template, Sandbox ) {
                     var source = sourceElem.data('proposition-widget') ||
                                 sourceElem.data('argument-widget');
 
-                    // Update addtag with the new tag source.
+                    // Update add-tag with the new tag source.
                     addTag.setTagSource(
                         source.getType(),
                         source.getSha1()

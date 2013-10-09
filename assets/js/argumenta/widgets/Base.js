@@ -63,7 +63,7 @@ function( $, Mustache, Template, Config, Sandbox ) {
      */
 
     Base.prototype.getClassName = function() {
-        return this.moduleID.toLowerCase() + '-widget';
+        return Base.hyphenate(this.moduleID) + '-widget';
     };
 
     /**
@@ -217,6 +217,19 @@ function( $, Mustache, Template, Config, Sandbox ) {
 
     Base.getClassSelector = function() {
         return this.prototype.getClassSelector();
+    };
+
+    /**
+     * Hyphenates a CamelCase string.
+     *
+     * @param {String} camelString
+     * @returns {String}
+     */
+
+    Base.hyphenate = function( camelString ) {
+        return camelString
+            .replace(/([a-z])([A-Z])/g, '$1-$2')
+            .toLowerCase();
     };
 
     /**
