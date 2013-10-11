@@ -1,0 +1,32 @@
+
+/* Proposition Editor Styles */
+
+.proposition-editor-widget {
+    max-width: 500px;
+    text-align: center;
+}
+.proposition-editor-widget,
+.proposition-editor-widget * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.proposition-editor-widget .proposition-form {
+    width: 100%;
+    margin: 5px 0px;
+    padding: 10px;
+    border: 5px solid #fff;
+    border-radius: 5px;
+    background: #eee;
+    box-shadow: 2px 2px 4px #444;
+}
+.proposition-editor-widget .proposition-form > * {
+    margin: 5px 0;
+}
+.proposition-editor-widget .proposition-textarea {
+    width: 100%;
+}
+.proposition-editor-widget .proposition-publish {
+    width: 100%;
+    background: #08f;
+}

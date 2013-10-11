@@ -60,6 +60,7 @@ function( Config ) {
                 'AddTag',
                 'Tags',
                 'Proposition',
+                'PropositionEditor',
                 'Citation'
             ];
 
