@@ -59,3 +59,6 @@
     background: #f8f8f8;
     padding: 0px;
 }
+.argument-widget .propositions-container > .proposition-widget {
+    margin: 0;
+}
