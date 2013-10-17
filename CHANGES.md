@@ -1,6 +1,11 @@
 
 # Changes
 
+## 0.1.1 / 2013-10-17
+
++ Add PropositionEditor widget.
++ Include search results for propositions.
+
 ## 0.1.0 / 2013-09-27
 
 + Add Config.onLoad property.
