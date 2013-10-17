@@ -69,6 +69,7 @@ function(chai, undefined, fixtures, Search, Base, Config) {
                         fixtures.headers('JSON'),
                         JSON.stringify( {
                             'arguments': [ fixtures.validArgumentData() ],
+                            'propositions': [ fixtures.validPropositionData() ],
                             'users': [ fixtures.validPublicUserData() ]
                         } )
                     ]
@@ -79,12 +80,20 @@ function(chai, undefined, fixtures, Search, Base, Config) {
                     "Search widget shows arguments count of one."
                 );
                 assert.equal(
+                    search.propositionsCount.html(), 1,
+                    "Search widget shows propositions count of one."
+                );
+                assert.equal(
                     search.usersCount.html(), 1,
                     "Search widget shows users count of one."
                 );
                 assert.equal(
                     search.argumentResults.children().length, 1,
                     "Search widget received one argument result."
+                );
+                assert.equal(
+                    search.propositionResults.children().length, 1,
+                    "Search widget received one proposition result."
                 );
                 assert.equal(
                     search.userResults.children().length, 1,

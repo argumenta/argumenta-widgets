@@ -33,6 +33,8 @@ function( $, Base, Template, Sandbox ) {
                 self.resultsHeader = self.searchResults.children('.results-header');
                 self.argumentResults = self.searchResults.children('.argument-results');
                 self.argumentsCount = self.resultsHeader.children('.arguments-count');
+                self.propositionResults = self.searchResults.children('.proposition-results');
+                self.propositionsCount = self.resultsHeader.children('.propositions-count');
                 self.userResults = self.searchResults.children('.user-results');
                 self.usersCount = self.resultsHeader.children('.users-count');
 
@@ -97,8 +99,14 @@ function( $, Base, Template, Sandbox ) {
                     var widget = Sandbox.widgetFor(argument);
                     self.argumentResults.append(widget.element);
                 }
+                for (i = 0; i < results.propositions.length; i++) {
+                    var proposition = results.propositions[i];
+                    var widget = Sandbox.widgetFor(proposition);
+                    self.propositionResults.append(widget.element);
+                }
                 self.usersCount.html(self.userResults.children().length);
                 self.argumentsCount.html(self.argumentResults.children().length);
+                self.propositionsCount.html(self.propositionResults.children().length);
                 self.searchResults.show(250, whenShown);
                 function whenShown() {
                   self.searchResults.css('overflow', 'visible');
@@ -108,8 +116,9 @@ function( $, Base, Template, Sandbox ) {
             // Clears any currently displayed results.
             clearResults: function() {
                 var self = this;
-                self.argumentResults.empty();
                 self.userResults.empty();
+                self.argumentResults.empty();
+                self.propositionResults.empty();
                 self.offset = 0;
             }
         },
