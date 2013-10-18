@@ -15,7 +15,9 @@ require({
         // RequireJS shim files.
         'jquery'                  : '../../assets/js/jquery-1.7.1.min',
         'jquery-ui'               : '../../assets/js/jquery-ui-1.8.16.custom.min',
-        'jquery-temporaryClass'   : '../../assets/js/jquery.temporaryClass'
+        'jquery-temporaryClass'   : '../../assets/js/jquery.temporaryClass',
+        'jquery-autosize'         : '../../assets/js/jquery.autosize',
+        'jquery-charcount'        : '../../assets/js/jquery.charcount'
     },
     // Load tests via RequireJS when ready.
     deps: tests,
