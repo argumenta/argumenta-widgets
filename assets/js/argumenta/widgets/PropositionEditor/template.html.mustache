@@ -1,6 +1,8 @@
 <div class="proposition-editor-widget">
   <form class="proposition-form" action="/propositions" method="POST">
-    <textarea class="proposition-textarea" name="text" placeholder="{{ placeholder.text }}">{{ proposition.text }}</textarea>
+    <div class="proposition-text-wrapper">
+      <textarea class="proposition-textarea" name="text" placeholder="{{ placeholder.text }}">{{ proposition.text }}</textarea>
+    </div>
     <button class="proposition-publish" type="submit">Publish!</button>
   </form>
 </div>

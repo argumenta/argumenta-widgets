@@ -23,8 +23,23 @@
 .proposition-editor-widget .proposition-form > * {
     margin: 5px 0;
 }
+.proposition-editor-widget .proposition-text-wrapper {
+    position: relative;
+}
 .proposition-editor-widget .proposition-textarea {
+    min-height: 3em;
     width: 100%;
+    margin: 0;
+    resize: none !important;
+}
+.proposition-editor-widget .counter {
+    position: absolute;
+    bottom: 2px;
+    right: 7px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #aaa;
+    color: rgba(0, 0, 0, 0.3);
 }
 .proposition-editor-widget .proposition-publish {
     width: 100%;

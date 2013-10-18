@@ -2,9 +2,11 @@ define( 'argumenta/widgets/PropositionEditor',
 [
     "require-jquery",
     "argumenta/widgets/Base",
-    "text!./PropositionEditor/template.html.mustache"
+    "text!./PropositionEditor/template.html.mustache",
+    "jquery-autosize",
+    "jquery-charcount"
 ],
-function( $, Base, Template ) {
+function( $, Base, Template, autosize, charCount ) {
 
     var PropositionEditor = Base.module( {
 
@@ -30,8 +32,10 @@ function( $, Base, Template ) {
             _bindUI: function( options ) {
                 var self = this;
                 self.form = self.element.children('.proposition-form');
-                self.textarea = self.form.children('.proposition-textarea');
+                self.textWrapper = self.form.children('.proposition-text-wrapper');
+                self.textarea = self.textWrapper.children('.proposition-textarea');
                 self.publishButton = self.form.children('.proposition-publish');
+                self.textarea.autosize().charCount({ allowed: 240 });
             },
 
             // Gets current proposition text.
