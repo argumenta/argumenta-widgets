@@ -177,7 +177,7 @@ function( $, Base, AddTag, Tags, Template ) {
                     start: function(event, ui) {
 
                         // Prevent other actions on drag.
-                        ui.helper.addClass('ui-state-just-dragged proposition-widget-drag');
+                        ui.helper.addClass('ui-state-just-dragged drag');
 
                         // Fix clone size.
                         ui.helper.css( {

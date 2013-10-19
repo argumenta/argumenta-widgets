@@ -174,7 +174,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
 
                     start: function(event, ui) {
                         // Prevent other actions on drag.
-                        ui.helper.addClass('ui-state-just-dragged argument-widget-drag');
+                        ui.helper.addClass('ui-state-just-dragged drag');
 
                         // Fix clone size.
                         ui.helper.css( {
@@ -269,17 +269,19 @@ function( $, Base, Template, Proposition, Sandbox ) {
 
                 // Create the new proposition elements.
                 for ( var i=0, len=self.propositions.length; i<len; i++ ) {
-                    var p = self.propositions[i];
-
-                    // The proposition index for its role in this argument;
-                    // a numeral for premise position, or 'C' for a conclusion.
-                    var index = (i < len-1) ? i+1 : 'C';
+                    var data = self.propositions[i];
+                    var position = i + 1;
+                    var role = (position < len) ? 'premise' : 'conclusion';
+                    var index = (role === 'premise') ? position : 'C';
 
                     // Extend proposition data with its argument index.
-                    p = $.extend( {}, p, { 'index': index } );
+                    data = $.extend( {}, data, { 'index': index } );
 
                     // Create a widget from the proposition data.
-                    var proposition = new Proposition( p );
+                    var proposition = new Proposition( data );
+
+                    // Add a class for this proposition's role.
+                    proposition.element.addClass( role );
 
                     // Append the proposition and save a reference.
                     container.append( proposition.element );

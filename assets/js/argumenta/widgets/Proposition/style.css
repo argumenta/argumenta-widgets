@@ -1,20 +1,28 @@
 /* Argumenta - Proposition Widget Stylesheet */
 
 div.proposition-widget {
-    border-left: 4px solid #ccc;
-    background: #fff;
     width: auto;
     min-width: 350px;
     max-width: 600px;
-    border-radius: 0px;
     margin: 10px 0px;
     padding: 2px;
-}
-div.proposition-widget {
+    border-left: 4px solid #ccc;
+    border-radius: 0px;
     font-size: 13px;
+    background: #fff;
+    box-shadow: 0 2px 2px #333;
 }
-div.proposition-widget:hover, .proposition-widget-drag {
-    border-left-color: #08f !important;
+div.proposition-widget:hover {
+    border-left-color: #08f;
+}
+div.proposition-widget.premise,
+div.proposition-widget.conclusion {
+    margin: 0;
+    box-shadow: none;
+}
+div.proposition-widget.drag {
+    border-left-color: #08f;
+    box-shadow: 0 2px 2px #333;
 }
 div.proposition-main {
     padding: 5px;

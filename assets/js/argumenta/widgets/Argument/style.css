@@ -14,7 +14,8 @@
 .argument-widget .shadowed {
     text-shadow: 1px 1px 0px #ccc;
 }
-.argument-main:hover, .argument-widget-drag .argument-main {
+.argument-main:hover,
+.argument-widget.drag .argument-main {
     border-left: 4px solid #555 !important;
 }
 .argument-main {
