@@ -1,7 +1,7 @@
 
 # Changes
 
-## 0.1.1 / 2013-10-17
+## 0.1.1 / 2013-10-23
 
 + Add PropositionEditor widget.
 + Include search results for propositions.
