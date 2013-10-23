@@ -7,6 +7,7 @@
             name: "main"
         }
     ],
+    optimizeCss: "none",
     paths: {
         'jquery'                : "jquery-1.7.1.min",
         'jquery-ui'             : "jquery-ui-1.8.16.custom.min",
