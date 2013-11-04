@@ -3,8 +3,8 @@
         <form action="{{base_url}}/tags" class="new-tag form-defaults glass-border" method="POST">
             <input type="hidden" name="target_type" value="{{target_type}}">
             <input type="hidden" name="target_sha1" value="{{target_sha1}}">
+            <h3>Create a new tag!</h3>
             <fieldset>
-                <legend>Tag type</legend>
                 <input type="hidden" name="tag_type" value="support">
                 <button type="button" name="support" class="on">Support</button>
                 <button type="button" name="dispute" class="off">Dispute</button>
@@ -12,19 +12,18 @@
             </fieldset>
             <hr class="add-tag-divider">
             <fieldset class="support-contents dispute-contents tag-dropbox-container">
-                <legend>Tag content</legend>
                 <input type="hidden" name="source_type" value="">
                 <input type="hidden" name="source_sha1" value="">
-                <div class="dropbox-instruction strong">Drag an argument or proposition here...</div>
+                <div class="dropbox-instruction strong">Drag an argument or proposition here.</div>
                 <div class="tag-dropbox">
                     <div class="dropbox-preview"></div>
                     <div class="dropbox-contents"></div>
                 </div>
             </fieldset>
             <fieldset class="citation-contents block" style="display: none;">
-                <legend>Tag content</legend>
-                <div class="citation-instruction strong">Type the citation's text below.</div>
-                <textarea name="citation_text" placeholder="Example text..."></textarea>
+                <div class="citation-instruction strong">Cite a source by describing it here.</div>
+                <textarea name="citation_text" placeholder="My citation!
+                                                            http://en.wikipedia.org/wiki/Citation"></textarea>
             </fieldset>
             <div>
                 <button class="ebony-gradient" type="submit" value="Add Tag!">Add Tag!</button>
