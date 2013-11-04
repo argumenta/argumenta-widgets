@@ -55,7 +55,10 @@ form.new-tag {
   margin: 8px;
   width: auto;
 }
-.tag-dropbox-container {
+.add-tag-widget .support-contents,
+.add-tag-widget .dispute-contents,
+.add-tag-widget .citation-contents,
+.add-tag-widget .tag-dropbox-container {
   margin: 5px 0px;
   padding: 5px 0px;
   width: 100%;
