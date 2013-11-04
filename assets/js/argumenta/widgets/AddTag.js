@@ -72,6 +72,7 @@ function( $, Base, Template, Sandbox ) {
                 self.options.tag_type = tag_type;
                 self.updateTagTypeElems();
                 self.updateTagContent();
+                self.updateDropboxInstruction();
             },
 
             // Sets the tag target.
@@ -115,6 +116,7 @@ function( $, Base, Template, Sandbox ) {
                 self.disputeContents = form.children('.dispute-contents');
                 self.citationContents = form.children('.citation-contents');
                 self.citationTextarea = fieldsets.children('[name=citation_text]');
+                self.dropboxInstruction = fieldsets.children('.dropbox-instruction');
                 self.dropbox = fieldsets.children('.tag-dropbox');
 
                 // Listen for clicks on tag-type buttons.
@@ -189,6 +191,15 @@ function( $, Base, Template, Sandbox ) {
                     toHide.hide();
                 }
                 self.showingContentsForType = tag_type;
+            },
+
+            updateDropboxInstruction: function() {
+                var self = this;
+                var type = self.getTagType();
+                var message = type === "support"
+                    ? "Drag a supporting argument (or proposition) here."
+                    : "Drag a disputing argument (or proposition) here.";
+                self.dropboxInstruction.text(message);
             }
         },
 
