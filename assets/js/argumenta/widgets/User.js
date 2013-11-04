@@ -3,7 +3,7 @@ define( 'argumenta/widgets/User',
 [
     "require-jquery",
     "argumenta/widgets/Base",
-    "text!./User/template.mustache.html",
+    "text!./User/template.html.mustache",
     "argumenta/sandbox"
 ],
 function( $, Base, Template, Sandbox ) {
