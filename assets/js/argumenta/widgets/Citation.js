@@ -75,7 +75,7 @@ function( $, Base, Template ) {
 
                 // Returns YouTube element for given video ID, as jQuery object.
                 var youtubeEmbedFor = function( videoID ) {
-                    var embedUrl = 'http://www.youtube.com/embed/' + videoID;
+                    var embedUrl = '//www.youtube.com/embed/' + videoID;
                     var embed = $(
                         '<iframe width="100%" height="315"' +
                         ' frameborder="0" allowfullscreen></iframe>'
