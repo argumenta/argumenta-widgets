@@ -214,9 +214,13 @@ function( $, Base, Template, Sandbox ) {
                 tolerance: 'touch',
 
                 accept: function (theDraggable) {
-                    var dropContainer = $(this).closest('.proposition-widget');
-                    var droppedOnSelf = dropContainer.is(theDraggable);
-                    return ! droppedOnSelf;
+                    var $self = $(this);
+                    var $parents = $self.parents();
+                    var droppedOnSelf = $parents.is(theDraggable);
+                    if (droppedOnSelf) {
+                        return false;
+                    }
+                    return true;
                 },
 
                 drop: function (event, ui) {
