@@ -1,10 +1,5 @@
 /* Argumenta - Citation Widget Stylesheet */
 
-div.citation-widget .citation-index {
-    font: 19px serif;
-    text-shadow: 1px 1px 1px #AAA;
-}
-
 div.citation-widget {
     border-left: 4px solid #ccc;
 }
