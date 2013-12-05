@@ -60,6 +60,14 @@
     background: #f8f8f8;
     padding: 0px;
 }
+.argument-widget .argument-content {
+    display: none;
+}
 .argument-widget .propositions-container > .proposition-widget {
     margin: 0;
+}
+.argument-widget .argument-footer {
+    border-left: solid 4px #ccc;
+    padding: 5px;
+    background: #eee;
 }

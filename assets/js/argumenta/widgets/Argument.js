@@ -104,11 +104,22 @@ function( $, Base, Template, Proposition, Sandbox ) {
             togglePropositions: function() {
                 var self = this;
                 if ( self.propositions ) {
-                    self.container.children(".propositions-container").toggle( 300 );
+                    self.content.toggle(300);
                     self.propositionsVisible = !self.propositionsVisible;
                 }
                 else {
                     self._initPropositions();
+                }
+            },
+
+            // Starts a new discussion.
+            onDiscuss: function() {
+                var self = this;
+                if (self.discussionEditor.length == 0) {
+                    self._initDiscussionEditor();
+                }
+                else {
+                    self.discussionContainer.toggle(300);
                 }
             },
 
@@ -121,6 +132,18 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 self.main = self.container.children(".argument-main");
                 self.menu = self.container.find('.argument-menu').first();
                 self.deleteButton = self.menu.find('.action-delete');
+                self.content = self.container.children('.argument-content');
+                self.propositionsContainer = self.content.children('.propositions-container');
+                self.footer = self.content.children('.argument-footer');
+                self.discuss = self.footer.children('.argument-discuss');
+                self.discussionContainer = self.content.children('.discussion-container');
+                self.discussionEditor = self.discussionContainer.children('.discussion-editor');
+
+                // Click behavior for discuss.
+                self.discuss.on('click', function( event ) {
+                    event.preventDefault();
+                    self.onDiscuss();
+                });
 
                 // Click behavior for menu.
                 self.menu.on('click', function( event ) {
@@ -233,6 +256,13 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 $.ajax(url).done(success).fail(error);
             },
 
+            // Inits discussion editor.
+            _initDiscussionEditor: function() {
+                var self = this;
+                var discussionEditor = new DiscussionEditor();
+                self.discussionContainer.append(discussionEditor.element);
+            },
+
             // Inits propositions data and elements.
             _initPropositions: function() {
                 var self = this;
@@ -258,7 +288,7 @@ function( $, Base, Template, Proposition, Sandbox ) {
             // Inits proposition elements.
             _initPropositionElements: function() {
                 var self = this;
-                var container = self.container.children('.propositions-container');
+                var container = self.propositionsContainer;
 
                 // Hide container.
                 container.hide();
@@ -288,7 +318,8 @@ function( $, Base, Template, Proposition, Sandbox ) {
                     self.propositionWidgets.push( proposition );
                 }
                 // Reveal container.
-                container.show(250);
+                container.show();
+                self.content.show(250);
                 self.propositionsVisible = true;
             },
 
