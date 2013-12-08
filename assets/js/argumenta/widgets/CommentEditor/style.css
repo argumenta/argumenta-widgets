@@ -1,0 +1,50 @@
+
+/* Comment Editor Styles */
+
+.comment-editor-widget {
+    max-width: 500px;
+    text-align: center;
+}
+.comment-editor-widget,
+.comment-editor-widget * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.comment-editor-widget .comment-form {
+    width: 100%;
+    margin: 5px 0px;
+    padding: 10px;
+    border: 5px solid #fff;
+    border-radius: 5px;
+    background: #eee;
+    box-shadow: 2px 2px 4px #444;
+}
+.comment-editor-widget .comment-form > * {
+    margin: 5px 0;
+}
+.comment-editor-widget .comment-text-wrapper {
+    position: relative;
+    margin: 10px 0;
+}
+.comment-editor-widget .comment-textarea {
+    min-height: 3em;
+    width: 100%;
+    margin: 0;
+    font-size: 15px;
+    resize: none !important;
+}
+.comment-editor-widget .counter {
+    position: absolute;
+    bottom: 2px;
+    right: 7px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #aaa;
+    color: rgba(0, 0, 0, 0.3);
+}
+.comment-editor-widget .comment-publish {
+    width: 100%;
+    font-size: 14px;
+    background: #08f;
+}

@@ -1,0 +1,9 @@
+<div class="comment-editor-widget">
+  <form class="comment-form" action="/comments" method="POST">
+    <h3>{{ header }}</h3>
+    <div class="comment-text-wrapper">
+      <textarea class="comment-textarea" name="text" placeholder="{{ placeholder }}">{{ comment_text }}</textarea>
+    </div>
+    <button class="comment-publish" type="submit">Publish!</button>
+  </form>
+</div>
