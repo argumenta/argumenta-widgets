@@ -3,10 +3,11 @@ define( 'argumenta/widgets/Argument',
     "require-jquery",
     "argumenta/widgets/Base",
     "text!./Argument/template.html.mustache",
+    "argumenta/widgets/DiscussionEditor",
     "argumenta/widgets/Proposition",
     "argumenta/sandbox"
 ],
-function( $, Base, Template, Proposition, Sandbox ) {
+function( $, Base, Template, DiscussionEditor, Proposition, Sandbox ) {
 
     /**
      * @class Argument
@@ -136,12 +137,13 @@ function( $, Base, Template, Proposition, Sandbox ) {
                 self.propositionsContainer = self.content.children('.propositions-container');
                 self.footer = self.content.children('.argument-footer');
                 self.discuss = self.footer.children('.argument-discuss');
-                self.discussionContainer = self.content.children('.discussion-container');
+                self.discussionContainer = self.footer.children('.discussion-container');
                 self.discussionEditor = self.discussionContainer.children('.discussion-editor');
 
                 // Click behavior for discuss.
                 self.discuss.on('click', function( event ) {
                     event.preventDefault();
+                    self.discuss.blur();
                     self.onDiscuss();
                 });
 
@@ -259,8 +261,12 @@ function( $, Base, Template, Proposition, Sandbox ) {
             // Inits discussion editor.
             _initDiscussionEditor: function() {
                 var self = this;
-                var discussionEditor = new DiscussionEditor();
+                var discussionEditor = new DiscussionEditor({
+                    target_type: self.getType(),
+                    target_sha1: self.getSha1()
+                });
                 self.discussionContainer.append(discussionEditor.element);
+                self.discussionEditor = discussionEditor.element;
             },
 
             // Inits propositions data and elements.

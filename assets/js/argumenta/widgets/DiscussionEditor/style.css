@@ -4,6 +4,7 @@
 .discussion-editor-widget {
     max-width: 500px;
     text-align: center;
+    background: #fff;
 }
 .discussion-editor-widget,
 .discussion-editor-widget * {

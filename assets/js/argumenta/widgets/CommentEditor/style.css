@@ -15,10 +15,10 @@
     width: 100%;
     margin: 5px 0px;
     padding: 10px;
-    border: 5px solid #fff;
+    border: 2px solid #fff;
     border-radius: 5px;
     background: #eee;
-    box-shadow: 2px 2px 4px #444;
+    box-shadow: 2px 2px 4px #ccc;
 }
 .comment-editor-widget .comment-form > * {
     margin: 5px 0;

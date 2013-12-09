@@ -4,9 +4,10 @@
     max-width: 600px;
     padding: 0px 0px;
     margin: 10px 0px;
-    box-shadow: 0px 2px 3px #333;
-    color: #333;
     font-size: 13px;
+    color: #333;
+    background: #fff;
+    box-shadow: 0px 2px 3px #333;
 }
 .argument-widget .light {
     color: #999;
@@ -69,5 +70,8 @@
 .argument-widget .argument-footer {
     border-left: solid 4px #ccc;
     padding: 5px;
-    background: #eee;
+    background: #fff;
+}
+.argument-widget .argument-discuss {
+    font-size: 14px;
 }

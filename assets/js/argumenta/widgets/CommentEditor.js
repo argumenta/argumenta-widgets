@@ -15,7 +15,7 @@ function( $, Base, Template, autosize, charCount ) {
 
         defaults: {
             header: 'Add your comment!',
-            placeholder: 'My comment...',
+            placeholder: 'Focused analysis and friendly commentary encouraged!',
             comment_text: '',
             discussion_id: null,
             max_characters: 2400,
