@@ -1,0 +1,15 @@
+
+/* Discussion Styles */
+
+.discussion-widget {
+    max-width: 500px;
+    background: #fff;
+    padding: 0 5px;
+    border-left: solid 4px #80f;
+}
+.discussion-widget .discussion-header {
+    font-size: 20px;
+}
+.discussion-widget .comment-container {
+    display: none;
+}
