@@ -3,11 +3,12 @@ define( 'argumenta/widgets/Argument',
     "require-jquery",
     "argumenta/widgets/Base",
     "text!./Argument/template.html.mustache",
+    "argumenta/widgets/Discussion",
     "argumenta/widgets/DiscussionEditor",
     "argumenta/widgets/Proposition",
     "argumenta/sandbox"
 ],
-function( $, Base, Template, DiscussionEditor, Proposition, Sandbox ) {
+function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox ) {
 
     /**
      * @class Argument
@@ -95,10 +96,35 @@ function( $, Base, Template, DiscussionEditor, Proposition, Sandbox ) {
                 return self.propositionWidgets;
             },
 
+            // Sets discussions data for this argument.
+            setDiscussions: function(discussions) {
+                var self = this;
+                self.discussions = [];
+                self.discussionsContainer.empty();
+                for (var i = 0; i < discussions.length; i++) {
+                    var discussion = new Discussion(discussions[i]);
+                    self.discussions.push(discussion);
+                    self.discussionsContainer.append(discussion.element);
+                }
+                self.options.discussions = discussions;
+                self.options.discussions_count = discussions.length;
+            },
+
             // Toggles argument details for widget.
             toggleArgumentDetails: function() {
                 var self = this;
                 self.togglePropositions();
+            },
+
+            // Toggle discussions for widget.
+            toggleDiscussions: function() {
+                var self = this;
+                if ( self.discussions ) {
+                    self.discussionsContainer.toggle(300);
+                }
+                else {
+                    self._initDiscussions();
+                }
             },
 
             // Toggle propositions for widget.
@@ -139,12 +165,21 @@ function( $, Base, Template, DiscussionEditor, Proposition, Sandbox ) {
                 self.discuss = self.footer.children('.argument-discuss');
                 self.discussionContainer = self.footer.children('.discussion-container');
                 self.discussionEditor = self.discussionContainer.children('.discussion-editor');
+                self.discussionsContainer = self.footer.children('.discussions-container');
+                self.showDiscussions = self.footer.children('.show-discussions');
 
                 // Click behavior for discuss.
                 self.discuss.on('click', function( event ) {
                     event.preventDefault();
-                    self.discuss.blur();
+                    event.target.blur();
                     self.onDiscuss();
+                });
+
+                // Click behavior for show discussions.
+                self.showDiscussions.on('click', function( event ) {
+                    event.preventDefault();
+                    event.target.blur();
+                    self.toggleDiscussions();
                 });
 
                 // Click behavior for menu.
@@ -261,12 +296,41 @@ function( $, Base, Template, DiscussionEditor, Proposition, Sandbox ) {
             // Inits discussion editor.
             _initDiscussionEditor: function() {
                 var self = this;
+                var update = function() {
+                    self._updateDiscussions();
+                    self.discussionsContainer.show(300);
+                    self.discussionContainer.empty();
+                    self.discussionEditor = null;
+                };
                 var discussionEditor = new DiscussionEditor({
                     target_type: self.getType(),
-                    target_sha1: self.getSha1()
+                    target_sha1: self.getSha1(),
+                    on_create: update
                 });
                 self.discussionContainer.append(discussionEditor.element);
                 self.discussionEditor = discussionEditor.element;
+            },
+
+            // Inits discussions.
+            _initDiscussions: function() {
+                var self = this;
+                self._updateDiscussions();
+            },
+
+            // Updates discussions.
+            _updateDiscussions: function() {
+                var self = this;
+                var base = self.options.base_url;
+                var sha1 = self.getSha1();
+                var path = '/arguments/' + sha1 + '/discussions.json';
+                var url = base + path;
+                var success = function(data) {
+                    self.setDiscussions(data.discussions);
+                };
+                var error = function(data) {
+                    Sandbox.error(data);
+                };
+                $.get(url).done(success).fail(error);
             },
 
             // Inits propositions data and elements.

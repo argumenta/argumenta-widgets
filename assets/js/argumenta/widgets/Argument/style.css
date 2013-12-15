@@ -67,7 +67,10 @@
 .argument-widget .propositions-container > .proposition-widget {
     margin: 0;
 }
+.argument-widget .discussions-container {
+}
 .argument-widget .argument-footer {
+    font-size: 14px;
     border-left: solid 4px #ccc;
     padding: 5px;
     background: #fff;
