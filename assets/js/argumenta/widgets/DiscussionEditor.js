@@ -17,7 +17,8 @@ function( $, Base, Template, Sandbox, CommentEditor, autosize, charCount ) {
 
         defaults: {
             target_type: null,
-            target_sha1: null
+            target_sha1: null,
+            on_create: null
         },
 
         init: function( options ) {
@@ -81,6 +82,8 @@ function( $, Base, Template, Sandbox, CommentEditor, autosize, charCount ) {
                 };
                 var success = function(data, status, xhr) {
                     Sandbox.notify(data.message);
+                    var callback = self.options.on_create;
+                    if (callback) callback( data.discussion );
                 };
                 var error = function(data) {
                     Sandbox.error(data);

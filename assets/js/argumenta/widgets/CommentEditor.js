@@ -3,10 +3,11 @@ define( 'argumenta/widgets/CommentEditor',
     "require-jquery",
     "argumenta/widgets/Base",
     "text!./CommentEditor/template.html.mustache",
+    "argumenta/sandbox",
     "jquery-autosize",
     "jquery-charcount"
 ],
-function( $, Base, Template, autosize, charCount ) {
+function( $, Base, Template, Sandbox, autosize, charCount ) {
 
     var CommentEditor = Base.module( {
 
@@ -19,7 +20,8 @@ function( $, Base, Template, autosize, charCount ) {
             comment_text: '',
             discussion_id: null,
             max_characters: 2400,
-            custom_submit: null
+            custom_submit: null,
+            on_create: null
         },
 
         init: function( options ) {
@@ -78,6 +80,8 @@ function( $, Base, Template, autosize, charCount ) {
                 };
                 var success = function(data, status, xhr) {
                     Sandbox.notify(data.message);
+                    var callback = self.options.on_create;
+                    if (callback) callback( data.comment );
                 };
                 var error = function(data) {
                     Sandbox.error(data);
