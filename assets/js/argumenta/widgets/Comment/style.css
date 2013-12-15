@@ -1,0 +1,30 @@
+
+/* Comment Styles */
+
+.comment-widget {
+    position: relative;
+    max-width: 500px;
+    padding: 5px 0;
+    background: #fff;
+}
+.comment-widget .comment-main {
+    display: inline-block;
+}
+.comment-widget .comment-avatar {
+    float: left;
+    margin: 0 5px 5px 0;
+}
+.comment-widget .comment-author {
+}
+.comment-widget .comment-actions {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+.comment-widget .comment-reply {
+}
+.comment-widget .comment-text {
+}
+.comment-widget .comment-date {
+    color: #777;
+}
