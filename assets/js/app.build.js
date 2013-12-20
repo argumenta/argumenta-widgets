@@ -14,6 +14,7 @@
         'jquery-temporaryClass' : "jquery.temporaryClass",
         'jquery-autosize'       : "jquery.autosize",
         'jquery-charcount'      : "jquery.charcount",
+        'moment'                : "moment",
         'mustache'              : "require-mustache"
     },
     shim: {
@@ -35,6 +36,9 @@
         'jquery-charcount' : {
             exports: "jQuery.fn.charCount",
             deps: ["jquery"]
+        },
+        'moment': {
+            exports: "moment"
         }
     }
 })

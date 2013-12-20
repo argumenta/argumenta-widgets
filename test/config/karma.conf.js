@@ -18,6 +18,7 @@ files = [
   'assets/js/jquery.temporaryClass.js',
   'assets/js/jquery.autosize.js',
   'assets/js/jquery.charcount.js',
+  'assets/js/moment.js',
   // Test files.
   'test/test-main.js',
   // Serve and Watch files.

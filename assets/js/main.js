@@ -10,6 +10,7 @@ require.config( {
         'jquery-temporaryClass' : "jquery.temporaryClass",
         'jquery-autosize'       : "jquery.autosize",
         'jquery-charcount'      : "jquery.charcount",
+        'moment'                : "moment",
         'mustache'              : "require-mustache"
     },
     shim: {
@@ -31,6 +32,9 @@ require.config( {
         'jquery-charcount' : {
             exports: "jQuery.fn.charCount",
             deps: ["jquery"]
+        },
+        'moment': {
+            exports: "moment"
         }
     }
 } );
