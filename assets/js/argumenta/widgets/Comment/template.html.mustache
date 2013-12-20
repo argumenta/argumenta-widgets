@@ -3,9 +3,9 @@
     <div class="comment-main">
         <div class="comment-header">
             <a class="comment-author" href="{{ base_url }}/{{ author }}">{{ author }}</a>
+            <span class="comment-date" title="{{ comment_date }}">{{ short_date }}</span>
         </div>
-        <div class="comment-text">{{ comment_text }}</div>
-        <div class="comment-date">{{ comment_date }}</div>
+        <div class="comment-text">{{{ escaped_text }}}</div>
     </div>
     <div class="comment-actions">
         <a class="comment-reply" href="#">Reply!</a>

@@ -2,9 +2,10 @@ define( 'argumenta/widgets/Comment',
 [
     "require-jquery",
     "argumenta/widgets/Base",
-    "text!./Comment/template.html.mustache"
+    "text!./Comment/template.html.mustache",
+    "moment"
 ],
-function( $, Base, Template ) {
+function( $, Base, Template, moment ) {
 
     var Comment = Base.module( {
 
@@ -57,6 +58,30 @@ function( $, Base, Template ) {
                     event.target.blur();
                     self.discussion.toggleCommentEditor();
                 });
+            },
+
+            // Gets view options for template.
+            _getViewOptions: function() {
+                var self = this;
+                var date = self.options.comment_date;
+                var text = self.options.comment_text;
+                var daysAgo = moment().diff(moment(date), 'days', true);
+                var shortDate = daysAgo < 1
+                    ? moment(date).fromNow()
+                    : daysAgo >= 365
+                    ? moment(date).format('MMM D YYYY')
+                    : moment(date).format('MMM D');
+                var escape = function(string) {
+                    return $('<div></div>').text(string).html();
+                };
+                var format = function(string) {
+                    return string.replace(/\n/g, '<br>')
+                };
+                var viewOptions = {
+                    escaped_text: format(escape(text)),
+                    short_date: shortDate
+                };
+                return $.extend( {}, self.options, viewOptions );
             }
         }
     } );
