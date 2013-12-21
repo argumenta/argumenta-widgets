@@ -57,7 +57,16 @@ function( $, Base, Template, Sandbox, autosize, charCount ) {
                 self.$textWrapper = self.$form.children('.comment-text-wrapper');
                 self.$textarea = self.$textWrapper.children('.comment-textarea');
                 self.$publishButton = self.$form.children('.comment-publish');
-                self.$textarea.autosize();
+                self.resizeCount = 0;
+                self.$textarea.autosize({
+                    append: '\n',
+                    callback: function() {
+                        if (self.resizeCount <= 2) {
+                            self.$textarea.trigger('autosize.resizeIncludeStyle');
+                            self.resizeCount++;
+                        }
+                    }
+                });
                 self.$textarea.charCount({
                     allowed: self.options.max_characters
                 });
