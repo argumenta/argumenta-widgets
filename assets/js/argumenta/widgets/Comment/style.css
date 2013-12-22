@@ -21,6 +21,12 @@
     top: 5px;
     right: 5px;
 }
+.comment-widget .comment-actions a:hover {
+    text-decoration: none;
+}
+.comment-widget .comment-actions a:hover .action-text {
+    text-decoration: underline;
+}
 .comment-widget .comment-reply {
 }
 .comment-widget .comment-text {

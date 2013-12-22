@@ -55,7 +55,7 @@ function( $, Base, Template, moment ) {
                 self.$reply = self.$actions.children('.comment-reply');
                 self.$reply.click(function(event) {
                     event.preventDefault();
-                    event.target.blur();
+                    self.$reply.blur();
                     self.discussion.toggleCommentEditor();
                 });
             },
