@@ -171,14 +171,14 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 // Click behavior for discuss.
                 self.discuss.on('click', function( event ) {
                     event.preventDefault();
-                    event.target.blur();
+                    self.discuss.blur();
                     self.onDiscuss();
                 });
 
                 // Click behavior for show discussions.
                 self.showDiscussions.on('click', function( event ) {
                     event.preventDefault();
-                    event.target.blur();
+                    self.showDiscussions.blur();
                     self.toggleDiscussions();
                 });
 

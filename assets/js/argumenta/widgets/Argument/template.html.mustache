@@ -39,8 +39,14 @@
         <div class="argument-content">
             <div class="propositions-container"></div>
             <div class="argument-footer">
-                <a href="#" class="argument-discuss">Discuss!</a>
-                <a href="#" class="show-discussions">Show {{ metadata.discussions_count }} discussions</a>
+                <a href="#" class="argument-discuss">
+                    <span class="argumenta-bootstrap"><span class="action-icon glyphicon glyphicon-comment"></span></span>
+                    <span class="action-text">Discuss!</span>
+                </a>
+                <a href="#" class="show-discussions">
+                    <span class="argumenta-bootstrap"><span class="action-icon glyphicon glyphicon-th-list"></span></span>
+                    <span class="action-text">Show {{ metadata.discussions_count }} discussions</span>
+                </a>
                 <div class="discussion-container"></div>
                 <div class="discussions-container"></div>
             </div>

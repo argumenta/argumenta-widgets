@@ -75,6 +75,15 @@
     padding: 5px;
     background: #fff;
 }
+.argument-widget .argument-footer > a:hover {
+    text-decoration: none;
+}
+.argument-widget .argument-footer > a:hover .action-text {
+    text-decoration: underline;
+}
+.argument-widget .action-icon {
+    color: #ccc;
+}
 .argument-widget .argument-discuss {
     font-size: 14px;
 }
