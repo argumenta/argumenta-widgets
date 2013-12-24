@@ -100,6 +100,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
             setDiscussions: function(discussions) {
                 var self = this;
                 self.discussions = [];
+                self.discussionsCount.text(discussions.length);
                 self.discussionsContainer.empty();
                 for (var i = 0; i < discussions.length; i++) {
                     var discussion = new Discussion(discussions[i]);
@@ -120,10 +121,11 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
             toggleDiscussions: function() {
                 var self = this;
                 if ( self.discussions ) {
-                    self.discussionsContainer.toggle(300);
+                    self.discussionsPanel.toggle(300);
                 }
                 else {
                     self._initDiscussions();
+                    self.discussionsPanel.show(300);
                 }
             },
 
@@ -165,7 +167,10 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 self.discuss = self.footer.children('.argument-discuss');
                 self.discussionContainer = self.footer.children('.discussion-container');
                 self.discussionEditor = self.discussionContainer.children('.discussion-editor');
-                self.discussionsContainer = self.footer.children('.discussions-container');
+                self.discussionsPanel = self.footer.children('.discussions-panel');
+                self.discussionsHeader = self.discussionsPanel.children('.discussions-header');
+                self.discussionsCount = self.discussionsHeader.children('.discussions-count');
+                self.discussionsContainer = self.discussionsPanel.children('.discussions-container');
                 self.showDiscussions = self.footer.children('.show-discussions');
 
                 // Click behavior for discuss.
@@ -298,7 +303,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 var self = this;
                 var update = function() {
                     self._updateDiscussions();
-                    self.discussionsContainer.show(300);
+                    self.discussionsPanel.show(300);
                     self.discussionContainer.empty();
                     self.discussionEditor = null;
                 };

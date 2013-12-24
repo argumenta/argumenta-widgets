@@ -67,6 +67,13 @@
 .argument-widget .propositions-container > .proposition-widget {
     margin: 0;
 }
+.argument-widget .discussions-panel {
+    display: none;
+}
+.argument-widget .discussions-header {
+    margin: 10px 0;
+    font-size: 22px;
+}
 .argument-widget .discussions-container {
 }
 .argument-widget .argument-footer {
