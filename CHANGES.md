@@ -1,6 +1,16 @@
 
 # Changes
 
+## 0.1.2 / 2013-12-25
+
++ Add discussions for Arguments!
++ Add Comment and Discussion widgets.
++ Improve usability of AddTag widget.
++ Improve textarea autosizing.
++ Fix mixed content error for embeds over HTTPS.
++ Remove header for Citation widget.
++ Use Moment.js for date and time formats.
+
 ## 0.1.1 / 2013-10-23
 
 + Add PropositionEditor widget.
