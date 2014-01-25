@@ -272,7 +272,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 {
                     self._loadDataBySha1();
                 }
-                else if ( self.options.show_propositions === true ) {
+                else if ( self.options.show_propositions ) {
                     self._initPropositions();
                 }
             },
@@ -288,7 +288,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                     $.extend(self.options, data.argument);
                     self.options.commit = data.commit;
                     self._refresh();
-                    if ( self.options.show_propositions === true ) {
+                    if ( self.options.show_propositions ) {
                         self._initPropositions();
                     }
                 };
@@ -394,7 +394,8 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 }
                 // Reveal container.
                 container.show();
-                self.content.show(250);
+                self.content.css({ display: 'block' });
+                self.content.show();
                 self.propositionsVisible = true;
             },
 
