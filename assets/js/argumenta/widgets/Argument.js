@@ -88,6 +88,11 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 return this.options.sha1;
             },
 
+            // Gets the committer, if set.
+            getCommitter: function() {
+                return this.commit ? this.commit.committer : '';
+            },
+
             // Sets propositions data, and inits elements.
             setPropositions: function( props ) {
                 var self = this;
@@ -415,16 +420,15 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
             _getViewOptions: function() {
                 var self = this;
                 var base      = self.options.base_url;
-                var committer = self.options.commit.committer;
                 var reponame  = self.options.repo;
+                var committer = self.getCommitter();
                 var repoUrl   = base + '/' + committer + '/' + encodeURIComponent(reponame);
                 var viewOptions = {
                     partial_sha1: self.options.sha1.substr(0, 20),
                     repo_url: repoUrl,
                     argument_desc:
                         'Argument Repo\r\n'
-                        + self.options.commit.committer + ' / '
-                        + self.options.repo,
+                        + committer + ' / ' + self.options.repo,
                     object_desc:
                         'Argument Object\r\n'
                         + 'SHA1: ' + self.options.sha1
