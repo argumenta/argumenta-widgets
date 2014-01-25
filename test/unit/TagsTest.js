@@ -4,11 +4,12 @@ define(
     'chai',
     'sinon',
     'fixtures',
+    'helpers',
     'argumenta/config',
     'argumenta/widgets/Tags',
-    'argumenta/widgets/Base'
+    'argumenta/widgets/Base',
 ],
-function(chai, undefined, fixtures, Config, Tags, Base) {
+function(chai, undefined, fixtures, helpers, Config, Tags, Base) {
 
     var assert = chai.assert;
     var baseUrl = Config.baseUrl;
@@ -155,14 +156,44 @@ function(chai, undefined, fixtures, Config, Tags, Base) {
                     ]
                 );
                 server.respond();
+                var sources = tags.getSources();
+                for (var i in sources) {
+                    var source = sources[i];
+                    helpers.assertSuperset(
+                        source,
+                        JSON.parse(JSON.stringify(responseData.sources[i])),
+                        'Check tags data.'
+                    );
+                }
+            }));
+        });
+
+        describe('getCommits()', function() {
+
+            it('should get commits data',
+            sinon.test(function() {
+                var server = sinon.fakeServer.create();
+                var data = fixtures.validTagsData();
+                var tags = new Tags(data);
+                var sha1 = data.target_sha1;
+                var responseData = fixtures.tagsPlusSourcesData();
+                server.respondWith(
+                    'GET',
+                    baseUrl + '/propositions/' + sha1 + '/tags-plus-sources.json',
+                    [
+                        200,
+                        fixtures.headers('JSON'),
+                        JSON.stringify(responseData)
+                    ]
+                );
+                server.respond();
                 assert.deepEqual(
-                    tags.getSources(),
-                    JSON.parse(JSON.stringify(responseData.sources)),
+                    tags.getCommits(),
+                    JSON.parse(JSON.stringify(responseData.commits)),
                     'Check tags data.'
                 );
             }));
         });
-
 
         describe('setTarget( type, sha1 )', function() {
 

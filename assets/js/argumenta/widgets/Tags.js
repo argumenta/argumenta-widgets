@@ -42,8 +42,9 @@ function( $, Base, Template, Sandbox ) {
             // Inits this tags widget.
             initTags: function( options ) {
                 var self = this;
-                self.setTags( options.tags );
+                self.setCommits( options.commits );
                 self.setSources( options.sources );
+                self.setTags( options.tags );
                 self.setTarget( options.target_type, options.target_sha1 );
                 self._refresh();
             },
@@ -71,6 +72,11 @@ function( $, Base, Template, Sandbox ) {
             // Gets any sources data.
             getSources: function() {
                 return this.options.sources;
+            },
+
+            // Gets any commits data.
+            getCommits: function() {
+                return this.options.commits;
             },
 
             // Sets the target object.
@@ -109,11 +115,28 @@ function( $, Base, Template, Sandbox ) {
                 var dict = {};
 
                 $(sourcesData).each(function(index, source) {
-                   dict[source.sha1] = source;
+                    dict[source.sha1] = source;
+                    source.commit = self.options.commitsByTarget[source.sha1];
                 });
 
                 self.sourceBySha1 = dict;
                 self.options.sources = sourcesData;
+            },
+
+            // Sets commits, given commits data.
+            setCommits: function( commitsData ) {
+                var self = this;
+                var commits = [];
+                var commitsByTarget = {};
+                var commitsData = commitsData || [];
+
+                for (var i = 0; i < commitsData.length; i++) {
+                    var commit = commitsData[i];
+                    commits.push(commit);
+                    commitsByTarget[commit.target_sha1] = commit;
+                }
+                self.options.commits = commits;
+                self.options.commitsByTarget = commitsByTarget;
             },
 
             // Updates this tags widget.
@@ -126,6 +149,7 @@ function( $, Base, Template, Sandbox ) {
                 $.ajax( {
                     url: base + '/propositions/' + sha1 + '/tags-plus-sources.json',
                     success: function( data ) {
+                        self.setCommits( data.commits );
                         self.setSources( data.sources );
                         self.setTags( data.tags );
                         self._refresh();

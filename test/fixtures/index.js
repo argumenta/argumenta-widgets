@@ -44,7 +44,7 @@ define([
         object_type: "commit",
         sha1: "57f61273647ef3bf4152ada12ea8b68f9cea2f36",
         target_type: 'argument',
-        target_sha1: '39cb3925a38f954cf4ca12985f5f948177f6da5e',
+        target_sha1: '7077e1ce31bc8e9d2a88479aa2d159f2f9de4856',
         committer: 'tester',
         commit_date: '1970-01-01T00:00:00Z',
         parent_sha1s: [
@@ -126,10 +126,12 @@ define([
     Fixtures.tagsPlusSourcesData = function() {
         var target = Fixtures.validPropositionData();
         var source = Fixtures.validArgumentData();
-        var tag = Fixtures.tagDataFor('support', target, source)
+        var tag = Fixtures.tagDataFor('support', target, source);
+        var commit = Fixtures.validCommitData();
         var data = {
             tags: [ tag ],
-            sources: [ source ]
+            sources: [ source ],
+            commits: [ commit ]
         };
         return data;
     };
