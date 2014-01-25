@@ -45,6 +45,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
      *     </div>
      *
      * @param opts {Object} Argument widget options.
+     * @param opts.show_discussions {Boolean} Whether to show discussions initially.
      * @param opts.show_propositions {Boolean} Whether to show propositions initially.
      * @param opts.propositions {Array<Object>} An array of argument propositions data.
      * @note Propositions may be set as options, or loaded via AJAX.
@@ -55,6 +56,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
         template: Template,
 
         defaults: {
+            show_discussions: false,
             show_propositions: true
         },
 
@@ -71,6 +73,9 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 self.propositionWidgets = [];
                 self.propositionsVisible = false;
                 self._initData();
+                if (self.options.show_discussions) {
+                    self.toggleDiscussions();
+                }
             },
 
             // Gets the object type.
@@ -125,6 +130,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 }
                 else {
                     self._initDiscussions();
+                    self.discussionsPanel.css({ display: 'block' });
                     self.discussionsPanel.show(300);
                 }
             },
@@ -278,7 +284,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 {
                     self._loadDataBySha1();
                 }
-                else if ( self.options.show_propositions ) {
+                else if (self.options.show_propositions) {
                     self._initPropositions();
                 }
             },
