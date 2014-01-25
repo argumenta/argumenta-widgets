@@ -414,12 +414,19 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
             // Gets view options for template, extending Base behavior.
             _getViewOptions: function() {
                 var self = this;
+                var base      = self.options.base_url;
+                var committer = self.options.commit.committer;
+                var reponame  = self.options.repo;
+                var repoUrl   = base + '/' + committer + '/' + encodeURIComponent(reponame);
                 var viewOptions = {
                     partial_sha1: self.options.sha1.substr(0, 20),
-                    argument_desc: 'Argument Repo\r\n'
+                    repo_url: repoUrl,
+                    argument_desc:
+                        'Argument Repo\r\n'
                         + self.options.commit.committer + ' / '
                         + self.options.repo,
-                    object_desc: 'Argument Object\r\n'
+                    object_desc:
+                        'Argument Object\r\n'
                         + 'SHA1: ' + self.options.sha1
                 };
                 return $.extend( viewOptions, self.options );
