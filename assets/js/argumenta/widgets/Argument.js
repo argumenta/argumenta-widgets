@@ -159,6 +159,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 // Save reference to inner container and menu.
                 self.container = self.element.children(".argument-container");
                 self.main = self.container.children(".argument-main");
+                self.title = self.main.children('.argument-title');
                 self.menu = self.container.find('.argument-menu').first();
                 self.deleteButton = self.menu.find('.action-delete');
                 self.content = self.container.children('.argument-content');
@@ -172,6 +173,11 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 self.discussionsCount = self.discussionsHeader.children('.discussions-count');
                 self.discussionsContainer = self.discussionsPanel.children('.discussions-container');
                 self.showDiscussions = self.footer.children('.show-discussions');
+
+                // Click behavior for title.
+                self.title.children('a').on('click', function( event ) {
+                    event.stopPropagation();
+                });
 
                 // Click behavior for discuss.
                 self.discuss.on('click', function( event ) {
