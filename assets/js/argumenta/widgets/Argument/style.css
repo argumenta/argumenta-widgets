@@ -45,7 +45,9 @@
     padding: 2px 8px;
 }
 
-.argument-title {
+.argument-title,
+.argument-title a {
+    color: #333;
     font-size: 22px;
 }
 .argument-sha1 {

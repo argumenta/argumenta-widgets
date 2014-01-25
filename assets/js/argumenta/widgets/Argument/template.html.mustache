@@ -18,13 +18,11 @@
                 </div>
             </div>
 
-            <div class="argument-title bold shadowed" title="Argument: {{ title }}">
-                <span>
-                    {{ title }}
-                </span>
+            <div class="argument-title bold shadowed" title="{{ argument_desc }}">
+                <a href="{{ base_url }}/{{ commit.committer }}/{{ repo }}">{{ title }}</a>
             </div>
             <div class="argument-sha1">
-                <a class="light" href="{{ base_url }}/arguments/{{ sha1 }}" title="{{ details_desc }}">
+                <a class="light" href="{{ base_url }}/arguments/{{ sha1 }}" title="{{ object_desc }}">
                     {{ partial_sha1 }}
                 </a>
             </div>

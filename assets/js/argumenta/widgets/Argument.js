@@ -403,8 +403,11 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 var self = this;
                 var viewOptions = {
                     partial_sha1: self.options.sha1.substr(0, 20),
-                    argument_desc: 'Argument: ' + self.options.title,
-                    details_desc: 'Argument details\r\nSHA1: ' + self.options.sha1
+                    argument_desc: 'Argument Repo\r\n'
+                        + self.options.commit.committer + ' / '
+                        + self.options.repo,
+                    object_desc: 'Argument Object\r\n'
+                        + 'SHA1: ' + self.options.sha1
                 };
                 return $.extend( viewOptions, self.options );
             }
