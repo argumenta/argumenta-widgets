@@ -4,12 +4,13 @@ define(
     'chai',
     'sinon',
     'fixtures',
+    'helpers',
     'argumenta/widgets/Argument',
     'argumenta/widgets/Proposition',
     'argumenta/widgets/Base',
     'argumenta/config'
 ],
-function(chai, undefined, fixtures, Argument, Proposition, Base, Config ) {
+function(chai, undefined, fixtures, helpers, Argument, Proposition, Base, Config ) {
 
     var assert = chai.assert;
     var baseUrl = Config.baseUrl;
@@ -39,20 +40,6 @@ function(chai, undefined, fixtures, Argument, Proposition, Base, Config ) {
     var assertShowsPropositions = function( argument, data ) {
         assertContainsPropositions(argument, data);
         assertPropositionsVisible(argument);
-    };
-
-    // Asserts that object A is a superset of B.
-    var assertSuperset = function( A, B, message ) {
-        try {
-            for (var key in B) {
-                assert.deepEqual(
-                    A[key], B[key],
-                    "Check key '" + key + "' of superset for deep equality."
-                );
-            }
-        } catch (e) {
-            throw new Error("Failed '" + message + "':\n" + e.message);
-        }
     };
 
     // Helpers
@@ -164,7 +151,7 @@ function(chai, undefined, fixtures, Argument, Proposition, Base, Config ) {
                     ]
                 );
                 server.respond();
-                assertSuperset(
+                helpers.assertSuperset(
                     argument.options, data,
                     "Check data was requested and retrieved."
                 );
