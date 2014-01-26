@@ -1,6 +1,14 @@
 
 # Changes
 
+## 0.1.3 / 2014-01-26
+
++ Show commit information for tags.
++ Add link for argument repo in title.
++ Add `show_discussions` option for arguments.
++ Fix `show_propositions` option for arguments.
++ Show form instead of empty discussions on init.
+
 ## 0.1.2 / 2013-12-25
 
 + Add discussions for Arguments!
