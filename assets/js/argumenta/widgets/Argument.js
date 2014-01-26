@@ -74,7 +74,13 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 self.propositionsVisible = false;
                 self._initData();
                 if (self.options.show_discussions) {
-                    self.toggleDiscussions();
+                    var onComplete = function() {
+                        if (self.discussions.length == 0) {
+                            self.toggleDiscussions();
+                            self.startDiscussion();
+                        }
+                    };
+                    self.toggleDiscussions(onComplete);
                 }
             },
 
@@ -128,13 +134,13 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
             },
 
             // Toggle discussions for widget.
-            toggleDiscussions: function() {
+            toggleDiscussions: function(onComplete) {
                 var self = this;
                 if ( self.discussions ) {
                     self.discussionsPanel.toggle(300);
                 }
                 else {
-                    self._initDiscussions();
+                    self._initDiscussions(onComplete);
                     self.discussionsPanel.css({ display: 'block' });
                     self.discussionsPanel.show(300);
                 }
@@ -153,7 +159,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
             },
 
             // Starts a new discussion.
-            onDiscuss: function() {
+            startDiscussion: function() {
                 var self = this;
                 if (self.discussionEditor.length == 0) {
                     self._initDiscussionEditor();
@@ -194,7 +200,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 self.discuss.on('click', function( event ) {
                     event.preventDefault();
                     self.discuss.blur();
-                    self.onDiscuss();
+                    self.startDiscussion();
                 });
 
                 // Click behavior for show discussions.
@@ -334,13 +340,13 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
             },
 
             // Inits discussions.
-            _initDiscussions: function() {
+            _initDiscussions: function(onComplete) {
                 var self = this;
-                self._updateDiscussions();
+                self._updateDiscussions(onComplete);
             },
 
             // Updates discussions.
-            _updateDiscussions: function() {
+            _updateDiscussions: function(onComplete) {
                 var self = this;
                 var base = self.options.base_url;
                 var sha1 = self.getSha1();
@@ -352,7 +358,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 var error = function(data) {
                     Sandbox.error(data);
                 };
-                $.get(url).done(success).fail(error);
+                $.get(url).done(success).fail(error).always(onComplete);
             },
 
             // Inits propositions data and elements.
