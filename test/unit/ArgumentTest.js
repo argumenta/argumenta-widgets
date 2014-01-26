@@ -176,6 +176,17 @@ function(chai, undefined, fixtures, helpers, Argument, Proposition, Base, Config
             });
         });
 
+        describe('getCommitter()', function() {
+            it('should return the committer', function() {
+                var argument = fixtures.validArgument();
+                assert.equal(
+                    argument.getCommitter(),
+                    'tester',
+                    'Check committer.'
+                );
+            });
+        });
+
         describe('getPropositionWidgets()', function() {
             it('should return a widget for each proposition', function() {
                 var data = fixtures.validArgumentData();

@@ -96,7 +96,9 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
 
             // Gets the committer, if set.
             getCommitter: function() {
-                return this.commit ? this.commit.committer : '';
+                return this.options.commit
+                    ? this.options.commit.committer
+                    : '';
             },
 
             // Sets propositions data, and inits elements.
