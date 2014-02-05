@@ -1,6 +1,6 @@
 /* Argumenta - Sidebar Widget Stylesheet */
 
-div.sidebar-widget {
+.sidebar-widget {
     display: inline-block;
     overflow-y: auto;
     overflow-x: hidden;

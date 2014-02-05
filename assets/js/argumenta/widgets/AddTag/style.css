@@ -6,7 +6,7 @@
     min-width: 350px;
     width: 100%;
 }
-form.new-tag {
+.add-tag-widget form.new-tag {
   text-align: center;
   display: block;
   margin: 5px 2px;
@@ -14,41 +14,41 @@ form.new-tag {
   border: 2px solid #fff;
   box-shadow: 2px 2px 4px #ccc;
 }
-.tag-dialogue fieldset {
+.add-tag-widget .tag-dialogue fieldset {
   border: 0px solid #ccc;
   vertical-align: middle;
 }
-.tag-dialogue fieldset legend {
+.add-tag-widget .tag-dialogue fieldset legend {
   text-align: center;
   width: 100%;
 }
-.tag-dialogue button {
+.add-tag-widget .tag-dialogue button {
   padding: 4px;
   font-size: 13px;
 }
-.tag-dialogue button[name=support],
-.tag-dialogue button[name=support][class~=off]:hover {
+.add-tag-widget .tag-dialogue button[name=support],
+.add-tag-widget .tag-dialogue button[name=support][class~=off]:hover {
   color: #fff;
   background: #22e022;
 }
-.tag-dialogue button[name=dispute],
-.tag-dialogue button[name=dispute][class~=off]:hover {
+.add-tag-widget .tag-dialogue button[name=dispute],
+.add-tag-widget .tag-dialogue button[name=dispute][class~=off]:hover {
   color: #fff;
   background: #f28;
 }
-.tag-dialogue button[name=citation],
-.tag-dialogue button[name=citation][class~=off]:hover {
+.add-tag-widget .tag-dialogue button[name=citation],
+.add-tag-widget .tag-dialogue button[name=citation][class~=off]:hover {
   color: #fff;
   background: #555;
 }
-.tag-dialogue button[class~=off] {
+.add-tag-widget .tag-dialogue button[class~=off] {
   color: #333;
   background: #fff;
 }
-.tag-dialogue button:hover {
+.add-tag-widget .tag-dialogue button:hover {
   opacity: 1.0;
 }
-.add-tag-divider {
+.add-tag-widget .add-tag-divider {
   border-style: none none solid;
   border-color: #CCC;
   border-width: 1px;
@@ -64,7 +64,7 @@ form.new-tag {
   padding: 5px 0px;
   width: 100%;
 }
-.tag-dropbox {
+.add-tag-widget .tag-dropbox {
   background: #fff;
   min-height: 3em;
   width: auto;
@@ -74,18 +74,18 @@ form.new-tag {
   margin: 5px;
   padding: 3px;
 }
-.tag-dropbox .dropbox-preview {
+.add-tag-widget .tag-dropbox .dropbox-preview {
   min-height: 4em;
   min-width: 350px;
   padding: 0px;
   text-align: left;
   font-weight: normal;
 }
-.dropbox-hover {
+.add-tag-widget .dropbox-hover {
   border: 1px solid #3cf;
   box-shadow: 0 0 10px #3af;
 }
-.tag-dropbox .dropbox-contents {
+.add-tag-widget .tag-dropbox .dropbox-contents {
   display: none;
 }
 .add-tag-widget textarea {

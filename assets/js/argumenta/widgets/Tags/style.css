@@ -1,14 +1,14 @@
 /* Argumenta - Tags Widget Stylesheet */
 
-.support-tags-header {
+.tags-widget .support-tags-header {
     border-bottom: 2px solid #4d4;
     color: #4d4;
 }
-.dispute-tags-header {
+.tags-widget .dispute-tags-header {
     border-bottom: 2px solid #f47;
     color: #f47;
 }
-.citation-tags-header {
+.tags-widget .citation-tags-header {
     border-bottom: 2px solid #333;
     color: #333;
 }
@@ -17,7 +17,7 @@
     font-size: 18px;
     font-weight: bold;
 }
-.tags-container > * {
+.tags-widget .tags-container > * {
     box-shadow: none;
     margin: 8px 0px;
 }
