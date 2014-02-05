@@ -88,8 +88,14 @@ form.new-tag {
 .tag-dropbox .dropbox-contents {
   display: none;
 }
-
-[name=citation_text] {
+.add-tag-widget textarea {
+  outline: none;
+}
+.add-tag-widget textarea:focus {
+  border: 1px solid #2af;
+  box-shadow: 0 0 3px #08f;
+}
+.add-tag-widget [name=citation_text] {
     box-sizing: border-box;
     width: 95%;
     height: 3.9em;

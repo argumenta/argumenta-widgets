@@ -11,6 +11,13 @@
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+.comment-editor-widget textarea {
+  outline: none;
+}
+.comment-editor-widget textarea:focus {
+  border: 1px solid #2af;
+  box-shadow: 0 0 3px #08f;
+}
 .comment-editor-widget .comment-form {
     width: 100%;
     margin: 5px 0px;
