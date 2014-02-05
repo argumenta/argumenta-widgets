@@ -118,6 +118,9 @@ function( $, Mustache, Template, Config, Sandbox ) {
         // Initialize element for this instance.
         this.element = $('<div class="' + this.getClassName() + '">' );
 
+        // Add css namespace for argumenta styles.
+        this.element.addClass('argumenta');
+
         // Save a reference to this widget instance in the element's
         // "data-<classname>" attribute.
         this.element.data(this.getClassName(), this);
