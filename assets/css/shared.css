@@ -24,6 +24,34 @@
     line-height: 1.3;
 }
 
+.argumenta h1,
+.argumenta h2,
+.argumenta h3,
+.argumenta h4,
+.argumenta h5,
+.argumenta h6 {
+  font-weight: normal;
+  margin: 5px 0;
+}
+.argumenta h1 {
+  font-size: 1.8em;
+}
+.argumenta h2 {
+  font-size: 1.5em;
+}
+.argumenta h3 {
+  font-size: 1.4em;
+}
+.argumenta h4 {
+  font-size: 1.3em;
+}
+.argumenta h5 {
+  font-size: 1.2em;
+}
+.argumenta h6 {
+  font-size: 1.1em;
+}
+
 /* Notifications */
 
 .argumenta .notifications {
