@@ -311,7 +311,6 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 var url  = base + path;
                 var success = function( data ) {
                     $.extend(self.options, data.argument);
-                    self.options.commit = data.commit;
                     self._refresh();
                     if ( self.options.show_propositions ) {
                         self._initPropositions();
