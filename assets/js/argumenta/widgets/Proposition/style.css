@@ -46,6 +46,42 @@
     font-size: 13px;
     color: #999;
 }
+.proposition-widget .support-tag-meta,
+.proposition-widget .dispute-tag-meta,
+.proposition-widget .citation-tag-meta {
+    position: relative;
+    z-index: 0;
+}
+.proposition-widget .support-tag-icon,
+.proposition-widget .dispute-tag-icon,
+.proposition-widget .citation-tag-icon {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    font-size: 25px;
+    text-shadow: 2px 2px 0px #ccc;
+}
+.proposition-widget .support-tag-icon {
+    color: #4e4;
+}
+.proposition-widget .dispute-tag-icon {
+    color: #f47;
+}
+.proposition-widget .citation-tag-icon {
+    color: #333;
+}
+.proposition-widget .support-tag-count,
+.proposition-widget .dispute-tag-count,
+.proposition-widget .citation-tag-count {
+    display: inline-block;
+    min-width: 2em;
+    padding-left: 5px;
+    text-align: left;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 1px 1px 0px #555;
+}
 .proposition-widget .tag-info {
     display: inline-block;
     text-align: right;
