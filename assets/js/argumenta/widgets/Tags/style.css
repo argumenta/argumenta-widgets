@@ -26,13 +26,10 @@
     font-size: 1.2em;
 }
 .tags-widget .support-tag-icon {
-    color: #4e4;
 }
 .tags-widget .dispute-tag-icon {
-    color: #f47;
 }
 .tags-widget .citation-tag-icon {
-    color: #333;
 }
 .tags-widget .tags-container > * {
     box-shadow: none;
