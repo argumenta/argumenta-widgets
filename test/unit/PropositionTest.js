@@ -21,7 +21,7 @@ function(chai, undefined, fixtures, Proposition, Base) {
     };
 
     var assertTagCount = function( prop, type, count ) {
-        var $count = prop.main.find('.tag-counts .' + type + 's');
+        var $count = prop.main.find('.tag-counts .' + type + '-tag-count');
         var html = $count.html().replace(/\s*/g, '');
         assert.equal(
             html,
