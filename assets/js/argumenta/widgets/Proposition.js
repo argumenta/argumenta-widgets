@@ -170,7 +170,7 @@ function( $, Base, AddTag, Tags, Template ) {
                     helper: 'clone',
                     appendTo: $('.drag-container')[0] || $('body'),
                     revert: true,
-                    cancel: 'span, input',
+                    cancel: 'input',
                     handle: self.element.children(".proposition-main"),
                     cursor: 'move',
 
