@@ -9,23 +9,20 @@ Includes arguments, propositions, and (support, dispute, citation) tags.
 ## Example
 
 Argumenta widgets may be included on any web page.  
-Just include the widgets JavaScript, CSS, and a placeholder element.  
+Just include the JavaScript source and a widget element.  
 
-Here's an argument widget. It will display the argument with the given SHA-1:  
+Here's an example argument widget. It will display the argument with the given SHA-1:  
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- Widgets CSS. -->
-    <link rel="stylesheet" href="http://argumenta.io/widgets/css/argumenta.css">
-  </head>
+  <head></head>
   <body>
-    <!-- Widget placeholder. -->
+    <!-- Widget Element -->
     <div class="argument-widget" data-sha1="50250211801dabf9cbf0e574af270ba2c3fe83cb"></div>
 
-    <!-- Widgets JS. -->
-    <script src="http://argumenta.io/widgets/js/require.js" data-main="/widgets/js/main"></script>
+    <!-- Argumenta-Widgets -->
+    <script src="https://argumenta.io/widgets.js"></script>
   </body>
 </html>
 ```
