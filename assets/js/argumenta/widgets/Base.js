@@ -1,7 +1,7 @@
 define( 'argumenta/widgets/Base',
 [
     "require-jquery",
-    "require-mustache",
+    "mustache",
     "text!./Base/template.html.mustache",
     "argumenta/config",
     "argumenta/sandbox"

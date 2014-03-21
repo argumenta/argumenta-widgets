@@ -5,13 +5,17 @@
 
 require.config( {
     paths: {
-        'jquery'                : "jquery-1.7.1.min",
-        'jquery-ui'             : "jquery-ui-1.8.16.custom.min",
-        'jquery-temporaryClass' : "jquery.temporaryClass",
-        'jquery-autosize'       : "jquery.autosize",
-        'jquery-charcount'      : "jquery.charcount",
-        'moment'                : "moment",
-        'mustache'              : "require-mustache"
+        'jquery'                : "lib/jquery-1.7.1.min",
+        'jquery-ui'             : "lib/jquery-ui-1.8.16.custom.min",
+        'jquery-temporaryClass' : "lib/jquery.temporaryClass",
+        'jquery-autosize'       : "lib/jquery.autosize",
+        'jquery-charcount'      : "lib/jquery.charcount",
+        'moment'                : "lib/moment",
+        'mustache'              : "lib/require-mustache",
+        'order'                 : "lib/order",
+        'require-bootstrap'     : "lib/require-bootstrap",
+        'require-jquery'        : "lib/require-jquery",
+        'text'                  : "lib/text"
     },
     shim: {
         'jquery' : {
