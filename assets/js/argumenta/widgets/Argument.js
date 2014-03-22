@@ -45,6 +45,8 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
      *     </div>
      *
      * @param opts {Object} Argument widget options.
+     * @param opts.sha1 {String} The argument's sha1.
+     * @param opts.repo {String} The argument's repo. (Example: "user/repo")
      * @param opts.show_discussions {Boolean} Whether to show discussions initially.
      * @param opts.show_propositions {Boolean} Whether to show propositions initially.
      * @param opts.propositions {Array<Object>} An array of argument propositions data.
@@ -295,12 +297,52 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                      !self.options.premises ||
                      !self.options.conclusion )
                 {
-                    self._loadDataBySha1();
+                    self._loadData();
                 }
                 else if (self.options.show_propositions) {
                     self._initPropositions();
                 }
             },
+
+            // Loads argument data by API.
+            _loadData: function() {
+                var self = this;
+                var sha1 = self.options.sha1;
+                var repo = self.options.repo;
+                if (sha1) {
+                    self._loadDataBySha1();
+                }
+                else if (repo && typeof repo == 'string') {
+                    var matches = repo.match(/(.+)\/(.+)/);
+                    var username = matches[1];
+                    var reponame = matches[2];
+                    self._loadDataByRepo(username, reponame);
+                }
+            },
+
+            // Loads argument data by repo.
+            _loadDataByRepo: function(username, reponame) {
+                var self = this;
+                var repo = username + '/' + encodeURIComponent(reponame);
+                var base = self.options.base_url;
+                var path = '/' + repo + '.json';
+                var url  = base + path;
+                var success = function( data ) {
+                    var argument = data.repo.target;
+                    argument.commit = data.repo.commit;
+                    $.extend(self.options, argument);
+
+                    self._refresh();
+                    if ( self.options.show_propositions ) {
+                        self._initPropositions();
+                    }
+                };
+                var error = function( data ) {
+                    Sandbox.error(data);
+                };
+                $.ajax(url).done(success).fail(error);
+            },
+
 
             // Loads argument data by SHA-1.
             _loadDataBySha1: function() {
@@ -427,18 +469,19 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
             _getViewOptions: function() {
                 var self = this;
                 var base      = self.options.base_url;
+                var sha1      = self.options.sha1 || '';
                 var reponame  = self.options.repo;
                 var committer = self.getCommitter();
                 var repoUrl   = base + '/' + committer + '/' + encodeURIComponent(reponame);
                 var viewOptions = {
-                    partial_sha1: self.options.sha1.substr(0, 20),
+                    partial_sha1: sha1.substr(0, 20),
                     repo_url: repoUrl,
                     argument_desc:
                         'Argument Repo\r\n'
                         + committer + ' / ' + self.options.repo,
                     object_desc:
                         'Argument Object\r\n'
-                        + 'SHA1: ' + self.options.sha1
+                        + 'SHA1: ' + sha1
                 };
                 return $.extend( viewOptions, self.options );
             }
