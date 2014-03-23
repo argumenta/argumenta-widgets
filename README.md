@@ -6,11 +6,11 @@ Includes arguments, propositions, and (support, dispute, citation) tags.
 
 <img src="https://raw.github.com/argumenta/argumenta-widgets/master/examples/images/argument.png">
 
-## Example
+## Examples
 
-Argumenta widgets may be included on any web page.  
-Just include the JavaScript source and a widget element.  
+### Arguments
 
+To use Argumenta widgets on any page, just include the JavaScript source and a widget element.  
 Here's an example argument widget. It will display the argument with the given SHA-1:  
 
 ```html
@@ -20,7 +20,6 @@ Here's an example argument widget. It will display the argument with the given S
   <body>
     <!-- Widget Element -->
     <div class="argument-widget" data-sha1="50250211801dabf9cbf0e574af270ba2c3fe83cb"></div>
-
     <!-- Argumenta-Widgets -->
     <script src="https://argumenta.io/widgets.js"></script>
   </body>
@@ -30,6 +29,14 @@ Here's an example argument widget. It will display the argument with the given S
 When the JavaScript loads, any placeholders on the page are automatically activated.  
 This initializes each widget, loading content from `data-` attributes and Argumenta's JSON API.
 
+### Argument Repos
+
+You can also specify an argument by repo.  
+This is more friendly for humans, and the repo always points to the argument's latest version:
+
+```html
+<div class="argument-widget" data-repo="tester/my-argument-^_^"></div>
+```
 
 ## Install
 
