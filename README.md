@@ -6,12 +6,10 @@ Includes arguments, propositions, and (support, dispute, citation) tags.
 
 <img src="https://raw.github.com/argumenta/argumenta-widgets/master/examples/images/argument.png">
 
-## Examples
-
-### Arguments
+## Example
 
 To use Argumenta widgets on any page, just include the JavaScript source and a widget element.  
-Here's an example argument widget. It will display the argument with the given SHA-1:  
+Here's an example argument widget. It displays the latest argument published at the given repo:  
 
 ```html
 <!DOCTYPE html>
@@ -19,7 +17,7 @@ Here's an example argument widget. It will display the argument with the given S
   <head></head>
   <body>
     <!-- Widget Element -->
-    <div class="argument-widget" data-sha1="50250211801dabf9cbf0e574af270ba2c3fe83cb"></div>
+    <div class="argument-widget" data-repo="qualiabyte/my-argument-^_^"></div>
     <!-- Argumenta-Widgets -->
     <script src="https://argumenta.io/widgets.js"></script>
   </body>
@@ -29,14 +27,43 @@ Here's an example argument widget. It will display the argument with the given S
 When the JavaScript loads, any placeholders on the page are automatically activated.  
 This initializes each widget, loading content from `data-` attributes and Argumenta's JSON API.
 
-### Argument Repos
+## API
 
-You can also specify an argument by repo.  
-This is more friendly for humans, and the repo always points to the argument's latest version:
+### Argument
+
+Argument data can either be specified directly, or loaded via the REST API.  
+Just set one of the following options: `argument`, `sha1`, or `repo`.  
 
 ```html
-<div class="argument-widget" data-repo="tester/my-argument-^_^"></div>
+<!-- Loads argument data directly, or from API by SHA-1 or repo. -->
+<div class="argument-widget" data-argument='{"title":"My Argument ^_^","premises":["The first premise!","The second premise!"],"conclusion":"The conclusion.","object_type":"argument","sha1":"50250211801dabf9cbf0e574af270ba2c3fe83cb","repo":"my-argument-^_^","metadata":{"discussions_count":"1"},"commit":{"object_type":"commit","sha1":"ec9a968237e676e954f4a56d1b54727e457825b9","target_type":"argument","target_sha1":"50250211801dabf9cbf0e574af270ba2c3fe83cb","committer":"qualiabyte","commit_date":"2013-05-28T12:34:01Z","parent_sha1s":[],"host":null}}'></div>
+<div class="argument-widget" data-sha1="50250211801dabf9cbf0e574af270ba2c3fe83cb"></div>
+<div class="argument-widget" data-repo="qualiabyte/my-argument-^_^"></div>
 ```
+
+When using the REST API, no other options are required &ndash; but the display options may still be useful!
+
+```html
+<!-- Changes the default display options. -->
+<div class="argument-widget" data-show_propositions="false" data-sha1="50250211801dabf9cbf0e574af270ba2c3fe83cb"></div>
+<div class="argument-widget" data-show_discussions="true" data-sha1="50250211801dabf9cbf0e574af270ba2c3fe83cb"></div>
+```
+
+Here's the full list of argument options:
+
++ **argument** *Object* The argument data.
++ **argument.title** *String* The title.
++ **argument.premises** *Array&lt;String&gt;* The premises.
++ **argument.conclusion** *String* The conclusion.
++ **argument.object_type** *String* The object type. ("argument")
++ **argument.metadata** *Object* The argument's metadata.
++ **argument.metadata.discussions_count** *Number* The discussions count. (Default: 0)
++ **commit** *Object* The argument's commit data.
++ **propositions** *Array&lt;Object&gt;* An array of argument propositions data. (Optional; for caching)
++ **repo** *String* The argument's repo. (Example: "user/repo")
++ **sha1** *String* The argument's SHA-1.
++ **show_discussions** *Boolean* Whether to show discussions initially. (Default: false)
++ **show_propositions** *Boolean* Whether to show propositions initially. (Default: true)
 
 ## Install
 
