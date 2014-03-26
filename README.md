@@ -25,7 +25,9 @@ Here's an example argument widget. It displays the latest argument published at 
 ```
 
 When the JavaScript loads, any placeholders on the page are automatically activated.  
-This initializes each widget, loading content from `data-` attributes and Argumenta's JSON API.
+This initializes each widget, loading content from `data-` attributes and [Argumenta's REST API][Argumenta-API].  
+
+[Argumenta-API]: https://github.com/argumenta/argumenta/blob/master/doc/README.API.markdown
 
 ## API
 
