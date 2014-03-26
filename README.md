@@ -1,7 +1,7 @@
 
 # Argumenta-Widgets
 
-JavaScript widgets for Argumenta. Designed for [argumenta.io](http://argumenta.io). Use anywhere on the web!  
+JavaScript widgets for [Argumenta][Argumenta]. Designed for [Argumenta.io][Argumenta.io]. Use anywhere on the web!  
 Includes arguments, propositions, and (support, dispute, citation) tags.
 
 <img src="https://raw.github.com/argumenta/argumenta-widgets/master/examples/images/argument.png">
@@ -26,8 +26,6 @@ Here's an example argument widget. It displays the latest argument published at 
 
 When the JavaScript loads, any placeholders on the page are automatically activated.  
 This initializes each widget, loading content from `data-` attributes and [Argumenta's REST API][Argumenta-API].  
-
-[Argumenta-API]: https://github.com/argumenta/argumenta/blob/master/doc/README.API.markdown
 
 ## API
 
@@ -82,7 +80,10 @@ $ ln -s ./node_modules/argumenta-widgets/development ./widgets  # For developmen
 $ ln -s ./node_modules/argumenta-widgets/production ./widgets   # For production.
 ```
 
-
 ## License
 
 MIT
+
+[Argumenta]: https://github.com/argumenta/argumenta
+[Argumenta.io]: https://argumenta.io
+[Argumenta-API]: https://github.com/argumenta/argumenta/blob/master/doc/README.API.markdown
