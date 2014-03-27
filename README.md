@@ -1,5 +1,5 @@
 
-# Argumenta-Widgets
+# Argumenta Widgets
 
 JavaScript widgets for [Argumenta][Argumenta]. Designed for [Argumenta.io][Argumenta.io]. Use anywhere on the web!  
 Includes arguments, propositions, and (support, dispute, citation) tags.
@@ -18,7 +18,7 @@ Here's an example argument widget. It displays the latest argument published at 
   <body>
     <!-- Widget Element -->
     <div class="argument-widget" data-repo="qualiabyte/my-argument-^_^"></div>
-    <!-- Argumenta-Widgets -->
+    <!-- Argumenta Widgets -->
     <script src="https://argumenta.io/widgets.js"></script>
   </body>
 </html>
