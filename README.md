@@ -41,7 +41,8 @@ Just set one of the following options: `argument`, `sha1`, or `repo`.
 <div class="argument-widget" data-repo="qualiabyte/my-argument-^_^"></div>
 ```
 
-When using the REST API, no other options are required &ndash; but the display options may still be useful!
+When using the REST API, no other options are required &ndash; but the display options may still be useful!  
+These include `show_propositions` and `show_discussions`.
 
 ```html
 <!-- Changes the default display options. -->
