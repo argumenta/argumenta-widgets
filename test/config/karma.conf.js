@@ -13,12 +13,12 @@ files = [
   REQUIRE,
   REQUIRE_ADAPTER,
   // RequireJS shim files.
-  'assets/js/jquery-1.7.1.min.js',
-  'assets/js/jquery-ui-1.8.16.custom.min.js',
-  'assets/js/jquery.temporaryClass.js',
-  'assets/js/jquery.autosize.js',
-  'assets/js/jquery.charcount.js',
-  'assets/js/moment.js',
+  'assets/js/lib/jquery-1.7.1.min.js',
+  'assets/js/lib/jquery-ui-1.8.16.custom.min.js',
+  'assets/js/lib/jquery.temporaryClass.js',
+  'assets/js/lib/jquery.autosize.js',
+  'assets/js/lib/jquery.charcount.js',
+  'assets/js/lib/moment.js',
   // Test files.
   'test/test-main.js',
   // Serve and Watch files.
