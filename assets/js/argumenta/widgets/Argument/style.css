@@ -48,8 +48,15 @@
     padding: 0px 2px;
 }
 
-.argument-menu .btn {
+.argument-widget .argument-menu .btn {
     padding: 2px 8px;
+}
+.argument-widget .argument-menu .argument-menu-button {
+    float: right;
+    display: inline-block;
+    height: 28px;
+    margin: 0px 2px;
+    color: #333;
 }
 
 .argument-title,
