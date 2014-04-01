@@ -22,5 +22,43 @@ function(chai, undefined, fixtures, Base) {
                 );
             });
         });
+
+        describe('activate( element )', function() {
+
+            it('should accept data attributes as options', function() {
+                var html = '<div class="base-widget" data-base=\'{ "foo": 1 }\'></div>';
+                var $element = $(html);
+                $('body').append($element);
+                var $widget = Base.activate($element);
+                var widget = $widget.data('base-widget');
+                assert(
+                    widget.options.foo, 1,
+                    "Check option foo is set."
+                );
+            });
+
+            it('should accept multi-line data attributes', function() {
+                var html = '<div class="base-widget" data-baz="3" data-base=\'{\n' +
+                    '"foo": 1,\n' +
+                    '"bar": 2\n' +
+                    '}\'></div>';
+                var $element = $(html);
+                $('body').append($element);
+                var $widget = Base.activate($element);
+                var widget = $widget.data('base-widget');
+                assert(
+                    widget.options.foo, 1,
+                    "Check option foo is set."
+                );
+                assert(
+                    widget.options.bar, 2,
+                    "Check option bar is set."
+                );
+                assert(
+                    widget.options.baz, 3,
+                    "Check option baz is set."
+                );
+            });
+        });
     });
 });

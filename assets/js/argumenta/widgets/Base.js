@@ -105,6 +105,13 @@ function( $, Mustache, Template, Config, Sandbox ) {
     Base.prototype._init = function( opts ) {
 
         var options = opts || {};
+        var moduleOptions = options[this.moduleID.toLowerCase()];
+
+        // Fix multi-line data attributes.
+        if (typeof moduleOptions == 'string') {
+            try { moduleOptions = JSON.parse(moduleOptions); }
+            catch (err) { console.log("Error parsing module options."); }
+        }
 
         // Merge default options and parameters for this instance.
         this.options = $.extend(
@@ -112,7 +119,7 @@ function( $, Mustache, Template, Config, Sandbox ) {
             Base.prototype.defaultOptions,
             this.defaultOptions,
             options,
-            options[this.moduleID.toLowerCase()]
+            moduleOptions
         );
 
         // Initialize element for this instance.
