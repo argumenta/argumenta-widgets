@@ -27,6 +27,7 @@
     border-left: 4px solid #555 !important;
 }
 .argument-main {
+    position: relative;
     background: #fff;
     padding: 5px 5px;
     border-left: 4px solid #ccc;
@@ -43,8 +44,10 @@
 .argument-menu.open {
     opacity: 1.0;
 }
-.argument-menu {
-    float: right;
+.argument-widget .argument-menu {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
     padding: 0px 2px;
 }
 
@@ -52,9 +55,6 @@
     padding: 2px 8px;
 }
 .argument-widget .argument-menu .argument-menu-button {
-    float: right;
-    display: inline-block;
-    height: 28px;
     margin: 0px 2px;
     color: #333;
 }
