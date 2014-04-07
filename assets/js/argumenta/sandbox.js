@@ -64,6 +64,24 @@ function( $, Widgets ) {
                 .delay(8000).fadeOut(2000);
         },
 
+        // Gets the signed session cookie data.
+        session: function() {
+            var self = this;
+            if (document.cookie == '') return {};
+            var raw = document.cookie.split(/=/)[1];
+            var json = decodeURIComponent(raw).match(/{.*}/g)[0];
+            var session = JSON.parse(json);
+            return session;
+        },
+
+        // Gets the username from the session cookie.
+        username: function() {
+            var self = this;
+            var session = self.session();
+            var username = session.username;
+            return username;
+        },
+
         // Registers a given widget module.
         register: function( module ) {
             Widgets.registerModule( module );

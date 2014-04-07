@@ -195,6 +195,13 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 self.discussionsContainer = self.discussionsPanel.children('.discussions-container');
                 self.showDiscussions = self.footer.children('.show-discussions');
 
+                // Enable the delete menu action if logged in and owner.
+                var username = Sandbox.username();
+                var committer = self.getCommitter();
+                if (username && username == committer) {
+                    self.deleteButton.parent().removeClass('disabled');
+                }
+
                 // Click behavior for title.
                 self.title.children('a').on('click', function( event ) {
                     event.stopPropagation();
