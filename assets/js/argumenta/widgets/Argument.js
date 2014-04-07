@@ -183,6 +183,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 self.title = self.main.children('.argument-title');
                 self.menu = self.container.find('.argument-menu').first();
                 self.deleteButton = self.menu.find('.action-delete');
+                self.editButton = self.menu.find('.action-edit');
                 self.content = self.container.children('.argument-content');
                 self.propositionsContainer = self.content.children('.propositions-container');
                 self.footer = self.content.children('.argument-footer');
@@ -200,6 +201,18 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                 var committer = self.getCommitter();
                 if (username && username == committer) {
                     self.deleteButton.parent().removeClass('disabled');
+                }
+
+                // Edit menu action.
+                self.editButton.click(function() {
+                    var base = self.options.base_url;
+                    var sha1 = self.getSha1();
+                    var path = '/arguments/' + sha1 + '/edit';
+                    var url = base + path;
+                    window.location.href = url;
+                });
+                if (username != committer) {
+                    self.editButton.text("Fork Repo");
                 }
 
                 // Click behavior for title.
