@@ -1,6 +1,18 @@
 
 # Changes
 
+## 0.1.4 / 2014-04-16
+
++ Add ribbon icon for tags.
++ Add CSS namespace for argumenta styles.
++ Make proposition dragging easier.
++ Change user widget label from `Repos` to `Arguments`.
++ Disable `Delete Repo` menu action unless logged in.
++ Display `Fork Repo` menu action unless argument owner.
++ Fix embedded argument widgets: styles, commit info.
++ Fix multi-line data attributes.
++ Cleaner embedding syntax!
+
 ## 0.1.3 / 2014-01-26
 
 + Show commit information for tags.
