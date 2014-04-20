@@ -285,6 +285,10 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                     cursor: 'move',
 
                     start: function(event, ui) {
+
+                        // Add drag class to body.
+                        $('body').addClass('argumenta-drag');
+
                         // Prevent other actions on drag.
                         ui.helper.addClass('ui-state-just-dragged drag');
 
@@ -299,6 +303,10 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                     },
 
                     stop: function(event, ui) {
+
+                        // Remove drag class from body.
+                        $('body').removeClass('argumenta-drag');
+
                         // Prevent other actions on drag, then cleanup.
                         setTimeout(function() {
                             ui.helper.removeClass('ui-state-just-dragged');

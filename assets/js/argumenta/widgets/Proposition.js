@@ -176,6 +176,9 @@ function( $, Base, AddTag, Tags, Template ) {
 
                     start: function(event, ui) {
 
+                        // Add drag class to body.
+                        $('body').addClass('argumenta-drag');
+
                         // Prevent other actions on drag.
                         ui.helper.addClass('ui-state-just-dragged drag');
 
@@ -190,6 +193,10 @@ function( $, Base, AddTag, Tags, Template ) {
                     },
 
                     stop: function(event, ui) {
+
+                        // Remove drag class from body.
+                        $('body').removeClass('argumenta-drag');
+
                         // Prevent other actions on drag, then cleanup.
                         var removeDrag = function() {
                           ui.helper.removeClass('ui-state-just-dragged')

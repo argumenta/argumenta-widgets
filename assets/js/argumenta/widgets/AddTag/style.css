@@ -65,6 +65,7 @@
   width: 100%;
 }
 .add-tag-widget .tag-dropbox {
+  display: none;
   background: #fff;
   min-height: 3em;
   width: auto;
@@ -73,6 +74,12 @@
   box-shadow: 1px 1px 1px #ccc;
   margin: 5px;
   padding: 3px;
+}
+.argumenta-drag .add-tag-widget .tag-dropbox {
+  display: block;
+}
+.add-tag-widget.dropped .tag-dropbox {
+  display: block;
 }
 .add-tag-widget .tag-dropbox .dropbox-preview {
   min-height: 4em;
@@ -95,9 +102,22 @@
   border: 1px solid #2af;
   box-shadow: 0 0 3px #08f;
 }
+.add-tag-widget [name=proposition_text] {
+  display: block;
+  box-sizing: border-box;
+  width: 95%;
+  height: 4.5em;
+  margin: 5px auto;
+}
+.argumenta-drag .add-tag-widget [name=proposition_text] {
+  display: none;
+}
+.add-tag-widget.dropped [name=proposition_text] {
+  display: none;
+}
 .add-tag-widget [name=citation_text] {
-    box-sizing: border-box;
-    width: 95%;
-    height: 3.9em;
-    margin: 5px auto;
+  box-sizing: border-box;
+  width: 95%;
+  height: 4.5em;
+  margin: 5px auto;
 }

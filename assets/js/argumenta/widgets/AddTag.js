@@ -66,6 +66,11 @@ function( $, Base, Template, Sandbox ) {
                 return this.citationTextarea.val();
             },
 
+            // Gets any proposition text, if set.
+            getPropositionText: function() {
+                return this.propositionTextarea.val();
+            },
+
             // Sets the tag type.
             setTagType: function( tag_type ) {
                 var self = this;
@@ -116,8 +121,10 @@ function( $, Base, Template, Sandbox ) {
                 self.disputeContents = form.children('.dispute-contents');
                 self.citationContents = form.children('.citation-contents');
                 self.citationTextarea = fieldsets.children('[name=citation_text]');
+                self.propositionTextarea = fieldsets.children('[name=proposition_text]');
                 self.dropboxInstruction = fieldsets.children('.dropbox-instruction');
                 self.dropbox = fieldsets.children('.tag-dropbox');
+                self.submitButton = form.children('button[type=submit]');
 
                 // Listen for clicks on tag-type buttons.
                 widget.on(
@@ -137,6 +144,30 @@ function( $, Base, Template, Sandbox ) {
                 // Don't trigger background elements if clicked.
                 widget.on('click', function( event ) {
                     event.stopPropagation();
+                } );
+
+                // Submit button action.
+                self.submitButton.click(function( event ) {
+                    event.preventDefault();
+                    if (self.element.hasClass('dropped') || self.getTagType() == 'citation') {
+                        self.form.submit();
+                        return;
+                    }
+                    // Create proposition before submitting.
+                    var base = self.options.base_url;
+                    var path = '/propositions.json';
+                    var url = base + path;
+                    var data = {
+                        text: self.getPropositionText()
+                    };
+                    var success = function(data, status, xhr) {
+                        self.setTagSource('proposition', data.proposition.sha1);
+                        self.form.submit();
+                    };
+                    var error = function(data) {
+                        Sandbox.error(data);
+                    };
+                    $.post(url, data, success).fail(error);
                 } );
             },
 
@@ -197,8 +228,8 @@ function( $, Base, Template, Sandbox ) {
                 var self = this;
                 var type = self.getTagType();
                 var message = type === "support"
-                    ? "Drag a supporting argument (or proposition) here."
-                    : "Drag a disputing argument (or proposition) here.";
+                    ? "Drag a supporting argument here."
+                    : "Drag a disputing argument here."
                 self.dropboxInstruction.text(message);
             }
         },
@@ -250,6 +281,9 @@ function( $, Base, Template, Sandbox ) {
                     $(this).children('.dropbox-preview')
                         .empty()
                         .append( clone.element.html() );
+
+                    // Add dropped class to widget element.
+                    addTagElem.addClass('dropped');
                 }
             }
         }
