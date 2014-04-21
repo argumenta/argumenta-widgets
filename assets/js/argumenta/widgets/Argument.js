@@ -284,7 +284,7 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                     helper: 'clone',
                     appendTo: $('.drag-container')[0] || $('body'),
                     revert: true,
-                    cancel: 'span, input',
+                    cancel: 'input',
                     handle: self.container.children(".argument-main"),
                     cursor: 'move',
 
