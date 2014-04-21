@@ -1,6 +1,13 @@
 
 # Changes
 
+## 0.1.5 / 2014-04-20
+
++ Allow creating propositions along with tags.
++ Don't toggle argument details on link clicks.
++ Make argument dragging easier.
++ Fix size of nested tag icons.
+
 ## 0.1.4 / 2014-04-16
 
 + Add ribbon icon for tags.
