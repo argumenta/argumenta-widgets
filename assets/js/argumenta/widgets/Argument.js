@@ -271,6 +271,10 @@ function( $, Base, Template, Discussion, DiscussionEditor, Proposition, Sandbox 
                     if ( self.element.hasClass('menu-just-clicked') )
                         return;
 
+                    // Don't interfere with links.
+                    if ($(event.target).is('a'))
+                        return;
+
                     // Toggle details on click.
                     self.toggleArgumentDetails();
                 } );
