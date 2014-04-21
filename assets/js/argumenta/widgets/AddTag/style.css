@@ -121,3 +121,6 @@
   height: 4.5em;
   margin: 5px auto;
 }
+.add-tag-widget .add-tag-submit {
+  background: #333;
+}
