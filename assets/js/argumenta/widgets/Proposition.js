@@ -48,11 +48,10 @@ function( $, Base, AddTag, Tags, Template ) {
                 // Toggle details on click.
                 self.element.on('click', function(event) {
 
-                    // Don't trigger background elements.
-                    var closestWidget = $(event.target).closest('div[class*="widget"]');
-                    if ( !closestWidget.is(self.element) ) {
-                        event.stopPropagation();
-                        return true;
+                    // Don't toggle when behind other widgets.
+                    var clickedWidget = $(event.target).closest('div[class*="widget"]');
+                    if ( !clickedWidget.is(self.element) ) {
+                        return;
                     }
 
                     // Don't expand on mouse release after dragging.
@@ -62,7 +61,7 @@ function( $, Base, AddTag, Tags, Template ) {
 
                     // Don't interfere with links.
                     if ($(event.target).is('a')) {
-                        return true;
+                        return;
                     }
 
                     self.toggleDetails();
