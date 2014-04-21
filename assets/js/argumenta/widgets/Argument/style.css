@@ -50,6 +50,9 @@
     right: 5px;
     padding: 0px 2px;
 }
+.add-tag-widget .argument-widget .argument-menu {
+  display: none;
+}
 
 .argument-widget .argument-menu .btn {
     padding: 2px 8px;

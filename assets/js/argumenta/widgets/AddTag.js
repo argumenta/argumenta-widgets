@@ -124,7 +124,7 @@ function( $, Base, Template, Sandbox ) {
                 self.propositionTextarea = fieldsets.children('[name=proposition_text]');
                 self.dropboxInstruction = fieldsets.children('.dropbox-instruction');
                 self.dropbox = fieldsets.children('.tag-dropbox');
-                self.submitButton = form.children('button[type=submit]');
+                self.submitButton = form.children('.add-tag-submit');
 
                 // Listen for clicks on tag-type buttons.
                 widget.on(
