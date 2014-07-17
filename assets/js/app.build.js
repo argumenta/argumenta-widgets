@@ -8,5 +8,12 @@
             name: "main"
         }
     ],
+    optimize: "uglify2",
     optimizeCss: "none",
+    uglify2: {
+      mangle: false,
+      output: {
+        beautify: true
+      }
+    }
 })

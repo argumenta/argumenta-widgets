@@ -1,6 +1,5 @@
 # Argumenta Widgets Makefile
 
-OPTIMIZE ?= uglify
 RJS := ./node_modules/requirejs/bin/r.js
 KARMA := ./node_modules/.bin/karma
 CLEANCSS := $(abspath ./node_modules/.bin/cleancss)
@@ -19,7 +18,7 @@ public: optimize
 optimize: assets js css gzip
 
 js:
-	$(RJS) -o assets/js/app.build.js optimize=$(OPTIMIZE)
+	$(RJS) -o assets/js/app.build.js
 
 css:
 	cd assets/css; \
