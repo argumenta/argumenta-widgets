@@ -10,6 +10,7 @@ require.config( {
         'jquery-temporaryClass' : "lib/jquery.temporaryClass",
         'jquery-autosize'       : "lib/jquery.autosize",
         'jquery-charcount'      : "lib/jquery.charcount",
+        'jquery-cookie'         : "lib/jquery.cookie",
         'moment'                : "lib/moment",
         'mustache'              : "lib/require-mustache",
         'order'                 : "lib/order",

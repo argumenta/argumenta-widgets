@@ -19,6 +19,7 @@ require({
         'jquery-temporaryClass'   : '../../assets/js/lib/jquery.temporaryClass',
         'jquery-autosize'         : '../../assets/js/lib/jquery.autosize',
         'jquery-charcount'        : '../../assets/js/lib/jquery.charcount',
+        'jquery-cookie'           : '../../assets/js/lib/jquery.cookie',
         'moment'                  : '../../assets/js/lib/moment',
         // Lib files.
         'require-bootstrap'       : '../../assets/js/lib/require-bootstrap',
