@@ -66,16 +66,16 @@ function( $, Widgets ) {
 
         // Gets the signed session cookie data.
         session: function() {
-            var self = this;
             try {
-              if (document.cookie == '') return {};
-              var raw = document.cookie.split(/=/)[1];
-              var json = decodeURIComponent(raw).match(/{.*}/g)[0];
-              var session = JSON.parse(json);
-              return session;
+                var self = this;
+                var cookie = $.cookie();
+                var raw = cookie.session;
+                var json = decodeURIComponent(raw).match(/{.*}/g)[0];
+                var session = JSON.parse(json);
+                return session;
             }
             catch (err) {
-              return {};
+                return {};
             }
         },
 
